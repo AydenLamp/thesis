@@ -1,5 +1,4 @@
-import MyProject.MulOpposite
-
+import Mathlib
 /-!
 # Project Naming Conventions
 

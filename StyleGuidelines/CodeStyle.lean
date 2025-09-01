@@ -1,4 +1,4 @@
-import MyProject.MulOpposite
+import Mathlib
 
 /-!
 # Style Guidelines
