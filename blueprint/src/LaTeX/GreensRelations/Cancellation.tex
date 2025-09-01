@@ -1,0 +1,94 @@
+\section{Preorder Cancellation Properties}
+
+\begin{lemma}[Right-preorder multiplication decreases]
+\label{lem:RRel-mul_right_self}
+For all \(x,y\in M\), one has \(x \cdot y \le_R x\).
+\lean{RRel.mul_right_self}
+\leanok
+\uses{def:RRel}
+\end{lemma}
+\begin{proof}
+\leanok
+By definition of the right preorder, \(x \cdot y \le_R x\) means that there exists a witness \(u\) with \(x \cdot u = x \cdot y\).  Taking \(u = y\) we obtain \(x \cdot u = x \cdot y\), so \(x \cdot y \le_R x\).
+\uses{def:RRel}
+\end{proof}
+
+% Additional cancellation lemmas for Green's preorders
+
+\begin{lemma}[Left-preorder multiplication decreases]
+\label{lem:LRel-mul_left_self}
+For all \(x,y\in M\), one has \(y \cdot x \le_L x\).
+\lean{LRel.mul_left_self}
+\leanok
+\uses{def:LRel}
+\end{lemma}
+\begin{proof}
+\leanok
+To show \(y \cdot x \le_L x\) we must find a witness \(u\) such that \(u \cdot x = y \cdot x\).  Choosing \(u = y\) gives \(u \cdot x = y \cdot x\), hence \(y \cdot x \le_L x\).
+\uses{def:LRel}
+\end{proof}
+
+\begin{lemma}[Two-sided multiplication decreases]
+\label{lem:JRel-mul_sandwich_self}
+For all \(u,x,v \in M\), one has \(u \cdot x \cdot v \le_J x\).
+\lean{JRel.mul_sandwich_self}
+\leanok
+\uses{def:JRel}
+\end{lemma}
+\begin{proof}
+\leanok
+By definition of the J preorder, \(u \cdot x \cdot v \le_J x\) means there exist witnesses \(s,t\) with \(s \cdot x \cdot t = u \cdot x \cdot v\).  Taking \(s=u\) and \(t=v\) gives \(s \cdot x \cdot t = u \cdot x \cdot v\), showing \(u \cdot x \cdot v \le_J x\).
+\uses{def:JRel}
+\end{proof}
+
+\begin{lemma}[Left cancellation for JRel]
+\label{lem:JRel-left_cancel}
+For all \(x,y,z \in M\), if \(x \le_J y \cdot z\) then \(x \le_J z\).
+\lean{JRel.left_cancel}
+\leanok
+\uses{def:JRel}
+\end{lemma}
+\begin{proof}
+\leanok
+Assume \(x \le_J y \cdot z\).  Then there exist \(u,v\) with \(u \cdot (y \cdot z) \cdot v = x\).  Using associativity we rewrite \(u \cdot (y \cdot z) \cdot v = (u \cdot y) \cdot z \cdot v\).  Letting \(u' = u \cdot y\) and \(v' = v\), we have \(u' \cdot z \cdot v' = x\).  Thus \(x \le_J z\).
+\uses{def:JRel}
+\end{proof}
+
+\begin{lemma}[Right cancellation for JRel]
+\label{lem:JRel-right_cancel}
+For all \(x,y,z \in M\), if \(x \le_J y \cdot z\) then \(x \le_J y\).
+\lean{JRel.right_cancel}
+\leanok
+\uses{def:JRel}
+\end{lemma}
+\begin{proof}
+\leanok
+Suppose \(x \le_J y \cdot z\).  Then there exist \(u,v\) with \(u \cdot (y \cdot z) \cdot v = x\).  Rewrite this as \(u \cdot y \cdot (z \cdot v) = x\).  Setting \(u' = u\) and \(v' = z \cdot v\), we have \(u' \cdot y \cdot v' = x\).  Hence \(x \le_J y\).
+\uses{def:JRel}
+\end{proof}
+
+\begin{lemma}[Right cancellation for RRel]
+\label{lem:RRel-right_cancel}
+For all \(x,y,z \in M\), if \(x \le_R y \cdot z\) then \(x \le_R y\).
+\lean{RRel.right_cancel}
+\leanok
+\uses{def:RRel}
+\end{lemma}
+\begin{proof}
+\leanok
+Suppose \(x \le_R y \cdot z\).  By definition there exists \(u\) with \((y \cdot z) \cdot u = x\).  Using associativity we have \(y \cdot (z \cdot u) = x\).  Set \(u' = z \cdot u\).  Then \(y \cdot u' = x\), so \(x \le_R y\).
+\uses{def:RRel}
+\end{proof}
+
+\begin{lemma}[Left cancellation for LRel]
+\label{lem:LRel-left_cancel}
+For all \(x,y,z \in M\), if \(x \le_L y \cdot z\) then \(x \le_L z\).
+\lean{LRel.left_cancel}
+\leanok
+\uses{def:LRel}
+\end{lemma}
+\begin{proof}
+\leanok
+Assume \(x \le_L y \cdot z\).  Then there exists \(u\) with \(u \cdot (y \cdot z) = x\).  Rewriting as \((u \cdot y) \cdot z = x\), set \(u' = u \cdot y\).  Then \(u' \cdot z = x\), and thus \(x \le_L z\).
+\uses{def:LRel}
+\end{proof}

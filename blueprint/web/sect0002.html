@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Basic Green’s Preorder Lemmas</title>
+<link rel="prev" href="sect0001.html" title="Green’s Relations" />
+<link rel="up" href="index.html" title="My formalization project" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">My formalization project</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Green’s Relations</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0001.html#a0000000004"><span class="toc_ref">1.1</span> <span class="toc_entry">Green’s preorders</span></a>
+ </li>
+<li class="">
+  <a href="sect0001.html#a0000000013"><span class="toc_ref">1.2</span> <span class="toc_entry">Equivalences from preorders</span></a>
+ </li>
+<li class="">
+  <a href="sect0001.html#a0000000015"><span class="toc_ref">1.3</span> <span class="toc_entry">Green’s equivalences</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class=" active current">
+  <a href="sect0002.html"><span class="toc_ref">2</span> <span class="toc_entry">Basic Green’s Preorder Lemmas</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class="">
+  <a href="sect0002.html#a0000000016"><span class="toc_ref">2.1</span> <span class="toc_entry">Preorder idempotent properties</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html#a0000000017"><span class="toc_ref">2.2</span> <span class="toc_entry">Preorder cancellation properties</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html#a0000000018"><span class="toc_ref">2.3</span> <span class="toc_entry">R–L multiplicative compatibility</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html#a0000000019"><span class="toc_ref">2.4</span> <span class="toc_entry">R–L commutativity</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000003">2 Basic Green’s Preorder Lemmas</h1>
+<h1 id="a0000000016">2.1 Preorder idempotent properties</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RRel-idempotent_iff">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">27</span>
+    <span class="lemma_thmtitle">Idempotent characterization for the right preorder</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:RRel-idempotent_iff">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000020"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.idempotent_iff" class="lean_decl">RRel.idempotent_iff</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  Let \(M\) be a monoid and let \(e\in M\) be idempotent (so \(e \cdot e = e\)). For any \(x\in M\), </p>
+<div class="displaymath" id="a0000000021">
+  \[  x \le _R e \quad \text{if and only if}\quad e\cdot x = x.  \]
+</div>
+
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000020">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Assume \(e\) is idempotent. First suppose \(x \le _R e\). Then there exists \(t\) such that \(e \cdot t = x\). Multiplying the equation \(e \cdot t = x\) on the left by \(e\) and using idempotency yields \(e \cdot x = e \cdot (e \cdot t) = (e \cdot e) \cdot t = e \cdot t = x\). Conversely, suppose \(e \cdot x = x\). Setting \(t=x\) gives \(e \cdot t = e \cdot x = x\), so \(x \le _R e\).  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LRel-idempotent_iff">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">28</span>
+    <span class="lemma_thmtitle">Idempotent characterization for the left preorder</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:LRel-idempotent_iff">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000022"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.idempotent_iff" class="lean_decl">LRel.idempotent_iff</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  Let \(M\) be a monoid and let \(e\in M\) be idempotent. For any \(x\in M\), </p>
+<div class="displaymath" id="a0000000023">
+  \[  x \le _L e \quad \text{if and only if}\quad x\cdot e = x.  \]
+</div>
+
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000022">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Assume \(e\) is idempotent. Suppose \(x \le _L e\). Then there exists \(t\) such that \(t \cdot e = x\). Multiplying this equality on the right by \(e\) and using idempotency gives \(x \cdot e = (t \cdot e) \cdot e = t \cdot (e \cdot e) = t \cdot e = x\). Conversely, suppose \(x \cdot e = x\). Taking \(t = x\) yields \(t \cdot e = x\cdot e = x\), so \(x \le _L e\).  </p>
+
+  </div>
+</div>
+<h1 id="a0000000017">2.2 Preorder cancellation properties</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RRel-mul_right_self">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">29</span>
+    <span class="lemma_thmtitle">Right-preorder multiplication decreases</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:RRel-mul_right_self">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000024"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.mul_right_self" class="lean_decl">RRel.mul_right_self</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y\in M\), one has \(x \cdot y \le _R x\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000024">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>By definition of the right preorder, \(x \cdot y \le _R x\) means that there exists a witness \(u\) with \(x \cdot u = x \cdot y\). Taking \(u = y\) we obtain \(x \cdot u = x \cdot y\), so \(x \cdot y \le _R x\).  </p>
+
+  </div>
+</div>
+<h1 id="a0000000018">2.3 R–L multiplicative compatibility</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RRel-mul_left_compat">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">30</span>
+    <span class="lemma_thmtitle">Left multiplication respects the right preorder</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:RRel-mul_left_compat">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000025"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.mul_left_compat" class="lean_decl">RRel.mul_left_compat</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y,z \in M\), if \(x \le _R y\) then \(z\cdot x \le _R z\cdot y\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000025">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Suppose \(x \le _R y\), so there exists \(u\in M\) with \(y \cdot u = x\). We want to show \(z\cdot x \le _R z\cdot y\), meaning there is a witness \(u'\) such that \((z\cdot y)\cdot u' = z\cdot x\). Taking \(u' = u\) we compute \((z\cdot y)\cdot u' = z\cdot (y\cdot u) = z\cdot x\) by associativity. Hence \(z\cdot x \le _R z\cdot y\).  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LRel-mul_right_compat">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">31</span>
+    <span class="lemma_thmtitle">Right multiplication respects the left preorder</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:LRel-mul_right_compat">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000026"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.mul_right_compat" class="lean_decl">LRel.mul_right_compat</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y,z \in M\), if \(x \le _L y\) then \(x\cdot z \le _L y\cdot z\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000026">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Assume \(x \le _L y\), so there exists \(u \in M\) with \(u\cdot y = x\). To prove \(x\cdot z \le _L y\cdot z\) we need a witness \(u'\) with \(u'\cdot (y\cdot z) = x\cdot z\). Taking \(u'=u\) and using associativity gives \(u'\cdot (y\cdot z) = u\cdot (y\cdot z) = (u\cdot y)\cdot z = x\cdot z\). Thus \(x\cdot z \le _L y\cdot z\).  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:REquiv-mul_left_compat">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">32</span>
+    <span class="lemma_thmtitle">Left multiplication respects right equivalence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:REquiv-mul_left_compat">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000027"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:REquiv">Definition 19</a></li>
+          
+          <li><a href="sect0002.html#lem:RRel-mul_left_compat">Lemma 30</a></li>
+          
+          <li><a href="sect0001.html#def:REquiv">Definition 19</a></li>
+          
+          <li><a href="sect0002.html#lem:RRel-mul_left_compat">Lemma 30</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/REquiv.mul_left_compat" class="lean_decl">REquiv.mul_left_compat</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y,z\in M\), if \(x\) and \(y\) are right equivalent then \(z\cdot x\) and \(z\cdot y\) are right equivalent.   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000027">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Suppose \(x\) and \(y\) are right equivalent, meaning \(x \le _R y\) and \(y \le _R x\). By Lemma&#160;<a href="sect0002.html#lem:RRel-mul_left_compat">30</a>, left multiplication by \(z\) preserves the right preorder; hence \(z\cdot x \le _R z\cdot y\) and \(z\cdot y \le _R z\cdot x\). Therefore \(z\cdot x\) and \(z\cdot y\) are right equivalent.  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LEquiv-mul_right_compat">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">33</span>
+    <span class="lemma_thmtitle">Right multiplication respects left equivalence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:LEquiv-mul_right_compat">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000028"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:LEquiv">Definition 21</a></li>
+          
+          <li><a href="sect0002.html#lem:LRel-mul_right_compat">Lemma 31</a></li>
+          
+          <li><a href="sect0001.html#def:LEquiv">Definition 21</a></li>
+          
+          <li><a href="sect0002.html#lem:LRel-mul_right_compat">Lemma 31</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LEquiv.mul_right_compat" class="lean_decl">LEquiv.mul_right_compat</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y,z\in M\), if \(x\) and \(y\) are left equivalent then \(x\cdot z\) and \(y\cdot z\) are left equivalent.   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000028">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Assume \(x\) and \(y\) are left equivalent, so \(x \le _L y\) and \(y \le _L x\). By Lemma&#160;<a href="sect0002.html#lem:LRel-mul_right_compat">31</a>, right multiplication by \(z\) preserves the left preorder, giving \(x\cdot z \le _L y\cdot z\) and \(y\cdot z \le _L x\cdot z\). Hence \(x\cdot z\) and \(y\cdot z\) are left equivalent.  </p>
+
+  </div>
+</div>
+<h1 id="a0000000019">2.4 R–L commutativity</h1>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:rLE_lLE_comm">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">34</span>
+    <span class="lemma_thmtitle">Commutativity of \(\le _L\) and \(\le _R\)</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:rLE_lLE_comm">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000029"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+          <li><a href="sect0002.html#lem:RRel-mul_left_compat">Lemma 30</a></li>
+          
+          <li><a href="sect0002.html#lem:LRel-mul_right_compat">Lemma 31</a></li>
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/rLE_lLE_comm" class="lean_decl">rLE_lLE_comm</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For any \(x,y \in M\), there exists an element \(z\) with \(x \le _L z\) and \(z \le _R y\) if and only if there exists an element \(w\) with \(x \le _R w\) and \(w \le _L y\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000029">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>First suppose there exists \(z\in M\) such that \(x \le _L z\) and \(z \le _R y\). Unwinding the definitions, there are witnesses \(u\) and \(v\) with \(u\cdot z = x\) and \(y\cdot v = z\). Taking \(w = u\cdot y\) we have </p>
+<div class="displaymath" id="a0000000030">
+  \[  w \le _L y \quad \text{since}\quad w = u\cdot y  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000031">
+  \[  x = u\cdot z = u\cdot (y\cdot v) = (u\cdot y)\cdot v = w\cdot v,  \]
+</div>
+<p> so \(x \le _R w\). Conversely, suppose there exists \(w\in M\) with \(x \le _R w\) and \(w \le _L y\). Then there are witnesses \(v\) and \(u\) with \(w\cdot v = x\) and \(u\cdot y = w\). Let \(z = y\cdot v\). We compute </p>
+<div class="displaymath" id="a0000000032">
+  \[  z \le _R y \quad \text{because}\quad y\cdot v = z,  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000033">
+  \[  x = w\cdot v = (u\cdot y)\cdot v = u\cdot (y\cdot v) = u\cdot z,  \]
+</div>
+<p> showing \(x \le _L z\). This establishes the equivalence.  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:rEquiv_lEquiv_comm">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">35</span>
+    <span class="lemma_thmtitle">Commutativity of right and left equivalence</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:rEquiv_lEquiv_comm">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000034"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:REquiv">Definition 19</a></li>
+          
+          <li><a href="sect0001.html#def:LEquiv">Definition 21</a></li>
+          
+          <li><a href="sect0002.html#lem:rLE_lLE_comm">Lemma 34</a></li>
+          
+          <li><a href="sect0002.html#lem:REquiv-mul_left_compat">Lemma 32</a></li>
+          
+          <li><a href="sect0002.html#lem:LEquiv-mul_right_compat">Lemma 33</a></li>
+          
+          <li><a href="sect0001.html#def:REquiv">Definition 19</a></li>
+          
+          <li><a href="sect0001.html#def:LEquiv">Definition 21</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/rEquiv_lEquiv_comm" class="lean_decl">rEquiv_lEquiv_comm</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For any \(x,y \in M\), there exists \(z\in M\) such that \(x\) is left equivalent to \(z\) and \(z\) is right equivalent to \(y\) if and only if there exists \(w\in M\) such that \(x\) is right equivalent to \(w\) and \(w\) is left equivalent to \(y\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000034">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Suppose there exists \(z\) with \(x\) left equivalent to \(z\) and \(z\) right equivalent to \(y\). Write this as \(x \le _L z \land z \le _L x\) and \(z \le _R y \land y \le _R z\). From the left and right preorder conditions we have witnesses \(u_1,u_2,v_1,v_2\) satisfying </p>
+<div class="displaymath" id="a0000000035">
+  \[  u_1\cdot z = x,\qquad z\cdot u_2 = x,\qquad y\cdot v_1 = z,\qquad z\cdot v_2 = y.  \]
+</div>
+<p> Set \(w = u_1\cdot y\). Then using the first pair of equations we have </p>
+<div class="displaymath" id="a0000000036">
+  \[  w \le _L y \quad \text{since}\quad w = u_1\cdot y,  \]
+</div>
+<p> and from the remaining equations we compute </p>
+<div class="displaymath" id="a0000000037">
+  \[  x = u_1\cdot z = u_1\cdot (y\cdot v_1) = (u_1\cdot y)\cdot v_1 = w\cdot v_1,  \]
+</div>
+<p> so \(x \le _R w\). Moreover, by applying Lemma&#160;<a href="sect0002.html#lem:REquiv-mul_left_compat">32</a> to the right equivalence \(z \sim _R y\) we deduce \(u_1\cdot z\) is right equivalent to \(u_1\cdot y\). Since \(u_1\cdot z = x\), this shows \(x \sim _R w\). Combined with the previous observation that \(w\) and \(y\) are left equivalent, we obtain the right-to-left implication. </p>
+<p>Conversely, assume there exists \(w\) such that \(x\sim _R w\) and \(w\sim _L y\). This means \(x \le _R w\) and \(w \le _R x\), and \(w \le _L y\) and \(y \le _L w\). Pick witnesses \(v_1,v_2,u_1,u_2\) with </p>
+<div class="displaymath" id="a0000000038">
+  \[  w\cdot v_1 = x,\qquad x\cdot v_2 = w,\qquad u_1\cdot y = w,\qquad y\cdot u_2 = w.  \]
+</div>
+<p> Let \(z = y\cdot v_1\). Then \(z\) and \(y\) are right equivalent because both \(y \le _R z\) and \(z \le _R y\) hold via the witnesses above. Using Lemma&#160;<a href="sect0002.html#lem:LEquiv-mul_right_compat">33</a> applied to the left equivalence \(w \sim _L y\), we have \(x\cdot u_1\) is left equivalent to \(w\cdot u_1 = u_1\cdot y\). Since \(x\cdot u_1 = (w\cdot v_1)\cdot u_1\) and \(z = y\cdot v_1\), a straightforward computation shows \(x \le _L z\) and \(z \le _L x\). Hence \(x\sim _L z\) and \(z\sim _R y\), completing the proof.  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LRel-mul_left_self">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">36</span>
+    <span class="lemma_thmtitle">Left-preorder multiplication decreases</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:LRel-mul_left_self">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000039"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.mul_left_self" class="lean_decl">LRel.mul_left_self</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y\in M\), one has \(y \cdot x \le _L x\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000039">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>To show \(y \cdot x \le _L x\) we must find a witness \(u\) such that \(u \cdot x = y \cdot x\). Choosing \(u = y\) gives \(u \cdot x = y \cdot x\), hence \(y \cdot x \le _L x\).  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:JRel-mul_sandwich_self">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">37</span>
+    <span class="lemma_thmtitle">Two-sided multiplication decreases</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:JRel-mul_sandwich_self">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000040"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:JRel">Definition 9</a></li>
+          
+          <li><a href="sect0001.html#def:JRel">Definition 9</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.mul_sandwich_self" class="lean_decl">JRel.mul_sandwich_self</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(u,x,v \in M\), one has \(u \cdot x \cdot v \le _J x\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000040">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>By definition of the J preorder, \(u \cdot x \cdot v \le _J x\) means there exist witnesses \(s,t\) with \(s \cdot x \cdot t = u \cdot x \cdot v\). Taking \(s=u\) and \(t=v\) gives \(s \cdot x \cdot t = u \cdot x \cdot v\), showing \(u \cdot x \cdot v \le _J x\).  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:JRel-left_cancel">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">38</span>
+    <span class="lemma_thmtitle">Left cancellation for JRel</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:JRel-left_cancel">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000041"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:JRel">Definition 9</a></li>
+          
+          <li><a href="sect0001.html#def:JRel">Definition 9</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.left_cancel" class="lean_decl">JRel.left_cancel</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y,z \in M\), if \(x \le _J y \cdot z\) then \(x \le _J z\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000041">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Assume \(x \le _J y \cdot z\). Then there exist \(u,v\) with \(u \cdot (y \cdot z) \cdot v = x\). Using associativity we rewrite \(u \cdot (y \cdot z) \cdot v = (u \cdot y) \cdot z \cdot v\). Letting \(u' = u \cdot y\) and \(v' = v\), we have \(u' \cdot z \cdot v' = x\). Thus \(x \le _J z\).  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:JRel-right_cancel">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">39</span>
+    <span class="lemma_thmtitle">Right cancellation for JRel</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:JRel-right_cancel">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000042"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:JRel">Definition 9</a></li>
+          
+          <li><a href="sect0001.html#def:JRel">Definition 9</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.right_cancel" class="lean_decl">JRel.right_cancel</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y,z \in M\), if \(x \le _J y \cdot z\) then \(x \le _J y\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000042">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Suppose \(x \le _J y \cdot z\). Then there exist \(u,v\) with \(u \cdot (y \cdot z) \cdot v = x\). Rewrite this as \(u \cdot y \cdot (z \cdot v) = x\). Setting \(u' = u\) and \(v' = z \cdot v\), we have \(u' \cdot y \cdot v' = x\). Hence \(x \le _J y\).  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:RRel-right_cancel">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">40</span>
+    <span class="lemma_thmtitle">Right cancellation for RRel</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:RRel-right_cancel">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000043"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+          <li><a href="sect0001.html#def:RRel">Definition 1</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.right_cancel" class="lean_decl">RRel.right_cancel</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y,z \in M\), if \(x \le _R y \cdot z\) then \(x \le _R y\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000043">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Suppose \(x \le _R y \cdot z\). By definition there exists \(u\) with \((y \cdot z) \cdot u = x\). Using associativity we have \(y \cdot (z \cdot u) = x\). Set \(u' = z \cdot u\). Then \(y \cdot u' = x\), so \(x \le _R y\).  </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:LRel-left_cancel">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">41</span>
+    <span class="lemma_thmtitle">Left cancellation for LRel</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0002.html#lem:LRel-left_cancel">#</a>
+    
+    <a class="icon proof" href="sect0002.html#a0000000044"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+          <li><a href="sect0001.html#def:LRel">Definition 5</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.left_cancel" class="lean_decl">LRel.left_cancel</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  For all \(x,y,z \in M\), if \(x \le _L y \cdot z\) then \(x \le _L z\).   </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000044">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Assume \(x \le _L y \cdot z\). Then there exists \(u\) with \(u \cdot (y \cdot z) = x\). Rewriting as \((u \cdot y) \cdot z = x\), set \(u' = u \cdot y\). Then \(u' \cdot z = x\), and thus \(x \le _L z\).  </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0001.html" title="Green’s Relations"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="My formalization project"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

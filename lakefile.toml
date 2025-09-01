@@ -1,0 +1,24 @@
+name = "my-project"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["MyProject"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+autoImplicit = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+
+
+[[require]]
+name = "checkdecls"
+git = "https://github.com/PatrickMassot/checkdecls.git"
+
+[[require]]
+name = "«doc-gen4»"
+git = "https://github.com/leanprover/doc-gen4"
+rev = "main"
+[[lean_lib]]
+name = "MyProject"

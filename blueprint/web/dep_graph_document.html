@@ -1,0 +1,1752 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dependency graph</title>
+  <meta name="generator" content="plasTeX" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/theme-white.css" />
+  <link rel="stylesheet" href="styles/dep_graph.css" />
+  
+  <script type="text/x-mathjax-config">
+  
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  
+  </script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+
+
+<link rel="stylesheet" href="styles/extra_styles.css" />
+
+</head>
+
+<body>
+<header>
+  <a class="toc" href="index.html">Home</a>
+  <h1 id="doc_title">Dependencies</h1>
+</header>
+<div class="wrapper">
+<div class="content">
+  <div id="Legend">
+    <span id="legend_title" class="title">Legend
+    <div class="btn">
+       <div class="bar"></div>
+       <div class="bar"></div>
+       <div class="bar"></div>
+    </div></span> 
+    <dl class="legend">
+      
+      <dt>Boxes</dt><dd>definitions</dd>
+      
+      <dt>Ellipses</dt><dd>theorems and lemmas</dd>
+      
+      <dt>Blue border</dt><dd>the <em>statement</em> of this result is ready to be formalized; all prerequisites are done</dd>
+      
+      <dt>Orange border</dt><dd>the <em>statement</em> of this result is not ready to be formalized; the blueprint needs more work</dd>
+      
+      <dt>Blue background</dt><dd>the <em>proof</em> of this result is ready to be formalized; all prerequisites are done</dd>
+      
+      <dt>Green border</dt><dd>the <em>statement</em> of this result is formalized</dd>
+      
+      <dt>Green background</dt><dd>the <em>proof</em> of this result is formalized</dd>
+      
+      <dt>Dark green background</dt><dd>the <em>proof</em> of this result and all its ancestors are formalized</dd>
+      
+      <dt>Dark green border</dt><dd>this is in Mathlib</dd>
+      
+    </dl>
+  </div>
+    <div id="graph"></div>
+<div id="statements">
+
+    
+    <div class="dep-modal-container" id="def:DClass_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:DClass" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">54</span><span class="definition_thmtitle">D class</span></div>
+    <div class="thm_thmcontent"><p>  For \(a\in M\) we define \(\mathrm{DClass}(a)\) to be the set \(\{ x\in M \mid \mathrm{DEquiv}\, x\, a\} \).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:DClass">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DClass">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:DEquiv_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:DEquiv" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">42</span><span class="definition_thmtitle">D-equivalence</span></div>
+    <div class="thm_thmcontent"><p>  Let \(M\) be a monoid. For \(x,y\in M\) we say \(\mathrm{DEquiv}\, x\, y\) holds if there exists an element \(z\in M\) such that \(x\) is right equivalent to \(z\) and \(z\) is left equivalent to \(y\). In other words, there is a chain \(x \mathrel {REquiv} z\) and \(z \mathrel {LEquiv} y\). This relation is Green’s \(D\)-equivalence.  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:DEquiv">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DEquiv">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:EquivOfLE_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:EquivOfLE" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">17</span><span class="definition_thmtitle">Equivalence of a preorder</span></div>
+    <div class="thm_thmcontent"><p>  Let \(\alpha \) be a type and let \(p : \alpha \to \alpha \to \mathrm{Prop}\) be a preorder. For \(x,y : \alpha \) we define \(\mathrm{EquivOfLE}\, p\, x\, y\) to hold when both \(p\, x\, y\) and \(p\, y\, x\) hold. In other words, \(\mathrm{EquivOfLE}\, p\) is the symmetric closure of the relation \(p\).  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:EquivOfLE">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/EquivOfLE">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:HClass_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:HClass" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">53</span><span class="definition_thmtitle">H class</span></div>
+    <div class="thm_thmcontent"><p>  For \(a\in M\) we define \(\mathrm{HClass}(a)\) to be the set \(\{ x\in M \mid x \mathrel {HEquiv} a\} \).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:HClass">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/HClass">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:HEquiv_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:HEquiv" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">25</span><span class="definition_thmtitle">H equivalence</span></div>
+    <div class="thm_thmcontent"><p>  For \(x,y\in M\) we define \(\mathrm{HEquiv}\, x\, y\) to hold when both \(x \le _H y\) and \(y \le _H x\) hold. This captures when two elements are simultaneously right and left equivalent.  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:HEquiv">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/HEquiv">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:HRel_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:HRel" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">13</span><span class="definition_thmtitle">Green’s H-preorder</span></div>
+    <div class="thm_thmcontent"><p>  Let \(M\) be a monoid and let \(x,y\in M\). We define \(x \le _H y\) if both \(x \le _R y\) and \(x \le _L y\) hold, that is, \(x\) is simultaneously in the right and left ideals generated by \(y\). Unwinding the definition, this means there exist elements \(z_1,z_2\in M\) with \(x = y\cdot z_1\) and \(x = z_2\cdot y\).  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:HRel">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/HRel">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:JClass_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:JClass" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">52</span><span class="definition_thmtitle">J class</span></div>
+    <div class="thm_thmcontent"><p>  For \(a\in M\) we define \(\mathrm{JClass}(a)\) to be the set \(\{ x\in M \mid x \mathrel {JEquiv} a\} \).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:JClass">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JClass">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:JEquiv_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:JEquiv" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">23</span><span class="definition_thmtitle">J equivalence</span></div>
+    <div class="thm_thmcontent"><p>  For \(x,y\in M\) we define \(\mathrm{JEquiv}\, x\, y\) to hold when both \(x \le _J y\) and \(y \le _J x\) hold, i.e., each lies in the two‑sided ideal generated by the other.  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:JEquiv">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JEquiv">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:JRel_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:JRel" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">9</span><span class="definition_thmtitle">Green’s J-preorder</span></div>
+    <div class="thm_thmcontent"><p>  Let \(M\) be a monoid and let \(x,y\in M\). We define \(x \le _J y\) if there exist \(u,v\in M\) such that \(x = u\cdot y\cdot v\). Equivalently, \(x\) lies in the two‑sided ideal generated by \(y\).  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:JRel">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:LClass_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:LClass" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">51</span><span class="definition_thmtitle">Left class</span></div>
+    <div class="thm_thmcontent"><p>  For \(a\in M\) we define \(\mathrm{LClass}(a)\) to be the set \(\{ x\in M \mid x \mathrel {LEquiv} a\} \).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:LClass">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LClass">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:LEquiv_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:LEquiv" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">21</span><span class="definition_thmtitle">Left equivalence</span></div>
+    <div class="thm_thmcontent"><p>  For \(x,y\in M\) we define \(\mathrm{LEquiv}\, x\, y\) to hold when both \(x \le _L y\) and \(y \le _L x\) hold. This expresses that \(x\) and \(y\) generate the same principal left ideals.  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:LEquiv">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LEquiv">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:LRel_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:LRel" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">5</span><span class="definition_thmtitle">Green’s L-preorder</span></div>
+    <div class="thm_thmcontent"><p>  Let \(M\) be a monoid and let \(x,y\in M\). We define \(x \le _L y\) if there exists \(z\in M\) such that \(x = z\cdot y\). In other words, \(x\) lies in the principal left ideal generated by \(y\).  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:LRel">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:RClass_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:RClass" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">50</span><span class="definition_thmtitle">Right class</span></div>
+    <div class="thm_thmcontent"><p>  For \(a\in M\) we define \(\mathrm{RClass}(a)\) to be the set \(\{ x\in M \mid x \mathrel {REquiv} a\} \).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:RClass">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RClass">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:REquiv_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:REquiv" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">19</span><span class="definition_thmtitle">Right equivalence</span></div>
+    <div class="thm_thmcontent"><p>  Let \(M\) be a monoid. For \(x,y \in M\) we define \(\mathrm{REquiv}\, x\, y\) to hold if both \(x \le _R y\) and \(y \le _R x\) hold. In other words, two elements are right equivalent when they lie in the principal right ideals generated by each other.  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:REquiv">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/REquiv">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="def:RRel_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="def:RRel" style="display: none">
+    <div class="thm_thmheading">
+      <span class="definition_thmcaption">
+      Definition
+      </span>
+      <span class="definition_thmlabel">1</span><span class="definition_thmtitle">Green’s R-preorder</span></div>
+    <div class="thm_thmcontent"><p>  Let \(M\) be a monoid and let \(x,y\in M\). We define \(x \le _R y\) if there exists \(z\in M\) such that \(x = y\cdot z\). Equivalently, \(x\) lies in the principal right ideal generated by \(y\).  </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#def:RRel">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:DEquiv-closed_under_lEquiv_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:DEquiv-closed_under_lEquiv" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">46</span><span class="lemma_thmtitle">Closure under left equivalence</span></div>
+    <div class="thm_thmcontent"><p>  If \(\mathrm{DEquiv}\, x\, y\) and \(y \mathrel {LEquiv} z\), then \(\mathrm{DEquiv}\, x\, z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:DEquiv-closed_under_lEquiv">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DEquiv.closed_under_lEquiv">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:DEquiv-closed_under_rEquiv_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:DEquiv-closed_under_rEquiv" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">47</span><span class="lemma_thmtitle">Closure under right equivalence</span></div>
+    <div class="thm_thmcontent"><p>  If \(\mathrm{DEquiv}\, x\, y\) and \(y \mathrel {REquiv} z\), then \(\mathrm{DEquiv}\, x\, z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:DEquiv-closed_under_rEquiv">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DEquiv.closed_under_rEquiv">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:DEquiv-comm_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:DEquiv-comm" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">43</span><span class="lemma_thmtitle">Characterization of \(\mathrm{DEquiv}\)</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y\in M\) we have </p>
+<div class="displaymath" id="a0000000045">
+  \[  (\exists z\in M,\;  x \mathrel {REquiv} z \land z \mathrel {LEquiv} y)\quad \Longleftrightarrow \quad \mathrm{DEquiv}\, x\, y.  \]
+</div>
+
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:DEquiv-comm">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DEquiv.comm">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:DEquiv-isEquiv_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:DEquiv-isEquiv" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">49</span><span class="lemma_thmtitle">D-equivalence is an equivalence relation</span></div>
+    <div class="thm_thmcontent"><p>  The relation defined in Definition&#160;<a href="sect0001.html#def:DEquiv">42</a> is an equivalence relation on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:DEquiv-isEquiv">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DEquiv.isEquiv">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:DEquiv-refl_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:DEquiv-refl" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">44</span><span class="lemma_thmtitle">Reflexivity of \(\mathrm{DEquiv}\)</span></div>
+    <div class="thm_thmcontent"><p>  For every \(x\in M\), one has \(\mathrm{DEquiv}\, x\, x\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:DEquiv-refl">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DEquiv.refl">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:DEquiv-symm_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:DEquiv-symm" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">45</span><span class="lemma_thmtitle">Symmetry of \(\mathrm{DEquiv}\)</span></div>
+    <div class="thm_thmcontent"><p>  If \(\mathrm{DEquiv}\, x\, y\) holds then \(\mathrm{DEquiv}\, y\, x\) holds.   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:DEquiv-symm">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DEquiv.symm">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:DEquiv-trans_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:DEquiv-trans" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">48</span><span class="lemma_thmtitle">Transitivity of \(\mathrm{DEquiv}\)</span></div>
+    <div class="thm_thmcontent"><p>  If \(\mathrm{DEquiv}\, x\, y\) and \(\mathrm{DEquiv}\, y\, z\) then \(\mathrm{DEquiv}\, x\, z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:DEquiv-trans">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/DEquiv.trans">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:EquivOfLE-isEquivalence_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:EquivOfLE-isEquivalence" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">18</span><span class="lemma_thmtitle">EquivOfLE is an equivalence relation</span></div>
+    <div class="thm_thmcontent"><p>  If \(p\) is a preorder on \(\alpha \) then \(\mathrm{EquivOfLE}\, p\) is an equivalence relation.   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:EquivOfLE-isEquivalence">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/EquivOfLE.isEquivalence">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:HEquiv-isEquivalence_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:HEquiv-isEquivalence" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">26</span><span class="lemma_thmtitle">H equivalence is an equivalence relation</span></div>
+    <div class="thm_thmcontent"><p>  The relation defined in Definition&#160;<a href="sect0001.html#def:HEquiv">25</a> is an equivalence relation on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:HEquiv-isEquivalence">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/HEquiv.isEquivalence">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:HRel-isPreorder_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:HRel-isPreorder" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">16</span><span class="lemma_thmtitle">H preorder instance</span></div>
+    <div class="thm_thmcontent"><p>  The relation \(\le _H\) is a preorder on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:HRel-isPreorder">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/HRel.isPreorder">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:HRel-refl_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:HRel-refl" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">14</span><span class="lemma_thmtitle">Reflexivity of \(\le _H\)</span></div>
+    <div class="thm_thmcontent"><p>  For every \(x\in M\), \(x \le _H x\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:HRel-refl">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/HRel.refl">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:HRel-trans_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:HRel-trans" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">15</span><span class="lemma_thmtitle">Transitivity of \(\le _H\)</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z\in M\), if \(x \le _H y\) and \(y \le _H z\) then \(x \le _H z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:HRel-trans">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/HRel.trans">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:JEquiv-isEquivalence_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:JEquiv-isEquivalence" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">24</span><span class="lemma_thmtitle">J equivalence is an equivalence relation</span></div>
+    <div class="thm_thmcontent"><p>  The relation defined in Definition&#160;<a href="sect0001.html#def:JEquiv">23</a> is an equivalence relation on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:JEquiv-isEquivalence">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JEquiv.isEquivalence">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:JRel-isPreorder_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:JRel-isPreorder" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">12</span><span class="lemma_thmtitle">J preorder instance</span></div>
+    <div class="thm_thmcontent"><p>  The relation \(\le _J\) is a preorder on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:JRel-isPreorder">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.isPreorder">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:JRel-left_cancel_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:JRel-left_cancel" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">30</span><span class="lemma_thmtitle">Left cancellation for JRel</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z \in M\), if \(x \le _J y \cdot z\) then \(x \le _J z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:JRel-left_cancel">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.left_cancel">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:JRel-mul_sandwich_self_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:JRel-mul_sandwich_self" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">29</span><span class="lemma_thmtitle">Two-sided multiplication decreases</span></div>
+    <div class="thm_thmcontent"><p>  For all \(u,x,v \in M\), one has \(u \cdot x \cdot v \le _J x\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:JRel-mul_sandwich_self">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.mul_sandwich_self">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:JRel-refl_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:JRel-refl" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">10</span><span class="lemma_thmtitle">Reflexivity of \(\le _J\)</span></div>
+    <div class="thm_thmcontent"><p>  For every \(x\in M\), \(x \le _J x\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:JRel-refl">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.refl">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:JRel-right_cancel_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:JRel-right_cancel" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">31</span><span class="lemma_thmtitle">Right cancellation for JRel</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z \in M\), if \(x \le _J y \cdot z\) then \(x \le _J y\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:JRel-right_cancel">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.right_cancel">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:JRel-trans_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:JRel-trans" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">11</span><span class="lemma_thmtitle">Transitivity of \(\le _J\)</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z\in M\), if \(x \le _J y\) and \(y \le _J z\) then \(x \le _J z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:JRel-trans">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/JRel.trans">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LEquiv-isEquivalence_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LEquiv-isEquivalence" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">22</span><span class="lemma_thmtitle">Left equivalence is an equivalence relation</span></div>
+    <div class="thm_thmcontent"><p>  The relation defined in Definition&#160;<a href="sect0001.html#def:LEquiv">21</a> is an equivalence relation on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LEquiv-isEquivalence">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LEquiv.isEquivalence">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LEquiv-mul_right_compat_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LEquiv-mul_right_compat" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">39</span><span class="lemma_thmtitle">Right multiplication respects left equivalence</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z\in M\), if \(x\) and \(y\) are left equivalent then \(x\cdot z\) and \(y\cdot z\) are left equivalent.   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LEquiv-mul_right_compat">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LEquiv.mul_right_compat">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LRel-idempotent_iff_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LRel-idempotent_iff" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">35</span><span class="lemma_thmtitle">Idempotent characterization for the left preorder</span></div>
+    <div class="thm_thmcontent"><p>  Let \(M\) be a monoid and let \(e\in M\) be idempotent. For any \(x\in M\), </p>
+<div class="displaymath" id="a0000000026">
+  \[  x \le _L e \quad \text{if and only if}\quad x\cdot e = x.  \]
+</div>
+
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LRel-idempotent_iff">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.idempotent_iff">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LRel-isPreorder_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LRel-isPreorder" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">8</span><span class="lemma_thmtitle">Left preorder instance</span></div>
+    <div class="thm_thmcontent"><p>  The relation \(\le _L\) is a preorder on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LRel-isPreorder">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.isPreorder">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LRel-left_cancel_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LRel-left_cancel" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">33</span><span class="lemma_thmtitle">Left cancellation for LRel</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z \in M\), if \(x \le _L y \cdot z\) then \(x \le _L z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LRel-left_cancel">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.left_cancel">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LRel-mul_left_self_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LRel-mul_left_self" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">28</span><span class="lemma_thmtitle">Left-preorder multiplication decreases</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y\in M\), one has \(y \cdot x \le _L x\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LRel-mul_left_self">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.mul_left_self">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LRel-mul_right_compat_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LRel-mul_right_compat" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">37</span><span class="lemma_thmtitle">Right multiplication respects the left preorder</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z \in M\), if \(x \le _L y\) then \(x\cdot z \le _L y\cdot z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LRel-mul_right_compat">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.mul_right_compat">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LRel-refl_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LRel-refl" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">6</span><span class="lemma_thmtitle">Reflexivity of \(\le _L\)</span></div>
+    <div class="thm_thmcontent"><p>  For every \(x\in M\), \(x \le _L x\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LRel-refl">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.refl">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:LRel-trans_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:LRel-trans" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">7</span><span class="lemma_thmtitle">Transitivity of \(\le _L\)</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z\in M\), if \(x \le _L y\) and \(y \le _L z\) then \(x \le _L z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:LRel-trans">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/LRel.trans">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:REquiv-isEquivalence_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:REquiv-isEquivalence" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">20</span><span class="lemma_thmtitle">Right equivalence is an equivalence relation</span></div>
+    <div class="thm_thmcontent"><p>  The relation defined in Definition&#160;<a href="sect0001.html#def:REquiv">19</a> is an equivalence relation on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:REquiv-isEquivalence">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/REquiv.isEquivalence">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:REquiv-mul_left_compat_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:REquiv-mul_left_compat" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">38</span><span class="lemma_thmtitle">Left multiplication respects right equivalence</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z\in M\), if \(x\) and \(y\) are right equivalent then \(z\cdot x\) and \(z\cdot y\) are right equivalent.   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:REquiv-mul_left_compat">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/REquiv.mul_left_compat">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:rEquiv_lEquiv_comm_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:rEquiv_lEquiv_comm" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">41</span><span class="lemma_thmtitle">Commutativity of right and left equivalence</span></div>
+    <div class="thm_thmcontent"><p>  For any \(x,y \in M\), there exists \(z\in M\) such that \(x\) is left equivalent to \(z\) and \(z\) is right equivalent to \(y\) if and only if there exists \(w\in M\) such that \(x\) is right equivalent to \(w\) and \(w\) is left equivalent to \(y\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:rEquiv_lEquiv_comm">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/rEquiv_lEquiv_comm">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:rLE_lLE_comm_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:rLE_lLE_comm" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">40</span><span class="lemma_thmtitle">Commutativity of \(\le _L\) and \(\le _R\)</span></div>
+    <div class="thm_thmcontent"><p>  For any \(x,y \in M\), there exists an element \(z\) with \(x \le _L z\) and \(z \le _R y\) if and only if there exists an element \(w\) with \(x \le _R w\) and \(w \le _L y\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:rLE_lLE_comm">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/rLE_lLE_comm">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:RRel-idempotent_iff_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:RRel-idempotent_iff" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">34</span><span class="lemma_thmtitle">Idempotent characterization for the right preorder</span></div>
+    <div class="thm_thmcontent"><p>  Let \(M\) be a monoid and let \(e\in M\) be idempotent (so \(e \cdot e = e\)). For any \(x\in M\), </p>
+<div class="displaymath" id="a0000000024">
+  \[  x \le _R e \quad \text{if and only if}\quad e\cdot x = x.  \]
+</div>
+
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:RRel-idempotent_iff">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.idempotent_iff">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:RRel-isPreorder_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:RRel-isPreorder" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">4</span><span class="lemma_thmtitle">Right preorder instance</span></div>
+    <div class="thm_thmcontent"><p>  The relation \(\le _R\) is a preorder on \(M\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:RRel-isPreorder">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.isPreorder">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:RRel-mul_left_compat_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:RRel-mul_left_compat" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">36</span><span class="lemma_thmtitle">Left multiplication respects the right preorder</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z \in M\), if \(x \le _R y\) then \(z\cdot x \le _R z\cdot y\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:RRel-mul_left_compat">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.mul_left_compat">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:RRel-mul_right_self_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:RRel-mul_right_self" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">27</span><span class="lemma_thmtitle">Right-preorder multiplication decreases</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y\in M\), one has \(x \cdot y \le _R x\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:RRel-mul_right_self">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.mul_right_self">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:RRel-refl_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:RRel-refl" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">2</span><span class="lemma_thmtitle">Reflexivity of \(\le _R\)</span></div>
+    <div class="thm_thmcontent"><p>  For every \(x\in M\), \(x \le _R x\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:RRel-refl">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.refl">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:RRel-right_cancel_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:RRel-right_cancel" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">32</span><span class="lemma_thmtitle">Right cancellation for RRel</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z \in M\), if \(x \le _R y \cdot z\) then \(x \le _R y\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:RRel-right_cancel">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.right_cancel">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:RRel-trans_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:RRel-trans" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">3</span><span class="lemma_thmtitle">Transitivity of \(\le _R\)</span></div>
+    <div class="thm_thmcontent"><p>  For all \(x,y,z\in M\), if \(x \le _R y\) and \(y \le _R z\) then \(x \le _R z\).   </p>
+</div>
+
+    <a class="latex_link" href="sect0001.html#lem:RRel-trans">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="https://lean-summer-research.github.io/LeanblueprintTesting/docs/find/#doc/RRel.trans">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+</div>
+</div> <!-- content -->
+</div> <!-- wrapper -->
+<script src="js/jquery.min.js" type="text/javascript"></script>
+
+<script src="js/d3.min.js"></script>
+<script src="js/hpcc.min.js"></script>
+<script src="js/d3-graphviz.js"></script>
+
+<script type="text/javascript">
+const graphContainer = d3.select("#graph");
+const width = graphContainer.node().clientWidth;
+const height = graphContainer.node().clientHeight;
+
+
+graphContainer.graphviz({useWorker: true})
+    .width(width)
+    .height(height)
+    .fit(true)
+    .renderDot(`strict digraph "" {	graph [bgcolor=transparent];	node [label="\N",		penwidth=1.8	];	edge [arrowhead=vee];	"def:EquivOfLE"	[color=green,		fillcolor="#B0ECA3",		label=EquivOfLE,		shape=box,		style=filled];	"lem:EquivOfLE-isEquivalence"	[color=green,		fillcolor="#1CAC78",		label="EquivOfLE-isEquivalence",		shape=ellipse,		style=filled];	"def:EquivOfLE" -> "lem:EquivOfLE-isEquivalence"	[style=dashed];	"lem:HEquiv-isEquivalence"	[color=green,		label="HEquiv-isEquivalence",		shape=ellipse];	"lem:EquivOfLE-isEquivalence" -> "lem:HEquiv-isEquivalence"	[style=dashed];	"lem:REquiv-isEquivalence"	[color=green,		label="REquiv-isEquivalence",		shape=ellipse];	"lem:EquivOfLE-isEquivalence" -> "lem:REquiv-isEquivalence"	[style=dashed];	"lem:LEquiv-isEquivalence"	[color=green,		label="LEquiv-isEquivalence",		shape=ellipse];	"lem:EquivOfLE-isEquivalence" -> "lem:LEquiv-isEquivalence"	[style=dashed];	"lem:JEquiv-isEquivalence"	[color=green,		label="JEquiv-isEquivalence",		shape=ellipse];	"lem:EquivOfLE-isEquivalence" -> "lem:JEquiv-isEquivalence"	[style=dashed];	"lem:DEquiv-refl"	[color=green,		fillcolor="#9CEC8B",		label="DEquiv-refl",		shape=ellipse,		style=filled];	"lem:REquiv-isEquivalence" -> "lem:DEquiv-refl";	"lem:DEquiv-isEquiv"	[color=green,		fillcolor="#9CEC8B",		label="DEquiv-isEquiv",		shape=ellipse,		style=filled];	"lem:DEquiv-refl" -> "lem:DEquiv-isEquiv"	[style=dashed];	"lem:LEquiv-isEquivalence" -> "lem:DEquiv-refl";	"lem:DEquiv-closed_under_lEquiv"	[color=green,		fillcolor="#9CEC8B",		label="DEquiv-closed_under_lEquiv",		shape=ellipse,		style=filled];	"lem:LEquiv-isEquivalence" -> "lem:DEquiv-closed_under_lEquiv"	[style=dashed];	"lem:DEquiv-closed_under_rEquiv"	[color=green,		fillcolor="#9CEC8B",		label="DEquiv-closed_under_rEquiv",		shape=ellipse,		style=filled];	"lem:DEquiv-closed_under_lEquiv" -> "lem:DEquiv-closed_under_rEquiv"	[style=dashed];	"def:DEquiv"	[color=green,		fillcolor="#B0ECA3",		label=DEquiv,		shape=box,		style=filled];	"def:DEquiv" -> "lem:DEquiv-refl"	[style=dashed];	"def:DEquiv" -> "lem:DEquiv-closed_under_lEquiv"	[style=dashed];	"lem:DEquiv-comm"	[color=green,		fillcolor="#1CAC78",		label="DEquiv-comm",		shape=ellipse,		style=filled];	"def:DEquiv" -> "lem:DEquiv-comm"	[style=dashed];	"def:DClass"	[color=green,		fillcolor="#B0ECA3",		label=DClass,		shape=box,		style=filled];	"def:DEquiv" -> "def:DClass"	[style=dashed];	"lem:DEquiv-symm"	[color=green,		fillcolor="#1CAC78",		label="DEquiv-symm",		shape=ellipse,		style=filled];	"def:DEquiv" -> "lem:DEquiv-symm"	[style=dashed];	"lem:DEquiv-symm" -> "lem:DEquiv-closed_under_rEquiv"	[style=dashed];	"lem:DEquiv-trans"	[color=green,		fillcolor="#9CEC8B",		label="DEquiv-trans",		shape=ellipse,		style=filled];	"lem:DEquiv-closed_under_rEquiv" -> "lem:DEquiv-trans"	[style=dashed];	"lem:DEquiv-trans" -> "lem:DEquiv-isEquiv"	[style=dashed];	"def:RClass"	[color=green,		fillcolor="#B0ECA3",		label=RClass,		shape=box,		style=filled];	"lem:RRel-trans"	[color=green,		fillcolor="#1CAC78",		label="RRel-trans",		shape=ellipse,		style=filled];	"lem:RRel-isPreorder"	[color=green,		label="RRel-isPreorder",		shape=ellipse];	"lem:RRel-trans" -> "lem:RRel-isPreorder"	[style=dashed];	"lem:HRel-trans"	[color=green,		fillcolor="#1CAC78",		label="HRel-trans",		shape=ellipse,		style=filled];	"lem:RRel-trans" -> "lem:HRel-trans";	"lem:RRel-isPreorder" -> "lem:REquiv-isEquivalence"	[style=dashed];	"lem:HRel-isPreorder"	[color=green,		label="HRel-isPreorder",		shape=ellipse];	"lem:HRel-trans" -> "lem:HRel-isPreorder"	[style=dashed];	"lem:HRel-isPreorder" -> "lem:HEquiv-isEquivalence"	[style=dashed];	"lem:JRel-right_cancel"	[color=green,		fillcolor="#1CAC78",		label="JRel-right_cancel",		shape=ellipse,		style=filled];	"lem:rLE_lLE_comm"	[color=green,		fillcolor="#1CAC78",		label=rLE_lLE_comm,		shape=ellipse,		style=filled];	"lem:rEquiv_lEquiv_comm"	[color=green,		fillcolor="#1CAC78",		label=rEquiv_lEquiv_comm,		shape=ellipse,		style=filled];	"lem:rLE_lLE_comm" -> "lem:rEquiv_lEquiv_comm"	[style=dashed];	"lem:rEquiv_lEquiv_comm" -> "lem:DEquiv-comm"	[style=dashed];	"lem:rEquiv_lEquiv_comm" -> "lem:DEquiv-symm"	[style=dashed];	"def:RRel"	[color=green,		fillcolor="#B0ECA3",		label=RRel,		shape=box,		style=filled];	"def:RRel" -> "lem:RRel-trans"	[style=dashed];	"lem:RRel-mul_left_compat"	[color=green,		fillcolor="#1CAC78",		label="RRel-mul_left_compat",		shape=ellipse,		style=filled];	"def:RRel" -> "lem:RRel-mul_left_compat"	[style=dashed];	"lem:RRel-mul_right_self"	[color=green,		fillcolor="#1CAC78",		label="RRel-mul_right_self",		shape=ellipse,		style=filled];	"def:RRel" -> "lem:RRel-mul_right_self"	[style=dashed];	"lem:RRel-refl"	[color=green,		label="RRel-refl",		shape=ellipse];	"def:RRel" -> "lem:RRel-refl"	[style=dashed];	"lem:RRel-idempotent_iff"	[color=green,		fillcolor="#1CAC78",		label="RRel-idempotent_iff",		shape=ellipse,		style=filled];	"def:RRel" -> "lem:RRel-idempotent_iff"	[style=dashed];	"lem:RRel-right_cancel"	[color=green,		fillcolor="#1CAC78",		label="RRel-right_cancel",		shape=ellipse,		style=filled];	"def:RRel" -> "lem:RRel-right_cancel"	[style=dashed];	"lem:RRel-mul_left_compat" -> "lem:rLE_lLE_comm"	[style=dashed];	"lem:REquiv-mul_left_compat"	[color=green,		fillcolor="#1CAC78",		label="REquiv-mul_left_compat",		shape=ellipse,		style=filled];	"lem:RRel-mul_left_compat" -> "lem:REquiv-mul_left_compat"	[style=dashed];	"lem:RRel-refl" -> "lem:RRel-isPreorder"	[style=dashed];	"lem:HRel-refl"	[color=green,		fillcolor="#9CEC8B",		label="HRel-refl",		shape=ellipse,		style=filled];	"lem:RRel-refl" -> "lem:HRel-refl";	"lem:REquiv-mul_left_compat" -> "lem:rEquiv_lEquiv_comm"	[style=dashed];	"lem:HRel-refl" -> "lem:HRel-isPreorder"	[style=dashed];	"def:LEquiv"	[color=green,		fillcolor="#B0ECA3",		label=LEquiv,		shape=box,		style=filled];	"def:LEquiv" -> "lem:LEquiv-isEquivalence"	[style=dashed];	"lem:LEquiv-mul_right_compat"	[color=green,		fillcolor="#1CAC78",		label="LEquiv-mul_right_compat",		shape=ellipse,		style=filled];	"def:LEquiv" -> "lem:LEquiv-mul_right_compat"	[style=dashed];	"def:LClass"	[color=green,		fillcolor="#B0ECA3",		label=LClass,		shape=box,		style=filled];	"def:LEquiv" -> "def:LClass"	[style=dashed];	"lem:LEquiv-mul_right_compat" -> "lem:rEquiv_lEquiv_comm"	[style=dashed];	"lem:LRel-trans"	[color=green,		fillcolor="#1CAC78",		label="LRel-trans",		shape=ellipse,		style=filled];	"lem:LRel-trans" -> "lem:HRel-trans";	"lem:LRel-isPreorder"	[color=green,		label="LRel-isPreorder",		shape=ellipse];	"lem:LRel-trans" -> "lem:LRel-isPreorder"	[style=dashed];	"lem:LRel-isPreorder" -> "lem:LEquiv-isEquivalence"	[style=dashed];	"lem:LRel-mul_right_compat"	[color=green,		fillcolor="#1CAC78",		label="LRel-mul_right_compat",		shape=ellipse,		style=filled];	"lem:LRel-mul_right_compat" -> "lem:rLE_lLE_comm"	[style=dashed];	"lem:LRel-mul_right_compat" -> "lem:LEquiv-mul_right_compat"	[style=dashed];	"def:LRel"	[color=green,		fillcolor="#B0ECA3",		label=LRel,		shape=box,		style=filled];	"def:LRel" -> "lem:LRel-trans"	[style=dashed];	"def:LRel" -> "lem:LRel-mul_right_compat"	[style=dashed];	"lem:LRel-idempotent_iff"	[color=green,		fillcolor="#1CAC78",		label="LRel-idempotent_iff",		shape=ellipse,		style=filled];	"def:LRel" -> "lem:LRel-idempotent_iff"	[style=dashed];	"lem:LRel-mul_left_self"	[color=green,		fillcolor="#1CAC78",		label="LRel-mul_left_self",		shape=ellipse,		style=filled];	"def:LRel" -> "lem:LRel-mul_left_self"	[style=dashed];	"lem:LRel-refl"	[color=green,		fillcolor="#1CAC78",		label="LRel-refl",		shape=ellipse,		style=filled];	"def:LRel" -> "lem:LRel-refl"	[style=dashed];	"lem:LRel-left_cancel"	[color=green,		fillcolor="#1CAC78",		label="LRel-left_cancel",		shape=ellipse,		style=filled];	"def:LRel" -> "lem:LRel-left_cancel"	[style=dashed];	"lem:LRel-refl" -> "lem:HRel-refl";	"lem:LRel-refl" -> "lem:LRel-isPreorder"	[style=dashed];	"def:REquiv"	[color=green,		fillcolor="#B0ECA3",		label=REquiv,		shape=box,		style=filled];	"def:REquiv" -> "lem:REquiv-isEquivalence"	[style=dashed];	"def:REquiv" -> "def:RClass"	[style=dashed];	"def:REquiv" -> "lem:REquiv-mul_left_compat"	[style=dashed];	"def:HClass"	[color=green,		fillcolor="#B0ECA3",		label=HClass,		shape=box,		style=filled];	"lem:JRel-isPreorder"	[color=green,		label="JRel-isPreorder",		shape=ellipse];	"lem:JRel-isPreorder" -> "lem:JEquiv-isEquivalence"	[style=dashed];	"def:JEquiv"	[color=green,		fillcolor="#B0ECA3",		label=JEquiv,		shape=box,		style=filled];	"def:JEquiv" -> "lem:JEquiv-isEquivalence"	[style=dashed];	"def:JClass"	[color=green,		fillcolor="#B0ECA3",		label=JClass,		shape=box,		style=filled];	"def:JEquiv" -> "def:JClass"	[style=dashed];	"lem:JRel-refl"	[color=green,		fillcolor="#1CAC78",		label="JRel-refl",		shape=ellipse,		style=filled];	"lem:JRel-refl" -> "lem:JRel-isPreorder"	[style=dashed];	"lem:JRel-mul_sandwich_self"	[color=green,		fillcolor="#1CAC78",		label="JRel-mul_sandwich_self",		shape=ellipse,		style=filled];	"lem:JRel-left_cancel"	[color=green,		fillcolor="#1CAC78",		label="JRel-left_cancel",		shape=ellipse,		style=filled];	"def:HEquiv"	[color=green,		fillcolor="#B0ECA3",		label=HEquiv,		shape=box,		style=filled];	"def:HEquiv" -> "lem:HEquiv-isEquivalence"	[style=dashed];	"def:HEquiv" -> "def:HClass"	[style=dashed];	"def:JRel"	[color=green,		fillcolor="#B0ECA3",		label=JRel,		shape=box,		style=filled];	"def:JRel" -> "lem:JRel-right_cancel"	[style=dashed];	"def:JRel" -> "lem:JRel-refl"	[style=dashed];	"def:JRel" -> "lem:JRel-mul_sandwich_self"	[style=dashed];	"def:JRel" -> "lem:JRel-left_cancel"	[style=dashed];	"lem:JRel-trans"	[color=green,		fillcolor="#1CAC78",		label="JRel-trans",		shape=ellipse,		style=filled];	"def:JRel" -> "lem:JRel-trans"	[style=dashed];	"lem:JRel-trans" -> "lem:JRel-isPreorder"	[style=dashed];	"def:HRel"	[color=green,		fillcolor="#B0ECA3",		label=HRel,		shape=box,		style=filled];	"def:HRel" -> "lem:HRel-trans"	[style=dashed];	"def:HRel" -> "lem:HRel-refl"	[style=dashed];}`)
+    .on("end", interactive);
+
+latexLabelEscaper = function(label) {
+  return label.replace(/\./g, '\\.').replace(/:/g, '\\:')
+}
+
+clickNode = function() {
+  $("#statements div").hide()
+  var node_id = $('text', this).text();
+  $('.thm').hide();
+  $('#'+latexLabelEscaper(node_id)).show().children().show();
+}
+function interactive() {
+    $("span#legend_title").on("click", function () {
+           $(this).siblings('dl').toggle();
+        })
+
+    d3.selectAll('.node')
+        .attr('pointer-events', 'fill')
+        .on('click', function () {
+           var title = d3.select(this).selectAll('title').text().trim();
+           $('#statements > div').hide()
+           $('.thm').hide();
+           $('#'+latexLabelEscaper(title)+'_modal').show().children().show().children().show();
+           $('#statements').show()
+        });
+
+    d3.selectAll('.dep-closebtn').on('click', function() {
+        var modal =
+            d3.select(this).node().parentNode.parentNode.parentNode ;
+        d3.select(modal).style('display', 'none');
+    });
+}
+
+</script>
+
+</body>
+</html>

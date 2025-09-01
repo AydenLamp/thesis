@@ -1,0 +1,27 @@
+% test
+\section{Equivalences from Preorders}
+
+To obtain equivalence relations from a preorder we take its symmetric closure.  Given any preorder \(p\), we define an equivalence relation by declaring two elements equivalent exactly when both \(p\,x\,y\) and \(p\,y\,x\) hold.  This construction works uniformly for all preorders and, in particular, produces Green's equivalence relations from Green's preorders.
+
+\begin{definition}[Equivalence of a preorder]
+\label{def:EquivOfLE}
+Let \(\alpha\) be a type and let \(p : \alpha \to \alpha \to \mathrm{Prop}\) be a preorder.  For \(x,y : \alpha\) we define
+\(\mathrm{EquivOfLE}\,p\,x\,y\) to hold when both \(p\,x\,y\) and \(p\,y\,x\) hold.  In other words, \(\mathrm{EquivOfLE}\,p\) is the symmetric closure of the relation \(p\).
+% Lists the Lean declaration corresponding to this definition
+\lean{EquivOfLE}
+% Marks that the environment is completely formalised in Lean
+\leanok
+\end{definition}
+
+\begin{lemma}[EquivOfLE is an equivalence relation]
+\label{lem:EquivOfLE-isEquivalence}
+If \(p\) is a preorder on \(\alpha\) then \(\mathrm{EquivOfLE}\,p\) is an equivalence relation.
+\lean{EquivOfLE.isEquivalence}
+\leanok
+\uses{def:EquivOfLE}
+\end{lemma}
+\begin{proof}
+\leanok
+We verify the three properties of an equivalence relation.  For reflexivity, if \(p\) is a preorder then it is reflexive, so for every \(x\) we have both \(p\,x\,x\) and \(p\,x\,x\); hence \(\mathrm{EquivOfLE}\,p\,x\,x\) holds.  Symmetry is immediate: if \(\mathrm{EquivOfLE}\,p\,x\,y\) holds, meaning \(p\,x\,y\) and \(p\,y\,x\), then the pair \(p\,y\,x\) and \(p\,x\,y\) shows \(\mathrm{EquivOfLE}\,p\,y\,x\).  For transitivity, suppose \(\mathrm{EquivOfLE}\,p\,x\,y\) and \(\mathrm{EquivOfLE}\,p\,y\,z\).  Then we have \(p\,x\,y\) and \(p\,y\,z\); by transitivity of the preorder \(p\) we obtain \(p\,x\,z\).  Similarly from \(p\,z\,y\) and \(p\,y\,x\) we deduce \(p\,z\,x\).  Thus \(\mathrm{EquivOfLE}\,p\,x\,z\) holds, completing the proof.
+\uses{def:EquivOfLE}
+\end{proof}
