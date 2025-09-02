@@ -34,7 +34,7 @@ The finished blueprint is rendered automatically by GitHub Actions. Every
 push to the main branch triggers a build that compiles the Lean code,
 generates HTML and PDF versions of the blueprint, and updates the
 dependency graph. The results appear at
-https://lean-summer-research.github.io/LeanblueprintTesting/ within
+https://AydenLamp.github.io/thesis/ within
 approximately five minutes of pushing.
 
 ## Getting started
