@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2025.9.2)  2 SEP 2025 16:21
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2025.9.2)  3 SEP 2025 17:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,31 +709,48 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ] (./content.tex
-(/workspaces/thesis/blueprint/print/../../LaTeX/Preorders.tex
+Chapter 1.
+(/workspaces/thesis/blueprint/print/../../LaTeX/SpecialElements/Identity.tex
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00107pt on input line 10.
+(Font)              scaled to size 10.00107pt on input line 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00075pt on input line 10.
+(Font)              scaled to size 7.00075pt on input line 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00053pt on input line 10.
+(Font)              scaled to size 5.00053pt on input line 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 10.
+(Font)              scaled to size 9.99893pt on input line 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 10.
+(Font)              scaled to size 6.99925pt on input line 6.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 10.
-)) [1]
-(/workspaces/thesis/blueprint/print/print.aux)
+(Font)              scaled to size 4.99947pt on input line 6.
+)
+(/workspaces/thesis/blueprint/print/../../LaTeX/SpecialElements/Zeros.tex
+[1
+
+]
+
+LaTeX Warning: Reference `def:zero' on page 2 undefined on input line 33.
+
+
+LaTeX Warning: Reference `def:zero' on page 2 undefined on input line 42.
+
+)
+(/workspaces/thesis/blueprint/print/../../LaTeX/SpecialElements/Cancellative.te
+x) (/workspaces/thesis/blueprint/print/../../LaTeX/SpecialElements/Inverses.tex
+[2])) [3] (/workspaces/thesis/blueprint/print/print.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `print.out' has not changed.
-(rerunfilecheck)             Checksum: 2795C3169F4CA9500913049A971FEAB1;199.
+(rerunfilecheck)             Checksum: 7A0AADE49A32928DC411F2105976B6AB;864.
  ) 
 Here is how much of TeX's memory you used:
- 16549 strings out of 478190
- 307620 string characters out of 5854828
- 797831 words of memory out of 5000000
- 36948 multiletter control sequences out of 15000+600000
- 474590 words of font info for 72 fonts, out of 8000000 for 9000
+ 16593 strings out of 478190
+ 309183 string characters out of 5854828
+ 805831 words of memory out of 5000000
+ 36973 multiletter control sequences out of 15000+600000
+ 474646 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,6n,115p,634b,349s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,6n,115p,474b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on /workspaces/thesis/blueprint/print/print.pdf (2 pages).
+Output written on /workspaces/thesis/blueprint/print/print.pdf (4 pages).

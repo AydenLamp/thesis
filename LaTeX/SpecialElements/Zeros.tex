@@ -1,0 +1,43 @@
+
+\section{Zero elements and null semigroups}
+
+Throughout, let \(S\) be a semigroup with associative multiplication, written multiplicatively.
+
+\begin{definition}[Left/right/two-sided zeros]
+\label{def:zeros}
+Let \(e\in S\).
+\begin{itemize}
+  \item \(e\) is a \emph{left zero} if for all \(s\in S\), \(e s = e\).
+  \item \(e\) is a \emph{right zero} if for all \(s\in S\), \(s e = e\).
+  \item \(e\) is a \emph{zero} (two-sided) if it is both a left and a right zero; equivalently, for all \(s\in S\), \(e s = e = s e\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Idempotence of one-sided zeros]
+\label{lem:zero-idempotent}
+Let \(e\in S\).
+\begin{itemize}
+  \item If \(e\) is a left zero, then \(e e = e\).
+  \item If \(e\) is a right zero, then \(e e = e\).
+\end{itemize}
+\uses{def:zeros}
+\end{lemma}
+\begin{proof}
+For a left zero, apply the defining property to \(s:=e\) to get \(e e = e\).
+For a right zero, apply the defining property to \(s:=e\) to get \(e e = e\).
+\end{proof}
+
+\begin{lemma}[Uniqueness of zero (at most one zero element)]
+\label{lem:zero-unique}
+A semigroup has at most one zero element.
+\uses{def:zero}
+\end{lemma}
+\begin{proof}
+Suppose \(e,e'\in S\) are both zeros. Then \(e = e e'\) since \(e'\) is a right zero, and \(e e' = e'\) since \(e\) is a left zero. Hence \(e = e'\).
+\end{proof}
+
+\begin{definition}[Null semigroup]
+\label{def:null-semigroup}
+A semigroup \(S\) is \emph{null} if it has a zero element \(0_S\) and for all \(x,y\in S\) one has \(x y = 0_S\).
+\uses{def:zero}
+\end{definition}
