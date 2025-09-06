@@ -1,0 +1,648 @@
+\chapter {Special Elements in Semigroups}
+
+\section{Local identities in semigroups}
+
+Throughout, let \(S\) be a semigroup with associative multiplication, written multiplicatively.
+
+\begin{definition}[Left/right/two-sided identities]
+\label{def:identities}
+Let \(e\in S\).
+\begin{itemize}
+  \item \(e\) is a \emph{left identity} if for all \(s\in S\), \(e s = s\).
+  \item \(e\) is a \emph{right identity} if for all \(s\in S\), \(s e = s\).
+  \item \(e\) is an \emph{identity} (two-sided) if it is both a left and a right identity; equivalently, for all \(s\in S\), \(e s = s = s e\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Idempotence of one-sided identities]
+\label{lem:identity-idempotent}
+Let \(e\in S\).
+\begin{itemize}
+  \item If \(e\) is a left identity, then \(e e = e\).
+  \item If \(e\) is a right identity, then \(e e = e\).
+\end{itemize}
+\uses{def:identities}
+\end{lemma}
+\begin{proof}
+For a left identity, apply the defining property to \(s:=e\) to get \(e e = e\).
+For a right identity, apply the defining property to \(s:=e\) to get \(e e = e\).
+\end{proof}
+
+\begin{lemma}[Simplification lemma]
+\label{lem:simplification}
+Let \(s\in S\) and let \(e,f\in S\) be idempotents. If \(s = e s f\), then \(e s = s = s f\).
+\end{lemma}
+\begin{proof}
+Assume \(s = e s f\). Then
+\[
+e s \;=\; e(e s f) \;=\; (e e) s f \;=\; e s f \;=\; s,
+\]
+using associativity and \(e^2 = e\). Similarly,
+\[
+s f \;=\; (e s f) f \;=\; e s (f f) \;=\; e s f \;=\; s,
+\]
+using associativity and \(f^2 = f\).
+\end{proof}
+
+\section{Zero elements and null semigroups}
+
+Throughout, let \(S\) be a semigroup with associative multiplication, written multiplicatively.
+
+\begin{definition}[Left/right/two-sided zeros]
+\label{def:zeros}
+Let \(e\in S\).
+\begin{itemize}
+  \item \(e\) is a \emph{left zero} if for all \(s\in S\), \(e s = e\).
+  \item \(e\) is a \emph{right zero} if for all \(s\in S\), \(s e = e\).
+  \item \(e\) is a \emph{zero} (two-sided) if it is both a left and a right zero; equivalently, for all \(s\in S\), \(e s = e = s e\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Idempotence of one-sided zeros]
+\label{lem:zero-idempotent}
+Let \(e\in S\).
+\begin{itemize}
+  \item If \(e\) is a left zero, then \(e e = e\).
+  \item If \(e\) is a right zero, then \(e e = e\).
+\end{itemize}
+\uses{def:zeros}
+\end{lemma}
+\begin{proof}
+For a left zero, apply the defining property to \(s:=e\) to get \(e e = e\).
+For a right zero, apply the defining property to \(s:=e\) to get \(e e = e\).
+\end{proof}
+
+\begin{lemma}[Uniqueness of zero (at most one zero element)]
+\label{lem:zero-unique}
+A semigroup has at most one zero element.
+\uses{def:zeros}
+\end{lemma}
+\begin{proof}
+Suppose \(e,e'\in S\) are both zeros. Then \(e = e e'\) since \(e'\) is a right zero, and \(e e' = e'\) since \(e\) is a left zero. Hence \(e = e'\).
+\end{proof}
+
+\begin{definition}[Null semigroup]
+\label{def:null-semigroup}
+A semigroup \(S\) is \emph{null} if it has a zero element \(0_S\) and for all \(x,y\in S\) one has \(x y = 0_S\).
+\uses{def:zeros}
+\end{definition}
+
+\section{Cancellativity}
+
+Throughout, let \(S\) be a semigroup with associative multiplication.
+
+\begin{definition}[Right/left/two-sided cancellative element]
+\label{def:cancellative-element}
+Let \(s\in S\).
+\begin{itemize}
+  \item \(s\) is \emph{right cancellative} if for all \(x,y\in S\), \(x s = y s \implies x = y\).
+  \item \(s\) is \emph{left cancellative} if for all \(x,y\in S\), \(s x = s y \implies x = y\).
+  \item \(s\) is \emph{cancellative} (two-sided) if it is both left and right cancellative.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Right/left/two-sided cancellative semigroup]
+\label{def:cancellative-semigroup}
+A semigroup \(S\) is
+\begin{itemize}
+  \item \emph{right cancellative} if every \(s\in S\) is right cancellative,
+  \item \emph{left cancellative} if every \(s\in S\) is left cancellative,
+  \item \emph{cancellative} (two-sided) if every \(s\in S\) is cancellative.
+\end{itemize}
+\uses{def:cancellative-element}
+\end{definition}
+
+\section{Inverses}
+
+\noindent\textbf{Terminology note.}
+The term “inverse” has two distinct usages. In group theory (and, more generally, in monoids), an inverse is defined using a distinguished identity element \(1\). This notion does not make sense in a bare semigroup that lacks a specified unit. Semigroup theory also uses a different, intrinsic notion of inverse that does not require a unit and is formulated purely in terms of the multiplication.
+
+These notions behave differently:
+\begin{itemize}
+  \item In an \emph{infinite} monoid, an element may have several right group inverses and several left group inverses.
+  \item In a \emph{finite} monoid, each element has \emph{at most one} right group inverse and \emph{at most one} left group inverse; if both exist, they coincide (hence give a two-sided group inverse).
+  \item In a semigroup (finite or infinite), an element may have several semigroup inverses, or none at all.
+\end{itemize}
+
+\begin{definition}[Semigroup inverse]
+\label{def:semigroup-inverse}
+Let \(S\) be a semigroup and \(x\in S\). An element \(x'\in S\) is a \emph{semigroup inverse} of \(x\) if
+\[
+x x' x = x \quad\text{and}\quad x' x x' = x'.
+\]
+\end{definition}
+
+\begin{definition}[Group inverse (monoid setting)]
+\label{def:group-inverse}
+Let \(M\) be a monoid with identity \(1\) and let \(x\in M\).
+\begin{itemize}
+  \item A \emph{right group inverse} of \(x\) is an element \(x'\in M\) with \(x x' = 1\).
+  \item A \emph{left group inverse} of \(x\) is an element \(x'\in M\) with \(x' x = 1\).
+  \item A \emph{group inverse} of \(x\) is an element \(x'\in M\) that is both a right and a left group inverse, i.e.\ \(x x' = x' x = 1\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Group inverse \(\Rightarrow\) semigroup inverse]
+\label{lem:group-inverse-implies-semigroup-inverse}
+Let \(M\) be a monoid and \(x,x'\in M\). If \(x'\) is a group inverse of \(x\) (so \(x x' = x' x = 1\)), then \(x'\) is a semigroup inverse of \(x\) in the underlying semigroup:
+\[
+x x' x = x \quad\text{and}\quad x' x x' = x'.
+\]
+\uses{def:group-inverse,def:semigroup-inverse}
+\end{lemma}
+\begin{proof}
+Compute \(x x' x = (x x') x = 1\cdot x = x\) and \(x' x x' = x' (x x') = x' \cdot 1 = x'\), using associativity and the unit laws.
+\end{proof}
+
+% --- NEW CHAPTER ---
+\chapter {Ordered Semigroups and Monoids}
+
+\begin{definition}[Ordered semigroup/monoid/group]
+\label{def:ordered-structures}
+\leavevmode
+\begin{itemize}
+  \item An \emph{ordered semigroup} is a pair \((S,\le)\) where \(S\) is a semigroup and \(\le\) is a partial order on \(S\) such that multiplication is monotone in both arguments:
+  \[
+    \forall a,b,x,y\in S,\quad x\le y \;\Longrightarrow\; a x b \le a y b.
+  \]
+  Equivalently, for all \(a,b\in S\), the maps \(x\mapsto a x\) and \(x\mapsto x b\) are order-preserving.
+  \item An \emph{ordered monoid} is an ordered semigroup \((M,\le)\) whose underlying semigroup is a monoid \((M,1)\). We require the same compatibility condition as above (which automatically implies \(1\) is \(\le\)-minimal among right/left translates of any element).
+  \item An \emph{ordered group} is an ordered monoid whose underlying monoid is a group \((G,1,(\cdot)^{-1})\) and such that the order is bi-invariant in the sense above (equivalently, both left and right multiplication are order embeddings).
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Remark.}
+Monotonicity in both coordinates implies: if \(x\le y\) then \(a x \le a y\) and \(x b \le y b\) for all \(a,b\). Conversely, these two conditions together imply \(a x b \le a y b\) by associativity.
+
+% --- NEW CHAPTER ---
+
+\chapter {Morphisms}
+
+\begin{definition}[Semigroup morphism]
+\label{def:semigroup-morphism}
+Let \(S,T\) be semigroups. A \emph{semigroup morphism} (homomorphism) is a map \(\varphi:S\to T\) such that
+\[
+\forall s_1,s_2\in S,\qquad \varphi(s_1 s_2)=\varphi(s_1)\,\varphi(s_2).
+\]
+\end{definition}
+
+\begin{definition}[Monoid morphism]
+\label{def:monoid-morphism}
+Let \(M,N\) be monoids with identities \(1_M,1_N\). A \emph{monoid morphism} is a semigroup morphism \(\varphi:M\to N\) that also preserves the unit:
+\[
+\varphi(1_M)=1_N.
+\]
+\uses{def:semigroup-morphism}
+\end{definition}
+
+\begin{definition}[Morphism of ordered monoids]
+\label{def:ordered-monoid-morphism}
+Let \((M,\le_M)\) and \((N,\le_N)\) be ordered monoids. A \emph{morphism of ordered monoids} is a monoid morphism \(\varphi:M\to N\) that is order-preserving:
+\[
+x\le_M y \;\Longrightarrow\; \varphi(x)\le_N \varphi(y)\quad\text{for all }x,y\in M.
+\]
+\uses{def:monoid-morphism,def:ordered-structures}
+\end{definition}
+
+\begin{definition}[Group morphism]
+\label{def:group-morphism}
+Let \(G,H\) be groups. A \emph{group morphism} is a monoid morphism \(\varphi:G\to H\). Equivalently, \(\varphi\) is a semigroup morphism satisfying
+\[
+\varphi(1_G)=1_H\quad\text{and}\quad \forall g\in G,\;\; \varphi(g^{-1})=\varphi(g)^{-1}.
+\]
+\uses{def:monoid-morphism,def:semigroup-morphism}
+\end{definition}
+
+\begin{lemma}[Semigroup morphisms between groups are group morphisms]
+\label{lem:sgp-mor-between-groups-are-group-mor}
+Let \(G,H\) be groups. Any semigroup morphism \(\varphi:G\to H\) is a group morphism.
+\uses{def:semigroup-morphism,def:group-morphism}
+\end{lemma}
+\begin{proof}
+First, \(\varphi(1_G)=\varphi(1_G\cdot 1_G)=\varphi(1_G)\varphi(1_G)\), so \(\varphi(1_G)\) is idempotent in \(H\), hence \(\varphi(1_G)=1_H\) since \(1_H\) is the unique idempotent in a group. Next, for \(g\in G\),
+\[
+\varphi(g^{-1})\varphi(g)=\varphi(g^{-1}g)=\varphi(1_G)=1_H,\qquad
+\varphi(g)\varphi(g^{-1})=\varphi(gg^{-1})=\varphi(1_G)=1_H,
+\]
+so \(\varphi(g^{-1})=\varphi(g)^{-1}\).
+\end{proof}
+
+\begin{definition}[Isomorphism]
+\label{def:isomorphism}
+A semigroup (resp.\ monoid, group) morphism \(\varphi:S\to T\) is an \emph{isomorphism} if there exists a morphism \(\psi:T\to S\) with \(\varphi\circ \psi=\mathrm{id}_T\) and \(\psi\circ \varphi=\mathrm{id}_S\).
+\uses{def:semigroup-morphism,def:monoid-morphism,def:group-morphism}
+\end{definition}
+
+\begin{lemma}[Isomorphism \(\Leftrightarrow\) bijective morphism]
+\label{lem:iso-iff-bijective}
+A semigroup/monoid/group morphism is an isomorphism if and only if it is bijective.
+\uses{def:isomorphism}
+\end{lemma}
+\begin{proof}
+If \(\varphi\) has a two-sided inverse \(\psi\), then \(\varphi\) is bijective. Conversely, if \(\varphi\) is bijective, its set-theoretic inverse \(\varphi^{-1}\) satisfies \(\varphi(\varphi^{-1}(x)\varphi^{-1}(y))=\varphi(\varphi^{-1}(x))\varphi(\varphi^{-1}(y))=xy\); applying \(\varphi^{-1}\) shows \(\varphi^{-1}\) is a morphism, hence \(\varphi\) is an isomorphism.
+\end{proof}
+
+\begin{definition}[Isomorphism of ordered monoids]
+\label{def:ordered-monoid-isomorphism}
+A morphism of ordered monoids \(\varphi:(M,\le_M)\to (N,\le_N)\) is an \emph{isomorphism of ordered monoids} if it is bijective as a function and reflects the order:
+\[
+\forall x,y\in M,\qquad x\le_M y \;\Longleftrightarrow\; \varphi(x)\le_N \varphi(y).
+\]
+Equivalently, \(\varphi\) is a bijective monoid morphism whose inverse is order-preserving.
+\uses{def:ordered-monoid-morphism}
+\end{definition}
+
+\noindent\textbf{Remark.}
+Unlike the unordered case, a bijective morphism of ordered monoids need not be an isomorphism of ordered monoids unless it also reflects the order.
+
+\chapter {Algebraic Structures}
+
+\section{Substructures}
+
+\begin{definition}[Subsemigroup]
+\label{def:subsemigroup}
+A \emph{subsemigroup} of a semigroup \(S\) is a nonempty subset \(T\subseteq S\) such that for all \(t_1,t_2\in T\), one has \(t_1t_2\in T\).
+\end{definition}
+
+\begin{definition}[Submonoid of a monoid]
+\label{def:submonoid}
+A \emph{submonoid} of a monoid \(M\) is a subsemigroup \(T\subseteq M\) containing the identity \(1_M\).
+\uses{def:subsemigroup}
+\end{definition}
+
+\begin{definition}[Subgroup of a group]
+\label{def:subgroup}
+A \emph{subgroup} of a group \(G\) is a submonoid \(H\subseteq G\) that is closed under inversion: \(h\in H\Rightarrow h^{-1}\in H\).
+\uses{def:submonoid}
+\end{definition}
+
+\begin{definition}[Monoid/group inside a semigroup]
+\label{def:internal-monoid-group}
+Let \(S\) be a semigroup.
+\begin{itemize}
+  \item A subsemigroup \(M\subseteq S\) is a \emph{monoid in \(S\)} if there exists an idempotent \(e\in M\) such that \((M,\cdot,e)\) is a monoid (with identity \(e\)) under the inherited multiplication.
+  \item A subsemigroup \(G\subseteq S\) is a \emph{group in \(S\)} if there exists an idempotent \(e\in G\) such that \((G,\cdot,e,(\cdot)^{-1})\) is a group under the inherited multiplication.
+\end{itemize}
+\uses{lem:identity-idempotent}
+\end{definition}
+
+\begin{lemma}[Images and preimages preserve substructures]
+\label{lem:morphism-preserves-substructures}
+Let \(\varphi:S\to T\) be a semigroup morphism.
+\begin{itemize}
+  \item If \(S'\subseteq S\) is a subsemigroup, then \(\varphi(S')\) is a subsemigroup of \(T\).
+  \item If \(T'\subseteq T\) is a subsemigroup, then \(\varphi^{-1}(T')\) is a subsemigroup of \(S\).
+\end{itemize}
+Analogous statements hold for monoid and group morphisms and their corresponding substructures.
+\uses{def:semigroup-morphism,def:subsemigroup}
+\end{lemma}
+\begin{proof}
+If \(t_1=\varphi(s_1)\in \varphi(S')\) and \(t_2=\varphi(s_2)\in \varphi(S')\) with \(s_1,s_2\in S'\), then \(t_1t_2=\varphi(s_1)\varphi(s_2)=\varphi(s_1s_2)\in\varphi(S')\). For preimages: if \(s_1,s_2\in \varphi^{-1}(T')\), then \(\varphi(s_i)\in T'\) and \(\varphi(s_1s_2)=\varphi(s_1)\varphi(s_2)\in T'\), hence \(s_1s_2\in \varphi^{-1}(T')\).
+\end{proof}
+
+\begin{lemma}[Finite-group test]
+\label{lem:finite-group-subsemigroup-is-subgroup}
+A nonempty subsemigroup \(S'\) of a finite group \(G\) is a subgroup of \(G\).
+\uses{def:subsemigroup,def:subgroup}
+\end{lemma}
+\begin{proof}
+Pick \(g\in S'\). The set \(\{g^n\mid n\ge 1\}\subseteq S'\) is finite, so \(g^i=g^j\) with \(1\le i<j\). By cancellation in \(G\), \(g^{j-i}=1\in S'\). For any \(h\in S'\), the set \(\{h^n\mid n\ge 0\}\) is finite, hence \(h^a=h^b\) with \(a<b\). Cancelling \(h^a\) yields \(1=h^{b-a}\in S'\); then \(h^{b-a-1}\in S'\) is an inverse of \(h\). Thus \(S'\) is a subgroup.
+\end{proof}
+
+\section {Quotients and Divisions}
+
+\noindent
+In this section, “quotient’’ means “image of a surjective morphism”. For finite semigroups, the last two lemmas below show that the \emph{division} relation (defined via quotients of subsemigroups) is a partial order on isomorphism classes.
+
+\begin{definition}[Semigroup quotient]
+\label{def:semigroup-quotient}
+A semigroup \(T\) is a \emph{quotient} of a semigroup \(S\) if there exists a surjective semigroup morphism \(\pi:S\twoheadrightarrow T\).
+\uses{def:semigroup-morphism}
+\end{definition}
+
+\begin{lemma}[Trivial order arises as a quotient]
+\label{lem:ordered-monoid-is-quotient-of-equality}
+For any ordered monoid \((M,\le)\), the identity map \(\mathrm{id}_M:(M,=)\to (M,\le)\) is a surjective morphism of ordered monoids. Hence \((M,\le)\) is a quotient of \((M,=)\) in the ordered-monoid sense.
+\uses{def:ordered-monoid-morphism}
+\end{lemma}
+\begin{proof}
+The identity preserves the monoid structure and is order-preserving from equality to \(\le\) trivially.
+\end{proof}
+
+\begin{definition}[Division (divisor)]
+\label{def:division}
+A semigroup \(T\) \emph{divides} a semigroup \(S\) (notation \(T \mid S\)) if there exist a subsemigroup \(U\subseteq S\) and a surjective morphism \(\pi:U\twoheadrightarrow T\). Equivalently, \(T\) is a quotient of a subsemigroup of \(S\).
+\uses{def:subsemigroup,def:semigroup-quotient}
+\end{definition}
+
+\begin{lemma}[Transitivity of division]
+\label{lem:division-transitive}
+If \(S_1\mid S_2\) and \(S_2\mid S_3\), then \(S_1\mid S_3\).
+\uses{def:division}
+\end{lemma}
+\begin{proof}
+Let \(U_1\subseteq S_2\) and \(\pi_1:U_1\twoheadrightarrow S_1\) witness \(S_1\mid S_2\), and \(U_2\subseteq S_3\) and \(\pi_2:U_2\twoheadrightarrow S_2\) witness \(S_2\mid S_3\). Then \(U:=\pi_2^{-1}(U_1)\subseteq S_3\) is a subsemigroup and \(\pi_1\circ \pi_2:U\twoheadrightarrow S_1\) is surjective, so \(S_1\mid S_3\).
+\end{proof}
+
+\begin{lemma}[Reflexivity and antisymmetry on finite semigroups]
+\label{lem:division-reflexive-antisymmetric-finite}
+\leavevmode
+\begin{enumerate}
+\item For any semigroup \(S\), \(S\mid S\) (take \(U=S\) and \(\pi=\mathrm{id}\)).
+\item If \(S_1,S_2\) are finite and \(S_1\mid S_2\) and \(S_2\mid S_1\), then \(S_1\cong S_2\).
+\end{enumerate}
+\uses{def:division,def:isomorphism}
+\end{lemma}
+\begin{proof}
+(1) is immediate. For (2), choose \(U_1\subseteq S_2\) with \(\pi_1:U_1\twoheadrightarrow S_1\) and \(U_2\subseteq S_1\) with \(\pi_2:U_2\twoheadrightarrow S_2\). Then
+\(|S_1|\le |U_1|\le |S_2|\) and \(|S_2|\le |U_2|\le |S_1|\), hence all are equalities:
+\(|S_1|=|U_1|=|S_2|=|U_2|\). Therefore \(U_1=S_2\), \(U_2=S_1\) and both \(\pi_1,\pi_2\) are bijections, i.e.\ isomorphisms. Thus \(S_1\cong S_2\).
+\end{proof}
+
+\section {Products}
+
+\begin{definition}[Product of semigroups]
+\label{def:semigroup-product}
+Given a family \(\{S_i\}_{i\in I}\) of semigroups, the Cartesian product \(\prod_{i\in I} S_i\) is a semigroup under coordinatewise multiplication:
+\[
+(s_i)_{i\in I}\cdot (t_i)_{i\in I} \;:=\; (\,s_i t_i\,)_{i\in I}.
+\]
+\end{definition}
+
+\begin{lemma}[Unit object for products]
+\label{lem:one-is-identity-for-product}
+Let \(1\) denote the one-element semigroup (resp.\ monoid, group). Then \(S\times 1\cong S\cong 1\times S\) via the coordinate projections; these are semigroup (resp.\ monoid, group) isomorphisms.
+\uses{def:semigroup-product,def:isomorphism}
+\end{lemma}
+\begin{proof}
+The maps \((s,\ast)\mapsto s\) and \(s\mapsto (s,\ast)\) are mutually inverse morphisms.
+\end{proof}
+
+\begin{definition}[Product of ordered monoids]
+\label{def:ordered-monoid-product}
+If \(\{(M_i,\le_i)\}_{i\in I}\) are ordered monoids, their product ordered monoid is \(\big(\prod_i M_i,\le\big)\) where
+\[
+(s_i)_{i\in I}\le (t_i)_{i\in I}\quad\Longleftrightarrow\quad \forall i\in I,\; s_i\le_i t_i.
+\]
+This order is compatible with the coordinatewise multiplication.
+\uses{def:ordered-structures}
+\end{definition}
+
+\begin{lemma}[Products preserve substructures, quotients, and division]
+\label{lem:products-preserve-structure}
+Let \(\{S_i\}_{i\in I}\) and \(\{T_i\}_{i\in I}\) be families of semigroups.
+\begin{itemize}
+  \item If each \(S_i\subseteq T_i\) is a subsemigroup, then \(\prod_i S_i\subseteq \prod_i T_i\) is a subsemigroup.
+  \item If each \(\pi_i:T_i\twoheadrightarrow S_i\) is a surjective morphism, then \(\prod_i \pi_i:\prod_i T_i\twoheadrightarrow \prod_i S_i\) is a surjective morphism; hence products of quotients are quotients of products.
+  \item If each \(S_i\) divides \(T_i\), then \(\prod_i S_i\) divides \(\prod_i T_i\).
+\end{itemize}
+\uses{def:subsemigroup,def:semigroup-quotient,def:division,def:semigroup-product}
+\end{lemma}
+\begin{proof}
+All three items are checked coordinatewise.
+\end{proof}
+
+\section {Ideals}
+
+\begin{definition}[Right/left/two-sided ideals]
+\label{def:ideal}
+Let \(S\) be a semigroup. A \emph{right ideal} is a subset \(R\subseteq S\) with \(RS\subseteq R\). A \emph{left ideal} is a subset \(L\subseteq S\) with \(SL\subseteq L\). An \emph{ideal} is a subset \(I\subseteq S\) with \(SI\subseteq I\) and \(IS\subseteq I\).
+\end{definition}
+
+\begin{remark}[Adjoining a unit]
+\label{rem:S1}
+For a semigroup \(S\), write \(S^1\) for \(S\) if \(S\) already has an identity, and otherwise for the semigroup obtained by adjoining a new identity \(1\). This allows uniform formulations using \(S^1\).
+\end{remark}
+
+\begin{lemma}[Characterizations via \(S^1\)]
+\label{lem:ideal-characterization-semigroup}
+Let \(S\) be a semigroup and \(I\subseteq S\).
+\begin{enumerate}
+  \item \(I\) is a right ideal iff \(I S^1=I\) (equivalently, \(I S^1\subseteq I\)).
+  \item \(I\) is a left ideal iff \(S^1 I=I\) (equivalently, \(S^1 I\subseteq I\)).
+  \item \(I\) is an ideal iff \(S^1 I S^1=I\) (equivalently, \(S^1 I S^1\subseteq I\)).
+\end{enumerate}
+\uses{def:ideal,rem:S1}
+\end{lemma}
+\begin{proof}
+If \(I\) is a right ideal then \(IS\subseteq I\); multiplying by \(1\in S^1\) gives \(IS^1\subseteq I\) and \(\supseteq\) is clear. The other items are analogous; for (3) combine the previous two.
+\end{proof}
+
+\begin{lemma}[Monoid case]
+\label{lem:ideal-characterization-monoid}
+If \(M\) is a monoid and \(I\subseteq M\), then \(I\) is a right ideal iff \(IM=I\), a left ideal iff \(MI=I\), and an ideal iff \(MIM=I\).
+\uses{def:ideal}
+\end{lemma}
+\begin{proof}
+Same as above with \(S^1=M\).
+\end{proof}
+
+\begin{lemma}[Intersections]
+\label{lem:intersection-of-ideals}
+Arbitrary intersections of (right/left/two-sided) ideals are (right/left/two-sided) ideals.
+\uses{def:ideal}
+\end{lemma}
+\begin{proof}
+If \(\{I_\alpha\}\) are ideals, then \(S(\bigcap_\alpha I_\alpha)\subseteq \bigcap_\alpha S I_\alpha\subseteq \bigcap_\alpha I_\alpha\), and similarly on the right.
+\end{proof}
+
+\begin{definition}[Ideal generated by a set; principal ideals]
+\label{def:generated-ideal}
+For \(R\subseteq S\), the ideal generated by \(R\) is \(S^1 R S^1\); the right (resp.\ left) ideal generated by \(R\) is \(R S^1\) (resp.\ \(S^1 R\)). An ideal is \emph{principal} if it is generated by a single element.
+\uses{def:ideal,rem:S1}
+\end{definition}
+
+\begin{lemma}[Ideals and morphisms]
+\label{lem:ideals-stable-under-morphisms}
+Let \(\varphi:S\to T\) be a semigroup morphism. If \(J\subseteq T\) is an ideal, then \(\varphi^{-1}(J)\) is an ideal of \(S\). If \(\varphi\) is surjective and \(I\subseteq S\) is an ideal, then \(\varphi(I)\) is an ideal of \(T\).
+\uses{def:ideal,def:semigroup-morphism}
+\end{lemma}
+\begin{proof}
+For preimages: \(S^1\varphi^{-1}(J)S^1\subseteq \varphi^{-1}(T^1)\varphi^{-1}(J)\varphi^{-1}(T^1)\subseteq \varphi^{-1}(T^1JT^1)=\varphi^{-1}(J)\). For images with \(\varphi\) surjective: \(T^1\varphi(I)T^1=\varphi(S^1)\varphi(I)\varphi(S^1)=\varphi(S^1 I S^1)=\varphi(I)\).
+\end{proof}
+
+\begin{definition}[Product of ideals]
+\label{def:product-of-ideals}
+If \(I_1,\dots,I_n\) are ideals of \(S\), their \emph{product} is
+\[
+I_1\cdots I_n:=\{\,s_1\cdots s_n \mid s_k\in I_k\,\}.
+\]
+\uses{def:ideal}
+\end{definition}
+
+\begin{lemma}[Product of ideals]
+\label{lem:product-ideal-in-intersection}
+The product \(I_1\cdots I_n\) is an ideal and \(I_1\cdots I_n\subseteq \bigcap_{k=1}^n I_k\).
+\uses{def:product-of-ideals,def:ideal,rem:S1}
+\end{lemma}
+\begin{proof}
+Since \(S^1 I_1=I_1\) and \(I_n S^1=I_n\), we have \(S^1(I_1\cdots I_n)S^1=(S^1 I_1)\cdots (I_n S^1)=I_1\cdots I_n\). For inclusion, fix \(k\); then \(I_1\cdots I_n\subseteq S^1 I_k S^1=I_k\).
+\end{proof}
+
+\begin{definition}[Minimal and \(0\)-minimal ideals]
+\label{def:minimal-ideal}
+A nonempty ideal \(I\) of \(S\) is \emph{minimal} if \(J\subseteq I\) and \(J\) an ideal implies \(J=I\). If \(S\) has a zero \(0\), a nonempty ideal \(I\ne \{0\}\) is \emph{\(0\)-minimal} if every nonempty ideal \(J\subseteq I\) satisfies \(J=\{0\}\) or \(J=I\).
+\uses{def:ideal,def:zeros}
+\end{definition}
+
+\begin{lemma}[Uniqueness of a minimal ideal]
+\label{lem:at-most-one-minimal-ideal}
+A semigroup has at most one minimal ideal.
+\uses{def:minimal-ideal,lem:product-ideal-in-intersection}
+\end{lemma}
+\begin{proof}
+If \(I_1,I_2\) are minimal ideals, then \(I_1 I_2\) is a nonempty ideal contained in \(I_1\cap I_2\). By minimality, \(I_1 I_2=I_1=I_2\).
+\end{proof}
+
+\begin{lemma}[Existence in the finite case]
+\label{lem:finite-semigroup-has-minimal-ideal}
+Every finite semigroup has a minimal ideal.
+\uses{def:minimal-ideal}
+\end{lemma}
+\begin{proof}
+Among the nonempty ideals (nonempty because singletons \(\{s\}\) generate ideals), pick one of minimal cardinality; it is minimal by definition.
+\end{proof}
+
+\begin{lemma}[Zero yields a minimal ideal]
+\label{lem:zero-gives-minimal-ideal}
+If \(S\) has a zero \(0\), then \(\{0\}\) is a minimal ideal.
+\uses{def:minimal-ideal,def:zeros}
+\end{lemma}
+\begin{proof}
+\(\{0\}\) is an ideal since \(S\{0\}=\{0\}=\{0\}S\). If \(J\subseteq \{0\}\) is a nonempty ideal, then \(J=\{0\}\).
+\end{proof}
+
+\section {Simple and \(0\)-Simple semigroups}
+
+\begin{definition}[Simple and \(0\)-simple]
+\label{def:simple-zero-simple}
+A semigroup \(S\) is \emph{simple} if its only ideals are \(\varnothing\) and \(S\). If \(S\) has a zero \(0\), then \(S\) is \emph{\(0\)-simple} if \(S^2\ne \{0\}\) and the only ideals are \(\varnothing,\{0\},S\). One-sided versions (right/left simple, right/left \(0\)-simple) are defined analogously.
+\uses{def:ideal,def:zeros}
+\end{definition}
+
+\begin{lemma}
+\label{lem:zero-simple-square}
+If \(S\) is \(0\)-simple, then \(S^2=S\).
+\uses{def:simple-zero-simple}
+\end{lemma}
+\begin{proof}
+\(S^2\) is a nonempty, nonzero ideal, hence \(S^2=S\).
+\end{proof}
+
+\begin{lemma}[Characterizations via principal two-sided ideals]
+\label{lem:simple-characterization}
+\leavevmode
+\begin{enumerate}
+  \item \(S\) is simple iff \(S s S=S\) for every \(s\in S\).
+  \item If \(S\ne\varnothing\) and has a zero \(0\), then \(S\) is \(0\)-simple iff \(S s S=S\) for every \(s\in S\setminus\{0\}\).
+\end{enumerate}
+\uses{def:simple-zero-simple,lem:zero-simple-square,def:generated-ideal}
+\end{lemma}
+\begin{proof}
+(2) Suppose \(S\) is \(0\)-simple. By Lemma~\ref{lem:zero-simple-square}, \(S^2=S\), so \(\bigcup_{s\in S} SsS=S\). The set \(I=\{s\in S\mid SsS=\{0\}\}\) is an ideal containing \(0\) but not equal to \(S\); hence \(I=\{0\}\). Thus for \(s\ne 0\), \(SsS\ne \{0\}\), and being an ideal, it equals \(S\). Conversely, if \(S\ne\varnothing\) and \(SsS=S\) for all \(s\ne 0\), then \(S^2\ne \{0\}\) and any nonzero ideal \(J\) contains some \(s\ne 0\), hence \(S=SsS\subseteq SJS=J\). The proof of (1) is the same without the zero case.
+\end{proof}
+
+\section {Semigroup Congruences}
+
+\begin{definition}[Semigroup congruence]
+\label{def:congruence}
+An equivalence relation \(\sim\) on a semigroup \(S\) is a \emph{congruence} if it is stable under multiplication: \(s\sim t\) implies \(x s y \sim x t y\) for all \(x,y\in S^1\).
+\uses{rem:S1}
+\end{definition}
+
+\begin{lemma}[Quotient by a congruence]
+\label{lem:quotient-by-congruence}
+If \(\sim\) is a congruence on \(S\), the set \(S/{\sim}\) of equivalence classes is a semigroup under \([s]\cdot [t]:=[st]\). The canonical projection \(\pi:S\to S/{\sim}\) is a surjective semigroup morphism.
+\uses{def:congruence,def:semigroup-quotient}
+\end{lemma}
+\begin{proof}
+Well-definedness and associativity follow from stability and associativity in \(S\). Surjectivity and multiplicativity of \(\pi\) are immediate.
+\end{proof}
+
+\begin{definition}[Rees congruence]
+\label{def:rees-congruence}
+If \(I\) is an ideal of \(S\), the \emph{Rees congruence} \(\equiv_I\) identifies all elements of \(I\) and keeps distinct elements of \(S\setminus I\): \(s\equiv_I t\iff (s=t)\ \text{or}\ (s,t\in I)\). The quotient \(S/I:=S/{\equiv_I}\) has support \((S\setminus I)\cup\{0\}\) with multiplication
+\[
+s\ast t=\begin{cases}
+st,& s,t,st\notin I,\\[2pt]
+0,& \text{otherwise.}
+\end{cases}
+\]
+\uses{def:ideal,def:congruence,def:semigroup-quotient}
+\end{definition}
+
+\begin{definition}[Syntactic congruence]
+\label{def:syntactic-congruence}
+Given \(P\subseteq S\), the \emph{syntactic congruence} \(\sim_P\) is
+\[
+s\sim_P t\quad:\Longleftrightarrow\quad \forall x,y\in S^1,\ \ x s y\in P\ \Leftrightarrow\ x t y\in P.
+\]
+The quotient \(S/{\sim_P}\) is the \emph{syntactic semigroup} of \(P\) in \(S\).
+\uses{def:congruence,def:semigroup-quotient,rem:S1}
+\end{definition}
+
+\begin{definition}[Congruence generated by a relation]
+\label{def:generated-congruence}
+For a (symmetric) relation \(R\subseteq S\times S\), the \emph{congruence generated by \(R\)} is the intersection of all congruences containing \(R\).
+\uses{def:congruence}
+\end{definition}
+
+\begin{lemma}[Description of generated congruence]
+\label{lem:generated-congruence-description}
+If \(R\subseteq S\times S\) is symmetric, the congruence it generates is the reflexive-transitive closure of
+\[
+\overline{R}\ :=\ \{(x r y,\ x s y)\mid (r,s)\in R,\ x,y\in S^1\}.
+\]
+\uses{def:generated-congruence,rem:S1}
+\end{lemma}
+\begin{proof}
+Any congruence containing \(R\) contains \(\overline{R}\) and hence its reflexive-transitive closure \(\overline{R}^{\,*}\). Conversely, \(\overline{R}^{\,*}\) is readily checked to be a congruence: if \(u\to v\) is a step from \(\overline{R}\), then \(x u y\to x v y\) is again a step for any \(x,y\in S^1\); closures preserve this property.
+\end{proof}
+
+\begin{definition}[Nuclear congruence]
+\label{def:nuclear-congruence}
+For a morphism \(\varphi:S\to T\), the \emph{nuclear congruence} \(\sim_\varphi\) on \(S\) is defined by \(x\sim_\varphi y \iff \varphi(x)=\varphi(y)\).
+\uses{def:semigroup-morphism,def:congruence}
+\end{definition}
+
+\begin{theorem}[First isomorphism theorem]
+\label{thm:first-isomorphism}
+Let \(\varphi:S\to T\) be a semigroup morphism and \(\pi:S\to S/{\sim_\varphi}\) the quotient map. There exists a unique semigroup morphism \(\widetilde{\varphi}:S/{\sim_\varphi}\to T\) with \(\varphi=\widetilde{\varphi}\circ \pi\). Moreover, \(\widetilde{\varphi}\) is an isomorphism \(S/{\sim_\varphi}\cong \varphi(S)\).
+\uses{def:nuclear-congruence,lem:quotient-by-congruence,def:isomorphism}
+\end{theorem}
+\begin{proof}
+Define \(\widetilde{\varphi}([x])=\varphi(x)\); this is well-defined by definition of \(\sim_\varphi\), multiplicative, and has image \(\varphi(S)\). It is bijective onto \(\varphi(S)\) with inverse given by \([x]\leftarrow \varphi(x)\).
+\end{proof}
+
+\begin{theorem}[Second isomorphism theorem for congruences]
+\label{thm:second-isomorphism}
+Let \(\sim_1,\sim_2\) be congruences on \(S\) with \(\sim_2\) coarser than \(\sim_1\). Then there is a unique surjective morphism \(\Pi:S/{\sim_1}\to S/{\sim_2}\) such that \(\Pi\circ \pi_1=\pi_2\), where \(\pi_i:S\to S/{\sim_i}\) are the projections.
+\uses{def:congruence,lem:quotient-by-congruence}
+\end{theorem}
+\begin{proof}
+Define \(\Pi([s]_1):=[s]_2\); this is well-defined since \(\sim_1\subseteq \sim_2\), multiplicative, and clearly surjective.
+\end{proof}
+
+\begin{lemma}[Intersection embeds in a product]
+\label{lem:intersection-embeds-into-product}
+Let \((\sim_i)_{i\in I}\) be congruences on \(S\) and \(\sim=\bigcap_i \sim_i\). Then \(S/{\sim}\) embeds into \(\prod_{i\in I} S/{\sim_i}\) as a subsemigroup.
+\uses{def:congruence,lem:quotient-by-congruence,def:semigroup-product,def:isomorphism,def:subsemigroup}
+\end{lemma}
+\begin{proof}
+Consider \(\pi=(\pi_i)_{i\in I}:S\to \prod_i S/{\sim_i}\). Its nuclear congruence is \(\sim\). By Theorem~\ref{thm:first-isomorphism}, \(S/{\sim}\cong \pi(S)\), a subsemigroup of the product.
+\end{proof}
+
+\begin{lemma}[Two distinct \(0\)-minimal ideals give a product embedding]
+\label{lem:zero-minimal-ideals-product-embed}
+If \(S\) has (at least) two distinct \(0\)-minimal ideals \(I_1,I_2\), then \(S\) embeds into \(S/I_1 \times S/I_2\) as a subsemigroup.
+\uses{def:minimal-ideal,def:rees-congruence,lem:intersection-embeds-into-product}
+\end{lemma}
+\begin{proof}
+Since \(I_1\cap I_2=\{0\}\), the intersection of the Rees congruences \(\equiv_{I_1}\) and \(\equiv_{I_2}\) is equality. Apply Lemma~\ref{lem:intersection-embeds-into-product}.
+\end{proof}
+
+\begin{definition}[Congruences of ordered monoids]
+\label{def:ordered-monoid-congruence}
+Let \((M,\le)\) be an ordered monoid. A \emph{congruence of ordered monoids} is a stable preorder \(\preccurlyeq\) on \(M\) that is coarser than \(\le\) and is compatible with multiplication: \(x\preccurlyeq y\Rightarrow a x b \preccurlyeq a y b\). Writing \(x\sim y\) for the induced equivalence \(x\preccurlyeq y\ \&\ y\preccurlyeq x\), the quotient \(M/{\sim}\) carries a well-defined ordered-monoid structure with the order induced by \(\preccurlyeq\), and the projection \(M\to (M/{\sim},\le)\) is a morphism of ordered monoids.
+\uses{def:ordered-structures,def:ordered-monoid-morphism,lem:quotient-by-congruence}
+\end{definition}

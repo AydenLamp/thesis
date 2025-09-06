@@ -12,9 +12,9 @@
 <meta name="generator" content="plasTeX" />
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Special Elements in Semigroups</title>
-<link rel="next" href="sect0002.html" title="Special Elements in Semigroups" />
-<link rel="prev" href="index.html" title="Thesis" />
+<title>Ordered Semigroups and Monoids</title>
+<link rel="next" href="sect0004.html" title="Morphisms" />
+<link rel="prev" href="sect0002.html" title="Special Elements in Semigroups" />
 <link rel="up" href="index.html" title="Thesis" />
 <link rel="stylesheet" href="styles/theme-white.css" />
 <link rel="stylesheet" href="styles/amsthm.css" />
@@ -32,7 +32,7 @@
 <div class="wrapper">
 <nav class="toc">
 <ul class="sub-toc-0">
-<li class=" active current">
+<li class="">
   <a href="sect0001.html"><span class="toc_ref">1</span> <span class="toc_entry">Special Elements in Semigroups</span></a>
  </li>
 <li class="">
@@ -54,7 +54,7 @@
 
   </ul>
  </li>
-<li class="">
+<li class=" active current">
   <a href="sect0003.html"><span class="toc_ref">3</span> <span class="toc_entry">Ordered Semigroups and Monoids</span></a>
  </li>
 <li class="">
@@ -94,7 +94,43 @@
 
 
 <div class="main-text">
-<h1 id="a0000000002">1 Special Elements in Semigroups</h1>
+<h1 id="a0000000004">3 Ordered Semigroups and Monoids</h1>
+<div class="definition_thmwrapper theorem-style-definition" id="def:ordered-structures">
+  <div class="definition_thmheading">
+    <span class="definition_thmcaption">
+    Definition
+    </span>
+    <span class="definition_thmlabel">13</span>
+    <span class="definition_thmtitle">Ordered semigroup/monoid/group</span>
+    <div class="thm_header_extras">
+
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0003.html#def:ordered-structures">#</a>
+    
+    
+    
+        </div>
+  </div>
+  <div class="definition_thmcontent">
+  
+<ul class="itemize">
+  <li><p>An <em>ordered semigroup</em> is a pair \((S,\le )\) where \(S\) is a semigroup and \(\le \) is a partial order on \(S\) such that multiplication is monotone in both arguments: </p>
+<div class="displaymath" id="a0000000026">
+  \[  \forall a,b,x,y\in S,\quad x\le y \; \Longrightarrow \;  a x b \le a y b.  \]
+</div>
+<p> Equivalently, for all \(a,b\in S\), the maps \(x\mapsto a x\) and \(x\mapsto x b\) are order-preserving. </p>
+</li>
+  <li><p>An <em>ordered monoid</em> is an ordered semigroup \((M,\le )\) whose underlying semigroup is a monoid \((M,1)\). We require the same compatibility condition as above (which automatically implies \(1\) is \(\le \)-minimal among right/left translates of any element). </p>
+</li>
+  <li><p>An <em>ordered group</em> is an ordered monoid whose underlying monoid is a group \((G,1,(\cdot )^{-1})\) and such that the order is bi-invariant in the sense above (equivalently, both left and right multiplication are order embeddings). </p>
+</li>
+</ul>
+
+  </div>
+</div>
+<p><b class="bfseries">Remark.</b> Monotonicity in both coordinates implies: if \(x\le y\) then \(a x \le a y\) and \(x b \le y b\) for all \(a,b\). Conversely, these two conditions together imply \(a x b \le a y b\) by associativity. </p>
 
 </div> <!--main-text -->
 </div> <!-- content-wrapper -->
@@ -106,11 +142,11 @@
 
   <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
 
-  <a href="index.html" title="Thesis"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+  <a href="sect0002.html" title="Special Elements in Semigroups"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
 </a>
   <a href="index.html" title="Thesis"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
 </a>
-  <a href="sect0002.html" title="Special Elements in Semigroups"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+  <a href="sect0004.html" title="Morphisms"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
 </a>
 </nav>
 

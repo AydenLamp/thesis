@@ -1,0 +1,634 @@
+\chapter {Special Elements in Semigroups}
+
+\section{Local identities in semigroups}
+
+Throughout, let \(S\) be a semigroup with associative multiplication, written multiplicatively.
+
+\begin{definition}[Left/right/two-sided identities]
+\label{def:identities}
+Let \(e\in S\).
+\begin{itemize}
+  \item \(e\) is a \emph{left identity} if for all \(s\in S\), \(e s = s\).
+  \item \(e\) is a \emph{right identity} if for all \(s\in S\), \(s e = s\).
+  \item \(e\) is an \emph{identity} (two-sided) if it is both a left and a right identity; equivalently, for all \(s\in S\), \(e s = s = s e\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Idempotence of one-sided identities]
+\label{lem:identity-idempotent}
+Let \(e\in S\).
+\begin{itemize}
+  \item If \(e\) is a left identity, then \(e e = e\).
+  \item If \(e\) is a right identity, then \(e e = e\).
+\end{itemize}
+\uses{def:identities}
+\end{lemma}
+\begin{proof}
+For a left identity, apply the defining property to \(s:=e\) to get \(e e = e\).
+For a right identity, apply the defining property to \(s:=e\) to get \(e e = e\).
+\end{proof}
+
+\begin{lemma}[Simplification lemma]
+\label{lem:simplification}
+Let \(s\in S\) and let \(e,f\in S\) be idempotents. If \(s = e s f\), then \(e s = s = s f\).
+\end{lemma}
+\begin{proof}
+Assume \(s = e s f\). Then
+\[
+e s \;=\; e(e s f) \;=\; (e e) s f \;=\; e s f \;=\; s,
+\]
+using associativity and \(e^2 = e\). Similarly,
+\[
+s f \;=\; (e s f) f \;=\; e s (f f) \;=\; e s f \;=\; s,
+\]
+using associativity and \(f^2 = f\).
+\end{proof}
+
+\section{Zero elements and null semigroups}
+
+Throughout, let \(S\) be a semigroup with associative multiplication, written multiplicatively.
+
+\begin{definition}[Left/right/two-sided zeros]
+\label{def:zeros}
+Let \(e\in S\).
+\begin{itemize}
+  \item \(e\) is a \emph{left zero} if for all \(s\in S\), \(e s = e\).
+  \item \(e\) is a \emph{right zero} if for all \(s\in S\), \(s e = e\).
+  \item \(e\) is a \emph{zero} (two-sided) if it is both a left and a right zero; equivalently, for all \(s\in S\), \(e s = e = s e\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Idempotence of one-sided zeros]
+\label{lem:zero-idempotent}
+Let \(e\in S\).
+\begin{itemize}
+  \item If \(e\) is a left zero, then \(e e = e\).
+  \item If \(e\) is a right zero, then \(e e = e\).
+\end{itemize}
+\uses{def:zeros}
+\end{lemma}
+\begin{proof}
+For a left zero, apply the defining property to \(s:=e\) to get \(e e = e\).
+For a right zero, apply the defining property to \(s:=e\) to get \(e e = e\).
+\end{proof}
+
+\begin{lemma}[Uniqueness of zero (at most one zero element)]
+\label{lem:zero-unique}
+A semigroup has at most one zero element.
+\uses{def:zero}
+\end{lemma}
+\begin{proof}
+Suppose \(e,e'\in S\) are both zeros. Then \(e = e e'\) since \(e'\) is a right zero, and \(e e' = e'\) since \(e\) is a left zero. Hence \(e = e'\).
+\end{proof}
+
+\begin{definition}[Null semigroup]
+\label{def:null-semigroup}
+A semigroup \(S\) is \emph{null} if it has a zero element \(0_S\) and for all \(x,y\in S\) one has \(x y = 0_S\).
+\uses{def:zero}
+\end{definition}
+
+\section{Cancellativity}
+
+Throughout, let \(S\) be a semigroup with associative multiplication.
+
+\begin{definition}[Right/left/two-sided cancellative element]
+\label{def:cancellative-element}
+Let \(s\in S\).
+\begin{itemize}
+  \item \(s\) is \emph{right cancellative} if for all \(x,y\in S\), \(x s = y s \implies x = y\).
+  \item \(s\) is \emph{left cancellative} if for all \(x,y\in S\), \(s x = s y \implies x = y\).
+  \item \(s\) is \emph{cancellative} (two-sided) if it is both left and right cancellative.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Right/left/two-sided cancellative semigroup]
+\label{def:cancellative-semigroup}
+A semigroup \(S\) is
+\begin{itemize}
+  \item \emph{right cancellative} if every \(s\in S\) is right cancellative,
+  \item \emph{left cancellative} if every \(s\in S\) is left cancellative,
+  \item \emph{cancellative} (two-sided) if every \(s\in S\) is cancellative.
+\end{itemize}
+\uses{def:cancellative-element}
+\end{definition}
+
+\section{Inverses}
+
+\noindent\textbf{Terminology note.}
+The term “inverse” has two distinct usages. In group theory (and, more generally, in monoids), an inverse is defined using a distinguished identity element \(1\). This notion does not make sense in a bare semigroup that lacks a specified unit. Semigroup theory also uses a different, intrinsic notion of inverse that does not require a unit and is formulated purely in terms of the multiplication.
+
+These notions behave differently:
+\begin{itemize}
+  \item In an \emph{infinite} monoid, an element may have several right group inverses and several left group inverses.
+  \item In a \emph{finite} monoid, each element has \emph{at most one} right group inverse and \emph{at most one} left group inverse; if both exist, they coincide (hence give a two-sided group inverse).
+  \item In a semigroup (finite or infinite), an element may have several semigroup inverses, or none at all.
+\end{itemize}
+
+\begin{definition}[Semigroup inverse]
+\label{def:semigroup-inverse}
+Let \(S\) be a semigroup and \(x\in S\). An element \(x'\in S\) is a \emph{semigroup inverse} of \(x\) if
+\[
+x x' x = x \quad\text{and}\quad x' x x' = x'.
+\]
+\end{definition}
+
+\begin{definition}[Group inverse (monoid setting)]
+\label{def:group-inverse}
+Let \(M\) be a monoid with identity \(1\) and let \(x\in M\).
+\begin{itemize}
+  \item A \emph{right group inverse} of \(x\) is an element \(x'\in M\) with \(x x' = 1\).
+  \item A \emph{left group inverse} of \(x\) is an element \(x'\in M\) with \(x' x = 1\).
+  \item A \emph{group inverse} of \(x\) is an element \(x'\in M\) that is both a right and a left group inverse, i.e.\ \(x x' = x' x = 1\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Group inverse \(\Rightarrow\) semigroup inverse]
+\label{lem:group-inverse-implies-semigroup-inverse}
+Let \(M\) be a monoid and \(x,x'\in M\). If \(x'\) is a group inverse of \(x\) (so \(x x' = x' x = 1\)), then \(x'\) is a semigroup inverse of \(x\) in the underlying semigroup:
+\[
+x x' x = x \quad\text{and}\quad x' x x' = x'.
+\]
+\uses{def:group-inverse,def:semigroup-inverse}
+\end{lemma}
+\begin{proof}
+Compute \(x x' x = (x x') x = 1\cdot x = x\) and \(x' x x' = x' (x x') = x' \cdot 1 = x'\), using associativity and the unit laws.
+\end{proof}
+
+% --- NEW CHAPTER ---
+
+\chapter {Ordered Semigroups and Monoids}
+
+TODO: Def entry: Ordered Semigroup is a structure consisting of a semigroup together with a partial order that is compatable 
+with the semigroup operation. Add a line of latex showing the implication of mul compatability.
+In the same entry, define an ordered Monoid and ordered group analagously
+
+% --- NEW CHAPTER ---
+
+\chapter {Morphisms}
+
+TODO: Def entry - Semigroup morphism.
+
+ semigroup morphism is a map ϕ from a
+semigroup S to a semigroup T such that, for every s1, s2 ∈ S, 
+ϕ(s1s2) = ϕ(s1)ϕ(s2).
+
+TODO: Def entry - Monoid Morphism
+a monoid morphism is a map ϕ from a monoid S to a monoid T
+satisfying (1) and
+(2) ϕ(1) = 1
+
+TODO: Def entry - Ordered Monoid Morphism
+A morphism of ordered monoids is a map ϕ from an ordered monoid (S, 6) to
+a monoid (T, 6) satisfying (1), (2) and, for every s1, s2 ∈ S such that s1 6 s2,
+(3) ϕ(s1) 6 ϕ(s2).
+Dependencies: Def of ordered monoid
+
+TODO: Def entry - Group Morphism - Formally, a group morphism between two groups G and G′ is a monoid morphism
+ϕ satisfying, for every s ∈ G, ϕ(s−1) = ϕ(s)−1. In fact, this condition can be
+relaxed. 
+
+TODO: Lemma entry 
+Let G and G′ be groups. Then any semigroup morphism
+from G to G′ is a group morphism.
+
+Proof. Let ϕ : G → G′ be a semigroup morphism. Then by (1), ϕ(1) = ϕ(1)ϕ(1)
+and thus ϕ(1) = 1 since 1 is the unique idempotent of G′. Thus ϕ is a monoid
+morphism. Furthermore, ϕ(s−1)ϕ(s) = ϕ(s−1s) = ϕ(1) = 1 and similarly
+ϕ(s)ϕ(s−1) = ϕ(ss−1) = ϕ(1) = 1.
+Dependencies: Def of semigroup morphism, def of group morphism
+
+TODO: Def entry - isomorphism
+ A Semigroup morphism ϕ : S → T is an isomorphism if there exists a morphism ψ :
+T → S such that ϕ ◦ ψ = IdT and ψ ◦ ϕ = IdS .
+Note that this also holds for group morphisms and monoid morphisms, but not for ordered monoids
+Dependencies: Defs of morphisms
+
+TODO: Lemma entry - A Morphism is an isomorphism if and only if it is bijective.
+Proof. If ϕ : S → T an isomorphism, then ϕ is bijective since there exists a
+morphism ψ : T → S such that ϕ ◦ ψ = IdT and ψ ◦ ϕ = IdS .
+Suppose now that ϕ : S → T is a bijective morphism. Then ϕ−1 is a
+morphism from T to S, since, for each x, y ∈ T ,
+ϕ(ϕ−1(x)ϕ−1(y)) = ϕ(ϕ−1(x))ϕ(ϕ−1(y)) = xy
+Thus ϕ is an isomorphism.
+Note that this does not hold for morphisms of ordered monoids. 
+ In partic-
+ular, if (M, 6) is an ordered monoid, the identity induces a bijective morphism
+from (M, =) onto (M, 6) which is not in general an isomorphism
+Dependencies: Defs of isomorphism
+
+TODO: Def entry - Ordered monoid isomorphism
+a morphism of ordered monoids ϕ : M → N is an isomorphism if and only if ϕ is
+a bijective monoid morphism and, for every x, y ∈ M , x 6 y is equivalent with
+ϕ(x) 6 ϕ(y).
+Add Proof
+Dependencies: Def of ordered monoid morphism 
+
+\chapter {Algebraic Structures}
+
+\section {Substructures}
+
+TODO: Def entry - Subsemigroup 
+
+A subsemigroup of a semigroup S is a subset T of S such that s1 ∈ T and s2 ∈ T
+imply s1s2 ∈ T .
+
+TODO: Def entry - SubMonoid of Monoid
+
+A submonoid of a monoid is a subsemigroup containing the
+identity
+
+TODO: Def entry - Subgroup of Group
+
+ A subgroup of a group is a submonoid containing the inverse of each
+of its elements.
+
+TODO: Def entry - SubMonoid of a Semigroup
+
+A submonoid of a semigroup is a subsemigroup containing
+
+A submonoid M of a semigroup S is said to be a monoid in S if there is
+an idempotent e ∈ M such that M, under the operation of S, is a monoid with
+identity e.
+
+TODO: Def entry - Subgroup of Semigroup
+
+A subsemigroup G of a semigroup S is said to be a group in S if there is
+an idempotent e ∈ G such that G, under the operation of S, is a group with
+identity e.
+
+TODO: Lemma entry - 
+This can be summarised as follows: substructures are preserved
+by morphisms and by inverses of morphisms. A similar statement holds for
+monoid morphisms and for group morphisms.
+Let ϕ : S → T be a semigroup morphism. If S′ is a subsemi-
+group of S, then ϕ(S′) is a subsemigroup of T . If T ′ is a subsemigroup of T ,
+then ϕ−1(T ′) is a subsemigroup of S.
+Proof. Let t1, t2 ∈ ϕ(S′). Then t1 = ϕ(s1) and t2 = ϕ(s2) for some s1, s2 ∈ S′.
+Since S′ is a subsemigroup of S, s1s2 ∈ S′ and thus ϕ(s1s2) ∈ ϕ(S′). Now since
+ϕ is a morphism, ϕ(s1s2) = ϕ(s1)ϕ(s2) = t1t2. Thus t1t2 ∈ ϕ(S′) and ϕ(S′) is
+a subsemigroup of T .
+Let s1, s2 ∈ ϕ−1(T ′). Then ϕ(s1), ϕ(s2) ∈ T ′ and since T ′ is a subsemigroup
+of T , ϕ(s1)ϕ(s2) ∈ T ′. Since ϕ is a morphism, ϕ(s1)ϕ(s2) = ϕ(s1s2) and thus
+s1s2 ∈ ϕ−1(T ′). Therefore ϕ−1(T ′) is a subsemigroup of S.
+dependencies: Def of Morphisms, defs of substructures
+
+TODO : Lemma entry: 
+ A nonempty subsemigroup of a finite group is a subgroup.
+Proof. Let G be a finite group and let S be a nonempty subsemigroup of G.
+Let s ∈ S. By Proposition 3.12, s|G| = 1. Thus 1 ∈ S. Consider now the map
+ϕ : S → S defined by ϕ(x) = xs. It is injective, for G is right cancellative, and
+hence bijective by Proposition I.1.7. Consequently, there exists an element s′
+such that s′s = 1. Thus every element has a left inverse and by Proposition 1.4,
+S is a group.
+Add the dependencies to this entry for the defs of subsemigroup and subgroups of groups
+
+\section {Quotients and Divisions}
+
+TODO: Before first entry, explain that the last two lemmas
+prove that semigroup divison, when considered as a relation, forms 
+a partial order on finite semigroups, up to isomorphism.
+
+TODO : Def entry: Semigroup Quotient
+Let S and T be two semigroups. Then T is
+a quotient of S if there exists a surjective morphism from S onto T .
+Dependencie: Def of semigroup morphism
+
+TODO : Lemma entry: 
+ any ordered monoid (M, 6) is a quotient of the ordered monoid
+(M, =), since the identity on M is a morphism of ordered monoid from (M, =)
+onto (M, 6).
+Dependencie: Def of ordered monoid morphism
+
+TODO : def entry: Semigroup Divisor
+
+Finally, a semigroup T divides a semigroup S (notation T 4 S) if T is a
+quotient of a subsemigroup of S.
+Dependencie: Def of ordered quotient
+
+
+TODO : Lemma entry : 
+The division relation is transitive.
+roof. Suppose that S1 4 S2 4 S3. Then there exists a subsemigroup T1
+of S2, a subsemigroup T2 of S3 and surjective morphisms π1 : T1 → S1 and
+π2 : T2 → S2. Put T = π−1
+2 (T1). Then T is a subsemigroup of S3 and S1 is a
+quotient of T since π1(π2(T )) = π1(T1) = S1. Thus S1 divides S3.
+Add dempendencies for division relation and subsemigroup
+Dependencie: Def of Division
+
+TODO : Lemma entry :
+the division relation is reflexive. That is, 
+Two finite semigroups that divide each other are isomor-
+phic.
+Proof. We keep the notation of the proof of Proposition 3.9, with S3 = S1.
+Since T1 is a subsemigroup of S2 and T2 is a subsemigroup of S1, one has |T1| 6
+|S2| and |T2| 6 |S1|. Furthermore, since π1 and π2 are surjective, |S1| 6 |T1|
+and |S2| 6 |T2|. It follows that |S1| = |T1| = |S2| = |T2|, whence T1 = S2
+and T2 = S1. Furthermore, π1 and π2 are bijections and thus S1 and S2 are
+isomorphic.
+Dependencie: Def of Division
+
+\chapter {Products}
+
+TODO: Def entry: Semigroup Product
+Given a list of semigroups, the product is the semigroup defined on the 
+cartesian product of the sets, with the operation 
+(si)i∈I (s′
+i)i∈I = (sis′
+i)i∈I
+
+TODO : Lemma entry : The semigroup 1 is the identity for the product of semigroups [monoids,
+groups]
+TODO: Proof
+Dependencie: Def of Product
+
+TODO: Def - Product of ordered monoids
+the product ∏
+i∈I Mi is naturally
+equipped with the order
+(si)i∈I 6 (s′
+i)i∈I if and only if, for all i ∈ I, si 6 s′
+i.
+The resulting ordered monoid is the product of the ordered monoids (Mi)i∈I .
+
+TODO: Lemma entry : 
+product preserves
+substructures, quotients and division. We state it for semigroups, but it can be
+readily extended to monoids and to ordered semigroups or monoids
+
+Let (Si)i∈I and (Ti)i∈I be two families of semigroups such
+that, for each i ∈ I, Si is a subsemigroup [quotient, divisor ] of Ti. Then ∏
+i∈I Si
+is a subsemigroup of [quotient, divisor ] of ∏
+i∈I Ti.
+
+Dependencie: Def of Product, Def of Division
+
+\section {Ideals}
+
+TODO: Def entry: Ideal (left, right, and two-sided)
+Let S be a semigroup. A right ideal of S is a subset R of S such that RS ⊆ R.
+Thus R is a right ideal if, for each r ∈ R and s ∈ S, rs ∈ R. Symmetrically, a
+left ideal is a subset L of S such that SL ⊆ L. An ideal is a subset of S which
+is simultaneously a right and a left ideal.
+
+TODO: lemma: Semigroup ideal charactarization
+For semigroup S, a subset I of S is an ideal if and only if, for every s ∈ I and
+x, y ∈ S1, xsy ∈ I. Here, the use of S1 instead of S allows us to include the
+cases x = 1 and y = 1, which are necessary to recover the conditions SI ⊆ S
+and IS ⊆ I. Slight variations on the definition are therefore possible:
+(1) R is a right ideal if and only if RS1 ⊆ R or, equivalently, RS1 = R,
+(2) L is a left ideal if and only if S1L ⊆ L or, equivalently, S1L = L,
+(3) I is an ideal if and only if S1IS1 ⊆ I or, equivalently, S1IS1 = I.
+Dependencies : Def of ideal
+
+TODO: lemma: Monoid ideal charactarization
+For Monoid M a subset I of M is an ideal if and only if, for every m ∈ I and
+x, y ∈ M, xmy ∈ I. Note that, in the case of monoids, we do not need the with one construction.
+(1) R is a right ideal if and only if RM ⊆ R or, equivalently, RM = R,
+(2) L is a left ideal if and only if ML ⊆ L or, equivalently, ML = L,
+(3) I is an ideal if and only if MIM ⊆ I or, equivalently, MIM = I.
+Dependencies : Def of ideal
+
+TODO: Lemma
+Note that any intersection of ideals [right ideals, left ideals] of S is again an
+ideal [right ideal, left ideal].
+TODO: proof
+Dependencies : Def of ideal
+
+TODO: Def entry: Ideal Generated by a set
+Let R be a subset of a semigroup S. The ideal [right ideal, left ideal] gen-
+erated by R is the set S1RS1 [RS1, S1R]. It is the smallest ideal [right ideal,
+left ideal] containing R. 
+Dependencies : Def of ideal
+
+TODO: Def entry: Principal Ideals
+An ideal [right ideal, left ideal] is called principal if
+it is generated by a single element. 
+Dependencies: Def of Ideal generated by a set.
+
+TODO: lemma : Ideals are stable under surjective morphisms and inverses of morphisms. 
+Let ϕ : S → T be a semigroup morphism. If J is an ideal
+of T , then ϕ−1(J) is a ideal of S. Furthermore, if ϕ is surjective and I is an
+ideal of S, then ϕ(I) is an ideal of T . Similar results apply to right and left
+ideals.
+Proof. If J is an ideal of T , then
+S1ϕ−1(J)S1 ⊆ ϕ−1(T 1)ϕ−1(J)ϕ−1(T 1) ⊆ ϕ−1(T 1JT 1) ⊆ ϕ−1(J)
+Thus ϕ−1(J) is an ideal of S.
+Suppose that ϕ is surjective. If I is an ideal of S, then
+T 1ϕ(I)T 1 = ϕ(S1)ϕ(I)ϕ(S1) = ϕ(S1IS1) = ϕ(I)
+Thus ϕ(I) is an ideal of T .
+
+Dependencies: Def of Ideal, Def of morphism
+
+TODO: Def: Product of ideals : 
+Let, for 1 6 k 6 n, Ik be an ideal of a semigroup S. The set
+I1I2 · · · In = {s1s2 · · · sn | s1 ∈ I1, s2 ∈ I2, . . . , sn ∈ In}
+is the product of the ideals I1, . . . , In.
+Dependencies: Def of ideals
+
+TODO : Lemma : The product of the ideals I1, . . . , In is an ideal contained in
+their intersection.
+Proof. Since I1 and In are ideals, S1I1 = I1 and InS1 = In. Therefore
+S1(I1I2 · · · In)S1 = (S1I1)I2 · · · (InS1) = I1I2 · · · In
+and thus I1I2 · · · In is an ideal. Furthermore, for 1 6 k 6 n, I1I2 · · · In ⊆
+S1IkS1 = Ik. Thus I1I2 · · · In is contained in ⋂
+16k6n Ik.
+Dependencies: Def of product of ideals. 
+
+TODO: Def : Minimal Ideal
+A nonempty ideal I of a semigroup S is called minimal if, for every nonempty
+ideal J of S, J ⊆ I implies J = I.
+Dependencies: def of ideal
+
+TODO : Lemma :  semigroup has at most one minimal ideal.
+Proof. Let I1 and I2 be two minimal ideals of a semigroup S. Then by(link earlier lemma), I1I2 is a nonempty ideal of S contained in I1 ∩ I2. Now since I1 and
+I2 are minimal ideals, I1I2 = I1 = I2
+Dependencies: Def of minimal ideas, Lemma product of ideals in contained in intersection
+
+TODO: Lemma : Any finite semigroup has a minimal ideal.
+TODO: Proof
+Dependencies: def of minimal ideal
+
+ToDO: lemma: every semigroup with a zero has a minimal ideal, namely the set containing only the zero.
+TODO: Proof
+Dependencies: def of minimal ideal, def of zero
+
+TODO: Def: 0-minimal ideal
+. A
+nonempty ideal I 6 = 0 such that, for every nonempty ideal J of S, J ⊆ I implies
+J = 0 or J = I is called a 0-minimal ideal. It should be noted that a semigroup
+may have several 0-minimal ideals.
+Dependencies: def of ideal, def of zero
+
+\section {Simple and 0-Ssimple semigroups}
+
+TODO: Def entry: Simple Semigroup
+A semigroup S is called simple if its only ideals are ∅ and S.
+right and left simple are defined analogously
+Dependencies: Def of ideal
+
+TODO: Def entry: 0-Simple Semigroup
+ 0-simple if it has a zero, denoted by 0, if S2 6 = {0} and if ∅, 0 and S are its only
+ideals. The notions of right 0-simple, and left 0-simple
+semigroups are defined analogously.
+Dependencies: Def of ideal, def of zero
+
+TODO : Lemma : et S be a 0-simple semigroup. Then S2 = S.
+Proof. Since S2 is a nonempty, nonzero ideal, one has S2 = S.
+DEPendencies: def of 0-simple semigroup
+
+TODO: Lemma: 
+(1) A semigroup S is simple if and only if SsS = S for every s ∈ S.
+(2) A semigroup S is 0-simple if and only if S 6 = ∅ and SsS = S for every
+s ∈ S − 0.
+Proof. We shall prove only (2), but the proof of (1) is similar.
+Let S be a 0-simple semigroup. Then S2 = S by Lemma 3.18 and hence
+S3 = S.
+Let I be set of the elements s of S such that SsS = 0. This set is an ideal of
+S containing 0, but not equal to S since ⋃
+s∈S SsS = S3 = S. Therefore I = 0.
+In particular, if s 6 = 0, then SsS 6 = 0, and since SsS is an ideal of S, it follows
+that SsS = S.
+Conversely, if S 6 = ∅ and SsS = S for every s ∈ S −0, we have S = SsS ⊆ S2
+and therefore S2 6 = 0. Moreover, if J is a nonzero ideal of S, it contains an
+element s 6 = 0. We then have S = SsS ⊆ SJS = J, whence S = J. Therefore
+S is 0-simple.
+DEPendencies: def of 0-simple semigroup, def of Simple semigroup
+
+\section {Semigroup Congruences}
+
+TODO: Def entry: Semigroup Congruence
+A semigroup congruence is a stable equivalence relation. Thus an equivalence
+relation ∼ on a semigroup S is a congruence if, for each s, t ∈ S and u, v ∈ S1,
+we have
+s ∼ t implies usv ∼ utv.
+
+TODO: Lemma : The set S/∼ of equivalence classes of the elements of S is naturally equipped
+with the structure of a semigroup, and the function which maps every element
+onto its equivalence class is a semigroup morphism from S onto S/∼
+Dependences: Def of congruence, def of quotient
+
+There are four particular cases of congruences extensivly used, Rees congruence, Syntactic congruence, Congruence 
+generated by a relation, and Nuclear Congruence
+
+TODO: Def : Rees Congruence
+et I be an ideal of a semigroup S and let ≡I be the equivalence relation
+identifying all the elements of I and separating the other elements. Formally,
+s ≡I t if and only if s = t or s, t ∈ I. Then ≡I is a congruence called the
+Rees congruence of I. The quotient of S by ≡I is usually denoted by S/I. The
+support of this semigroup is the set (S − I) ∪ 0 and the multiplication (here
+denoted by ∗) is defined by
+s ∗ t =
+{
+st if s, t, st ∈ S − I
+0 otherwise.
+Dependences: Def of congruence, def of quotient, def of ideal
+
+TODO: Def: Syntactic congruence
+Let P be a subset of a semigroup S. The syntactic congruence of P is the
+congruence ∼P over S defined by s ∼P t if and only if, for every x, y ∈ S1,
+xsy ∈ P ⇐⇒ xty ∈ P
+The quotient semigroup S/∼P is called the syntactic semigroup of P in S. The
+syntactic semigroup is particularly important in the theory of formal languages.
+Dependences: Def of congruence, def of quotient
+
+TODO: Def: Congruence generated by a relation
+Let R be a relation on S, that is, a subset of S × S. The set of all congruences
+containing R is nonempty since it contains the universal relation on S. Fur-
+thermore, it is closed under intersection. It follows that the intersection of all
+congruences containing R is a congruence, called the congruence generated by
+R. 
+Dependences: Def of congruence
+
+TODO: Lemma: he congruence generated by a symmetric relation R on a
+semigroup S is the reflexive-transitive closure of the relation
+{(xry, xsy) | (r, s) ∈ R and x, y ∈ S1}
+Proof. If a congruence contains R, it certainly contains the relation
+¯R = {(xry, xsy) | (r, s) ∈ R and x, y ∈ S1}
+and hence its reflexive-transitive closure ¯R∗. Therefore, it suffices to show that
+¯R∗ is a congruence. Let (u, v) ∈ ¯R∗. By definition, there exists a finite sequence
+u = u0, u1, . . . , un = v such that
+(u0, u1) ∈ ¯R, (u1, u2) ∈ ¯R, · · · , (un−1, un) ∈ ¯R
+Therefore, one has, for some xi, yi, ri, si ∈ S such that (ri, si) ∈ R,
+(u0, u1) = (x0r0y0, x0s0y0), (u1, u2) = (x1r1y1, x1s1y1), · · · ,
+(un−1, un) = (xn−1rn−1yn−1, xn−1sn−1yn−1)
+Let now x, y ∈ S1. Then the relations
+(xuiy, xui+1y) = (xxiriyiy, xxisiyiy) ∈ ¯R (0 6 i 6 n − 1)
+show that (xuy, xvy) ∈ ¯R∗. Thus ¯R∗ is a congruence.
+Dependencies: Def of congruence generated by a relation
+
+TODO: Def: Nuclear Congruence
+Nuclear congruence
+For each semigroup morphism ϕ : S → T , the equivalence ∼ϕ defined on S by
+x ∼ϕ y if and only if ϕ(x) = ϕ(y)
+is a congruence. This congruence is called the nuclear congruence of ϕ,
+DEPENCENCIES: def of morphism, Def of congruence
+
+TODO: Lemma : (First isomorphism theorem). Let ϕ : S → T be a morphism
+of semigroups and let π : S → S/∼ϕ be the quotient morphism. Then there exists
+a unique semigroup morphism ˜ϕ : S/∼ϕ → T such that ϕ = ˜ϕ ◦ π. Moreover,
+˜ϕ is an isomorphism from S/∼ϕ onto ϕ(S).
+26 CHAPTER II. SEMIGROUPS AND BEYOND
+Proof. The situation is summed up in the following diagram:
+S/∼ϕ T
+S
+π
+˜ϕ
+ϕ
+Uniqueness is clear: if s is the ∼ϕ-class of some element x, then necessarily
+˜ϕ(s) = ϕ(x) (3.1)
+Furthermore, if x and y are arbitrary elements of s, then ϕ(x) = ϕ(y). Therefore,
+there is a well-defined function ˜ϕ defined by the Formula. Moreover, if π(x1) =
+s1 and π(x2) = s2, then π(x1x2) = s1s2, whence
+˜ϕ(s1) ˜ϕ(s2) = ϕ(x1)ϕ(x2) = ϕ(x1x2) = ˜ϕ(s1s2)
+Therefore ˜ϕ is a morphism. We claim that ˜ϕ is injective. Indeed, suppose that
+˜ϕ(s1) = ˜ϕ(s2), and let x1 ∈ π−1(s1) and x2 ∈ π−1(s2). Then ϕ(x1) = ϕ(x2)
+and thus x1 ∼ϕ x2. It follows that π(x1) = π(x2), that is, s1 = s2. Thus ˜ϕ
+induces an isomorphism from S/∼ϕ onto ϕ(S)
+Dependencies: Def of nuclear congruence, def of quotient, def of isomorphism
+
+When two congruences are comparable, the quotient structures associated
+with them can also be compared
+
+TODO: Theorem : (Second isomorphism theorem). Let ∼1 and ∼2 be two con-
+gruences on a semigroup S and π1 [π2] the canonical morphism from S onto
+S/∼1 [S/∼2]. If ∼2 is coarser than ∼1, there exists a unique surjective mor-
+phism π : S/∼1 → S/∼2 such that π ◦ π1 = π2.
+Proof. Since π ◦ π1 = π2, Corollary I.1.13 shows that π is necessarily equal to
+the relation π2 ◦ π−1
+1 . Furthermore, Proposition I.1.15 shows that this relation
+is actually a function.
+Since π1 and π2 are morphisms,
+π(π1(s)π1(t)) = π(π1(st)) = π2(st) = π2(s)π2(t) = π(π1(s))π(π1(t))
+and thus π is a morphism.
+Dependencies: Def of congruence, def of quotient
+
+TODO: Lemma
+Let S be a semigroup, (∼i)i∈I be a family of congruences
+on S and ∼ be the intersection of these congruences. Then the semigroup S/∼
+is isomorphic to a subsemigroup of the product ∏
+i∈I S/∼i.
+Proof. Denote by πi : S → S/∼i the projections and by π : S → ∏
+i∈I S/∼i the
+morphism defined by π(s) = (πi(s))i∈I for every s ∈ S. The nuclear congruence
+of π is equal to ∼, and thus, by Proposition 3.21, S/∼ is isomorphic to π(S)
+Dependencies: Def of congruence, def of quotient, doef of isomorphism, def of subsemigroup, def of semigroup product. 
+
+TODO: lemma
+Let S be a semigroup with zero having (at least) two distinct
+0-minimal ideals I1 and I2. Then S is isomorphic to a subsemigroup of S/I1 ×
+S/I2.
+4. TRANSFORMATION SEMIGROUPS 27
+Proof. Under these assumptions, the intersection of I1 and I2 is 0 and thus the
+intersection of the Rees congruences ≡I1 and ≡I2 is the identity. It remains to
+apply the previous lemma.
+Dependencies: Previous lemma, 0-minimal ideals
+
+tODO: DEF:Let (M, 6) be an ordered monoid. A congruence of ordered semigroups
+on M is a stable preorder coarser than 6. If  is a congruence of ordered
+monoids, the equivalence ∼ associated with  is a semigroup congruence and
+the preorder  induces a stable order relation on the quotient monoid S/∼, that
+will also be denoted by 6. Finally, the function which maps each element onto
+its equivalence class is a morphism of ordered monoids from M onto (M/∼, 6).
+Dependencies: Def of ordered monoid, def of congruence, def of quotient
