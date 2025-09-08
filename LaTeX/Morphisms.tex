@@ -1,0 +1,77 @@
+
+\begin{definition}[Semigroup morphism]
+\label{def:semigroup-morphism}
+Let \(S,T\) be semigroups. A \emph{semigroup morphism} (homomorphism) is a map \(\varphi:S\to T\) such that
+\[
+\forall s_1,s_2\in S,\qquad \varphi(s_1 s_2)=\varphi(s_1)\,\varphi(s_2).
+\]
+\end{definition}
+
+\begin{definition}[Monoid morphism]
+\label{def:monoid-morphism}
+Let \(M,N\) be monoids with identities \(1_M,1_N\). A \emph{monoid morphism} is a semigroup morphism \(\varphi:M\to N\) that also preserves the unit:
+\[
+\varphi(1_M)=1_N.
+\]
+\uses{def:semigroup-morphism}
+\end{definition}
+
+\begin{definition}[Morphism of ordered monoids]
+\label{def:ordered-monoid-morphism}
+Let \((M,\le_M)\) and \((N,\le_N)\) be ordered monoids. A \emph{morphism of ordered monoids} is a monoid morphism \(\varphi:M\to N\) that is order-preserving:
+\[
+x\le_M y \;\Longrightarrow\; \varphi(x)\le_N \varphi(y)\quad\text{for all }x,y\in M.
+\]
+\uses{def:monoid-morphism,def:ordered-structures}
+\end{definition}
+
+\begin{definition}[Group morphism]
+\label{def:group-morphism}
+Let \(G,H\) be groups. A \emph{group morphism} is a monoid morphism \(\varphi:G\to H\). Equivalently, \(\varphi\) is a semigroup morphism satisfying
+\[
+\varphi(1_G)=1_H\quad\text{and}\quad \forall g\in G,\;\; \varphi(g^{-1})=\varphi(g)^{-1}.
+\]
+\uses{def:monoid-morphism,def:semigroup-morphism}
+\end{definition}
+
+\begin{lemma}[Semigroup morphisms between groups are group morphisms]
+\label{lem:sgp-mor-between-groups-are-group-mor}
+Let \(G,H\) be groups. Any semigroup morphism \(\varphi:G\to H\) is a group morphism.
+\uses{def:semigroup-morphism,def:group-morphism}
+\end{lemma}
+\begin{proof}
+First, \(\varphi(1_G)=\varphi(1_G\cdot 1_G)=\varphi(1_G)\varphi(1_G)\), so \(\varphi(1_G)\) is idempotent in \(H\), hence \(\varphi(1_G)=1_H\) since \(1_H\) is the unique idempotent in a group. Next, for \(g\in G\),
+\[
+\varphi(g^{-1})\varphi(g)=\varphi(g^{-1}g)=\varphi(1_G)=1_H,\qquad
+\varphi(g)\varphi(g^{-1})=\varphi(gg^{-1})=\varphi(1_G)=1_H,
+\]
+so \(\varphi(g^{-1})=\varphi(g)^{-1}\).
+\end{proof}
+
+\begin{definition}[Isomorphism]
+\label{def:isomorphism}
+A semigroup (resp.\ monoid, group) morphism \(\varphi:S\to T\) is an \emph{isomorphism} if there exists a morphism \(\psi:T\to S\) with \(\varphi\circ \psi=\mathrm{id}_T\) and \(\psi\circ \varphi=\mathrm{id}_S\).
+\uses{def:semigroup-morphism,def:monoid-morphism,def:group-morphism}
+\end{definition}
+
+\begin{lemma}[Isomorphism \(\Leftrightarrow\) bijective morphism]
+\label{lem:iso-iff-bijective}
+A semigroup/monoid/group morphism is an isomorphism if and only if it is bijective.
+\uses{def:isomorphism}
+\end{lemma}
+\begin{proof}
+If \(\varphi\) has a two-sided inverse \(\psi\), then \(\varphi\) is bijective. Conversely, if \(\varphi\) is bijective, its set-theoretic inverse \(\varphi^{-1}\) satisfies \(\varphi(\varphi^{-1}(x)\varphi^{-1}(y))=\varphi(\varphi^{-1}(x))\varphi(\varphi^{-1}(y))=xy\); applying \(\varphi^{-1}\) shows \(\varphi^{-1}\) is a morphism, hence \(\varphi\) is an isomorphism.
+\end{proof}
+
+\begin{definition}[Isomorphism of ordered monoids]
+\label{def:ordered-monoid-isomorphism}
+A morphism of ordered monoids \(\varphi:(M,\le_M)\to (N,\le_N)\) is an \emph{isomorphism of ordered monoids} if it is bijective as a function and reflects the order:
+\[
+\forall x,y\in M,\qquad x\le_M y \;\Longleftrightarrow\; \varphi(x)\le_N \varphi(y).
+\]
+Equivalently, \(\varphi\) is a bijective monoid morphism whose inverse is order-preserving.
+\uses{def:ordered-monoid-morphism}
+\end{definition}
+
+\noindent\textbf{Remark.}
+Unlike the unordered case, a bijective morphism of ordered monoids need not be an isomorphism of ordered monoids unless it also reflects the order.

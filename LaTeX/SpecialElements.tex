@@ -1,0 +1,166 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Local identities in semigroups}
+
+Throughout, let \(S\) be a semigroup with associative multiplication, written multiplicatively.
+
+\begin{definition}[Left/right/two-sided identities]
+\label{def:identities}
+\lean{IsLeftIdentity, IsRightIdentity, IsLeftIdentity}
+\leanok
+Let \(e\in S\).
+\begin{itemize}
+  \item \(e\) is a \emph{left identity} if for all \(s\in S\), \(e s = s\).
+  \item \(e\) is a \emph{right identity} if for all \(s\in S\), \(s e = s\).
+  \item \(e\) is an \emph{identity} (two-sided) if it is both a left and a right identity; equivalently, for all \(s\in S\), \(e s = s = s e\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Idempotence of one-sided identities]
+\label{lem:identity-idempotent}
+Let \(e\in S\).
+\begin{itemize}
+  \item If \(e\) is a left identity, then \(e e = e\).
+  \item If \(e\) is a right identity, then \(e e = e\).
+\end{itemize}
+\uses{def:identities}
+\end{lemma}
+\begin{proof}
+For a left identity, apply the defining property to \(s:=e\) to get \(e e = e\).
+For a right identity, apply the defining property to \(s:=e\) to get \(e e = e\).
+\end{proof}
+
+\begin{lemma}[Simplification lemma]
+\label{lem:simplification}
+Let \(s\in S\) and let \(e,f\in S\) be idempotents. If \(s = e s f\), then \(e s = s = s f\).
+\end{lemma}
+\begin{proof}
+Assume \(s = e s f\). Then
+\[
+e s \;=\; e(e s f) \;=\; (e e) s f \;=\; e s f \;=\; s,
+\]
+using associativity and \(e^2 = e\). Similarly,
+\[
+s f \;=\; (e s f) f \;=\; e s (f f) \;=\; e s f \;=\; s,
+\]
+using associativity and \(f^2 = f\).
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Zero elements and null semigroups}
+
+Throughout, let \(S\) be a semigroup with associative multiplication, written multiplicatively.
+
+\begin{definition}[Left/right/two-sided zeros]
+\label{def:zeros}
+Let \(e\in S\).
+\begin{itemize}
+  \item \(e\) is a \emph{left zero} if for all \(s\in S\), \(e s = e\).
+  \item \(e\) is a \emph{right zero} if for all \(s\in S\), \(s e = e\).
+  \item \(e\) is a \emph{zero} (two-sided) if it is both a left and a right zero; equivalently, for all \(s\in S\), \(e s = e = s e\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Idempotence of one-sided zeros]
+\label{lem:zero-idempotent}
+Let \(e\in S\).
+\begin{itemize}
+  \item If \(e\) is a left zero, then \(e e = e\).
+  \item If \(e\) is a right zero, then \(e e = e\).
+\end{itemize}
+\uses{def:zeros}
+\end{lemma}
+\begin{proof}
+For a left zero, apply the defining property to \(s:=e\) to get \(e e = e\).
+For a right zero, apply the defining property to \(s:=e\) to get \(e e = e\).
+\end{proof}
+
+\begin{lemma}[Uniqueness of zero (at most one zero element)]
+\label{lem:zero-unique}
+A semigroup has at most one zero element.
+\uses{def:zeros}
+\end{lemma}
+\begin{proof}
+Suppose \(e,e'\in S\) are both zeros. Then \(e = e e'\) since \(e'\) is a right zero, and \(e e' = e'\) since \(e\) is a left zero. Hence \(e = e'\).
+\end{proof}
+
+\begin{definition}[Null semigroup]
+\label{def:null-semigroup}
+A semigroup \(S\) is \emph{null} if it has a zero element \(0_S\) and for all \(x,y\in S\) one has \(x y = 0_S\).
+\uses{def:zeros}
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Cancellativity}
+
+Throughout, let \(S\) be a semigroup with associative multiplication.
+
+\begin{definition}[Right/left/two-sided cancellative element]
+\label{def:cancellative-element}
+\lean{IsLeftRegular, IsLeftRegular, IsRegular}
+\leanok
+Let \(s\in S\).
+\begin{itemize}
+  \item \(s\) is \emph{right cancellative} if for all \(x,y\in S\), \(x s = y s \implies x = y\).
+  \item \(s\) is \emph{left cancellative} if for all \(x,y\in S\), \(s x = s y \implies x = y\).
+  \item \(s\) is \emph{cancellative} (two-sided) if it is both left and right cancellative.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Right/left/two-sided cancellative semigroup]
+\label{def:cancellative-semigroup}
+A semigroup \(S\) is
+\begin{itemize}
+  \item \emph{right cancellative} if every \(s\in S\) is right cancellative,
+  \item \emph{left cancellative} if every \(s\in S\) is left cancellative,
+  \item \emph{cancellative} (two-sided) if every \(s\in S\) is cancellative.
+\end{itemize}
+\uses{def:cancellative-element}
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Inverses}
+
+\noindent\textbf{Terminology note.}
+The term “inverse” has two distinct usages. In group theory (and, more generally, in monoids), an inverse is defined using a distinguished identity element \(1\). This notion does not make sense in a bare semigroup that lacks a specified unit. Semigroup theory also uses a different, intrinsic notion of inverse that does not require a unit and is formulated purely in terms of the multiplication.
+
+These notions behave differently:
+\begin{itemize}
+  \item In an \emph{infinite} monoid, an element may have several right group inverses and several left group inverses.
+  \item In a \emph{finite} monoid, each element has \emph{at most one} right group inverse and \emph{at most one} left group inverse; if both exist, they coincide (hence give a two-sided group inverse).
+  \item In a semigroup (finite or infinite), an element may have several semigroup inverses, or none at all.
+\end{itemize}
+
+\begin{definition}[Semigroup inverse]
+\label{def:semigroup-inverse}
+Let \(S\) be a semigroup and \(x\in S\). An element \(x'\in S\) is a \emph{semigroup inverse} of \(x\) if
+\[
+x x' x = x \quad\text{and}\quad x' x x' = x'.
+\]
+\end{definition}
+
+\begin{definition}[Group inverse (monoid setting)]
+\label{def:group-inverse}
+Let \(M\) be a monoid with identity \(1\) and let \(x\in M\).
+\begin{itemize}
+  \item A \emph{right group inverse} of \(x\) is an element \(x'\in M\) with \(x x' = 1\).
+  \item A \emph{left group inverse} of \(x\) is an element \(x'\in M\) with \(x' x = 1\).
+  \item A \emph{group inverse} of \(x\) is an element \(x'\in M\) that is both a right and a left group inverse, i.e.\ \(x x' = x' x = 1\).
+\end{itemize}
+\end{definition}
+
+\begin{lemma}[Group inverse \(\Rightarrow\) semigroup inverse]
+\label{lem:group-inverse-implies-semigroup-inverse}
+Let \(M\) be a monoid and \(x,x'\in M\). If \(x'\) is a group inverse of \(x\) (so \(x x' = x' x = 1\)), then \(x'\) is a semigroup inverse of \(x\) in the underlying semigroup:
+\[
+x x' x = x \quad\text{and}\quad x' x x' = x'.
+\]
+\uses{def:group-inverse,def:semigroup-inverse}
+\end{lemma}
+\begin{proof}
+Compute \(x x' x = (x x') x = 1\cdot x = x\) and \(x' x x' = x' (x x') = x' \cdot 1 = x'\), using associativity and the unit laws.
+\end{proof}

@@ -1,0 +1,17 @@
+
+\begin{definition}[Ordered semigroup/monoid/group]
+\label{def:ordered-structures}
+\leavevmode
+\begin{itemize}
+  \item An \emph{ordered semigroup} is a pair \((S,\le)\) where \(S\) is a semigroup and \(\le\) is a partial order on \(S\) such that multiplication is monotone in both arguments:
+  \[
+    \forall a,b,x,y\in S,\quad x\le y \;\Longrightarrow\; a x b \le a y b.
+  \]
+  Equivalently, for all \(a,b\in S\), the maps \(x\mapsto a x\) and \(x\mapsto x b\) are order-preserving.
+  \item An \emph{ordered monoid} is an ordered semigroup \((M,\le)\) whose underlying semigroup is a monoid \((M,1)\). We require the same compatibility condition as above (which automatically implies \(1\) is \(\le\)-minimal among right/left translates of any element).
+  \item An \emph{ordered group} is an ordered monoid whose underlying monoid is a group \((G,1,(\cdot)^{-1})\) and such that the order is bi-invariant in the sense above (equivalently, both left and right multiplication are order embeddings).
+\end{itemize}
+\end{definition}
+
+\noindent\textbf{Remark.}
+Monotonicity in both coordinates implies: if \(x\le y\) then \(a x \le a y\) and \(x b \le y b\) for all \(a,b\). Conversely, these two conditions together imply \(a x b \le a y b\) by associativity.
