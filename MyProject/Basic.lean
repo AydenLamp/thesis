@@ -176,6 +176,7 @@ When you extend this structure, make sure to extend MonoidHomClass
 
 /- Def: Monoid Morphism-/
 #check MonoidHom --note, this is also used for groups
+
 #check MonoidHomClass
 #check MonoidHomClass.toMonoidHom
 #check MonoidHomClass.toMulHomClass
@@ -188,3 +189,66 @@ When you extend this structure, make sure to extend MonoidHomClass
 #check ZeroHom
 #check ZeroHomClass
 #check map_zero
+
+/-!
+# Transition Monoids of DFA
+-/
+
+instance transformationMonoid (σ : Type*) : Monoid (σ → σ) where
+  mul := Function.comp
+  mul_assoc := by intros; rfl
+  one := id
+  one_mul := by intros; rfl
+  mul_one := by intros; rfl
+
+namespace transformationMonoid
+
+@[simp] lemma one_id {σ : Type*} : (1 : σ → σ) = id := by rfl
+
+@[simp] lemma mul_def {σ : Type*} (f g : σ → σ) : f * g = f ∘ g  := by rfl
+
+variable {α σ : Type*}
+
+end transformationMonoid
+
+@[simp] lemma one_empty {α : Type*} : (1 : FreeMonoid α) = [] := by rfl
+
+lemma mul_def {α : Type*} (a b : FreeMonoid α) : a * b = a.toList ++ b.toList := by rfl
+
+variable {α σ : Type*}
+
+#check FreeMonoid.lift
+
+def DFA.transitionMonoidHom (M : DFA α σ) : FreeMonoid α →* (σ → σ) :=
+  FreeMonoid.lift (fun (a : α) (s : σ) ↦ M.step s a)
+
+#check MulHom.isClosed_range_coe
+
+def MulHom.range {M N : Type*} [Monoid M] [Monoid N] (f : M →* N) := { n // ∃ m : M, f m = n }
+
+def DFA.transitionMonoid (M : DFA α σ) : Monoid (MulHom.range (M.transitionMonoidHom)) where
+  mul := by
+    simp_all [MulHom.range, transitionMonoidHom, ]
+    intros f g
+    rcases f with ⟨f, hf⟩
+    rcases g with ⟨g, hg⟩
+    use f ∘ g
+    rcases hf with ⟨a, ha⟩
+    rcases hg with ⟨b, hb⟩
+    use a * b
+    simp_all only [map_mul, transformationMonoid.mul_def]
+  mul_assoc := by
+    simp_all [MulHom.range, transitionMonoidHom]
+    intros f a hfa g b hgb h c hc
+    rfl
+  one := ⟨id, by use 1; rfl⟩
+  one_mul f := rfl
+  mul_one f := rfl
+
+def Language.toSyntacticMonoid (L : Language α) : Monoid (MulHom.range (L.toDFA.transitionMonoidHom)) := by
+  apply DFA.transitionMonoid
+
+/-TODO: Definition of MINIMAL Dfa accepting a language
+- Prove that `L.toDFA` is minimal
+- Provide def of syntactic monoid from quotient congruence, and prove equivalence with above def
+-/

@@ -19,6 +19,8 @@ Let \(e\in S\).
 
 \begin{lemma}[Idempotence of one-sided identities]
 \label{lem:identity-idempotent}
+\lean{idempotent_left_identity, idempotent_right_identity, idempotent_identity}
+\leanok
 Let \(e\in S\).
 \begin{itemize}
   \item If \(e\) is a left identity, then \(e e = e\).
@@ -33,6 +35,8 @@ For a right identity, apply the defining property to \(s:=e\) to get \(e e = e\)
 
 \begin{lemma}[Simplification lemma]
 \label{lem:simplification}
+\lean{idempotent_mul_eq, idempotent_eq_mul}
+\leanok
 Let \(s\in S\) and let \(e,f\in S\) be idempotents. If \(s = e s f\), then \(e s = s = s f\).
 \end{lemma}
 \begin{proof}
@@ -55,6 +59,8 @@ Throughout, let \(S\) be a semigroup with associative multiplication, written mu
 
 \begin{definition}[Left/right/two-sided zeros]
 \label{def:zeros}
+\lean{IsLeftZero, IsRightZero, IsZero}
+\leanok
 Let \(e\in S\).
 \begin{itemize}
   \item \(e\) is a \emph{left zero} if for all \(s\in S\), \(e s = e\).
@@ -65,6 +71,8 @@ Let \(e\in S\).
 
 \begin{lemma}[Idempotence of one-sided zeros]
 \label{lem:zero-idempotent}
+\lean{left_zero_idempotent, right_zero_idempotent, zero_idempotent}
+\leanok
 Let \(e\in S\).
 \begin{itemize}
   \item If \(e\) is a left zero, then \(e e = e\).
@@ -79,6 +87,8 @@ For a right zero, apply the defining property to \(s:=e\) to get \(e e = e\).
 
 \begin{lemma}[Uniqueness of zero (at most one zero element)]
 \label{lem:zero-unique}
+\lean{zero_unique}
+\leanok
 A semigroup has at most one zero element.
 \uses{def:zeros}
 \end{lemma}
@@ -86,8 +96,17 @@ A semigroup has at most one zero element.
 Suppose \(e,e'\in S\) are both zeros. Then \(e = e e'\) since \(e'\) is a right zero, and \(e e' = e'\) since \(e\) is a left zero. Hence \(e = e'\).
 \end{proof}
 
+\begin{definition}[Semigroup With Zero]
+\label{def:semigroup-with-zero}
+\lean{SemigroupWithZero, MulZeroClass.zero_mul, MulZeroClass.mul_zero}
+A semigroup with a zero element \(0_S\)
+\uses{def:zeros}
+\end{definition}
+
 \begin{definition}[Null semigroup]
 \label{def:null-semigroup}
+\lean{NullSemigroup}
+\leanok
 A semigroup \(S\) is \emph{null} if it has a zero element \(0_S\) and for all \(x,y\in S\) one has \(x y = 0_S\).
 \uses{def:zeros}
 \end{definition}
