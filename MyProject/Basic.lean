@@ -1,4 +1,4 @@
-import Mathlib
+import MyProject.RegExToENFA
 
 /-!
 # Chapter 1: Special Elements
@@ -191,7 +191,84 @@ When you extend this structure, make sure to extend MonoidHomClass
 #check map_zero
 
 /-!
+# Languages
+- Words are implemented as lists over the alphabet.
+  - With a coersion to free monoid
+- TODO: Def of regular language (rather than Mathlib's recognizible?)
+   - THeorem : Regular ↔ Recognizible
+-/
+
+/- # Questions -/
+
+/- What is a morphism of DFAs? What is a morphism of Languages? Of Regular Expressions?
+Mathlib defines `DFA.comap` and `RegularExpression.map` for lifting a functions on alphabets
+to function of DFAs / Regular Expressions.
+Mathlib also has a semiring structure on `Language` and defines semiring morphisms on them.
+Should I create definitions that convert morphisms on languages to morphisms on DFAs/Regexes?
+-/
+
+#check DFA.reindex -- Mathlib's Notion of equality of DFA
+#check DFA.comap -- Lifts `f : A → B` to `DFA A _ → DFA B _`
+
+/- Regular vs recognizable -/
+-- Textbook calles this "recognizable" not "regular"
+#check Language.IsRegular -- Regular if there exists a DFA with a `Fintype` on states accepting `L`
+#check Language.isRegular_iff
+
+-- Rational/Reglar Languages
+#check RegularExpression
+-- "Morphism" on Rational Lanugages
+#check RegularExpression.map -- Lifts `f : A → B` to
+
+-- Languages are Semigrings
+#check Language.instSemiring
+-- Lifts `f : A→B` to semiring morphism `Language A → Language B`
+#check Language.map
+
+-- Regex and language map commute
+-- Textbook lemma: (prop 2.3) Rational languages are prserved under (semiring) morphisms of the languages
+  -- If `L` is a rational language of `A*` then `φ L` is a rational langugae of `B*`
+#check RegularExpression.matches'_map
+
+/-! #  quotients preserve regulariety
+Mathlib's quotient is defined on languages
+Mathlib's deriv proves that derives preserve regularity (recognition by Regex)
+  and is used to define the Regex Matches' algorithm
+-/
+#check Language.leftQuotient
+#check RegularExpression.deriv
+/- # MINIMAL DFAs
+Mathlib Does not have a notion of minimal DFAs
+There is two : Minimal amount of states and a more complicated def from textbook:
+Textbook def:
+  We define a partial order on DFAs (of the same alphabet)
+  Let `A₁ : DFA α Q₁` and `A₂ : DFA α Q₂` be DFAs with starting states `q₁` and `q₂` and accepting states `F₁` and `F₂`
+  `A₁ ≤ A₂ ↔ ∃ φ : Q₂ → Q₁ , IsSurjective φ ∧ `
+    `φ (q₂) = q₁ ∧ `
+    `φ (F₂) = φ (F₁) ∧`
+    `∀ (u ∈ α*) (q ∈ Q₁), φ (A₁.eval q u) = A₂.eval (φ q) u`
+The nerode automaton of L is minimal for this partial order.
+-/
+
+
+/- # Kleene's theorem
+Theorem : A language is rational (Regex) ↔ A language is recognizable (DFA)
+- Forward direction : PR Does this Regex → εNFA → NFA → DFA
+- Backaward direction: DFA → Regex - Another PR does this with DFA → NFA → GNFA → Regex
+
+Coorolary - Recognisable/rational languages are closed under boolean operations,
+product, star, quotients, morphisms and inverses of morphisms.
+  - what does morphisms mean here? morphisms of languages? of alphabets?
+-/
+-- Regex → εNFA
+theorem toεNFA_correct' {α : Type*} (P : RegularExpression α): P.toεNFA.accepts = P.matches' := by
+  apply RegularExpression.toεNFA_correct
+def kleene_forward {α : Type*} (P : RegularExpression α) :
+    P.matches' = P.toεNFA.toNFA.toDFA.accepts := by sorry
+
+/-!
 # Transition Monoids of DFA
+Mathlib defines Quotients and defines the Nerode automaton
 -/
 
 instance transformationMonoid (σ : Type*) : Monoid (σ → σ) where
@@ -248,7 +325,36 @@ def DFA.transitionMonoid (M : DFA α σ) : Monoid (MulHom.range (M.transitionMon
 def Language.toSyntacticMonoid (L : Language α) : Monoid (MulHom.range (L.toDFA.transitionMonoidHom)) := by
   apply DFA.transitionMonoid
 
-/-TODO: Definition of MINIMAL Dfa accepting a language
-- Prove that `L.toDFA` is minimal
-- Provide def of syntactic monoid from quotient congruence, and prove equivalence with above def
+-- TODO  Provide def of syntactic monoid from quotient congruence, and prove equivalence with above def
+
+/- # Accessable and complete DFAs
+By def in mathlib, all DFAs are complete.
+Not all are necessarly accessable.
+What does coasseccable mean?
+Trimmed = accessable and coaccessable
+Theorem - All dfas are equivalent to a trimmed DFA (implement this)
+
+How can it be trimmed and Complete?j
+-/
+
+/- # Minimization Algorithms
+This is not being worked on by any PR.
+TODO: Prove that the nerode automaton is Minimal.
+
+These algorithms assume DFAs are trimmed
+
+There are multiple algorithms for unifying nondistinguishable states
+Hopcroft's and Morre's work by iterating on some set untill a fixpoint is reached.
+They compute the NERODE Equivalence (on states)
+
+Hopcroft's algorithm
+
+Moore's algorithm
+
+Brzozowski's algorithm
+By reversing an NFA and converting to a DFA twice, we produce the minimal DFA
+Reversing once merges nondistinguishable states, but may produce several accepitng states.
+
+Proving that the nerode automaton is minimal involves proving that it combines states
+by the nerode congruence.
 -/
