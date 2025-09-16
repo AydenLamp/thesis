@@ -193,7 +193,46 @@ When you extend this structure, make sure to extend MonoidHomClass
 /-!
 # Languages
 - Words are implemented as lists over the alphabet.
-  - With a coersion to free monoid
+- There is a coersion from `List α` → `FreeMonoid α`
+-/
+variable {α β : Type*}
+
+#check Language α
+#check Language.instSemiring
+
+variable (l₁ l₂ : Language α)
+#check l₁ + l₂
+#check Language.add_def
+
+#check l₁ * l₂
+#check Language.mul_def
+
+#check (0 : Language α) + 1
+#check ([] : List α) ∈ (1 : Language α)
+
+#check Language.reverse
+#check Language.reverseIso
+
+#check Language.map
+#check FreeMonoid.map
+
+variable (w₁ : List α)
+#check w₁ ∈ l₁
+#check Language.ext_iff
+
+-- instance : Monoid (List α) := by infer_instance
+instance : Monoid (FreeMonoid α) := by infer_instance
+
+variable (w₂ : FreeMonoid α)
+#check w₂ ∈ l₁
+
+#check FreeMonoid.ofList
+
+#check (w₁ : FreeMonoid α)
+#check (w₂ : List α)
+
+
+/-
 - TODO: Def of regular language (rather than Mathlib's recognizible?)
    - THeorem : Regular ↔ Recognizible
 -/
@@ -203,7 +242,7 @@ When you extend this structure, make sure to extend MonoidHomClass
 /- What is a morphism of DFAs? What is a morphism of Languages? Of Regular Expressions?
 Mathlib defines `DFA.comap` and `RegularExpression.map` for lifting a functions on alphabets
 to function of DFAs / Regular Expressions.
-Mathlib also has a semiring structure on `Language` and defines semiring morphisms on them.
+
 Should I create definitions that convert morphisms on languages to morphisms on DFAs/Regexes?
 -/
 
@@ -220,11 +259,6 @@ Should I create definitions that convert morphisms on languages to morphisms on 
 -- "Morphism" on Rational Lanugages
 #check RegularExpression.map -- Lifts `f : A → B` to
 
--- Languages are Semigrings
-#check Language.instSemiring
--- Lifts `f : A→B` to semiring morphism `Language A → Language B`
-#check Language.map
-
 -- Regex and language map commute
 -- Textbook lemma: (prop 2.3) Rational languages are prserved under (semiring) morphisms of the languages
   -- If `L` is a rational language of `A*` then `φ L` is a rational langugae of `B*`
@@ -235,8 +269,10 @@ Mathlib's quotient is defined on languages
 Mathlib's deriv proves that derives preserve regularity (recognition by Regex)
   and is used to define the Regex Matches' algorithm
 -/
+
 #check Language.leftQuotient
 #check RegularExpression.deriv
+
 /- # MINIMAL DFAs
 Mathlib Does not have a notion of minimal DFAs
 There is two : Minimal amount of states and a more complicated def from textbook:
@@ -263,6 +299,7 @@ product, star, quotients, morphisms and inverses of morphisms.
 -- Regex → εNFA
 theorem toεNFA_correct' {α : Type*} (P : RegularExpression α): P.toεNFA.accepts = P.matches' := by
   apply RegularExpression.toεNFA_correct
+
 def kleene_forward {α : Type*} (P : RegularExpression α) :
     P.matches' = P.toεNFA.toNFA.toDFA.accepts := by sorry
 
@@ -328,14 +365,25 @@ def Language.toSyntacticMonoid (L : Language α) : Monoid (MulHom.range (L.toDFA
 -- TODO  Provide def of syntactic monoid from quotient congruence, and prove equivalence with above def
 
 /- # Accessable and complete DFAs
-By def in mathlib, all DFAs are complete.
-Not all are necessarly accessable.
-What does coasseccable mean?
-Trimmed = accessable and coaccessable
-Theorem - All dfas are equivalent to a trimmed DFA (implement this)
+complete = All states have a transition for every letter (transition function is total)
+  This is requried by mathlib def
+Accessable = Every state can be reached from the start state
+Coaccessable = Every state can reach an accepting state
+Trimmed = Accessable and Coaccessable
 
-How can it be trimmed and Complete?j
+on pg 59, prop requires A be trimmed and complete.
+How can it be coaccessable and complete (unless it always accepts?)
+
+Theorem - All dfas are equivalent to a trimmed DFA (implement this)
 -/
+
+variable {α σ : Type*} (M : DFA α σ)
+
+def IsAccessableState (s : σ) : Prop :=
+  ∃ w : List α, M.evalFrom M.start w = s
+
+def IsCoaccessableState (s : σ) : Prop :=
+  ∃ w : List α, M.evalFrom s w ∈ M.reindex_apply_startccepts
 
 /- # Minimization Algorithms
 This is not being worked on by any PR.
@@ -346,10 +394,6 @@ These algorithms assume DFAs are trimmed
 There are multiple algorithms for unifying nondistinguishable states
 Hopcroft's and Morre's work by iterating on some set untill a fixpoint is reached.
 They compute the NERODE Equivalence (on states)
-
-Hopcroft's algorithm
-
-Moore's algorithm
 
 Brzozowski's algorithm
 By reversing an NFA and converting to a DFA twice, we produce the minimal DFA
