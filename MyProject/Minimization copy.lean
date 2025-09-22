@@ -236,7 +236,7 @@ section Minimization
 
 namespace DFA
 
-variable {α σ : Type*}
+variable {α σ : Type*} [Fintype σ]
 
 #check Language.leftQuotient
 #check Nonempty
@@ -268,62 +268,12 @@ def Minimize (M : AccessableDFA α σ) : AccessableDFA α (MinimizeStates M) whe
       simp_all
       exact Eq.symm (Language.leftQuotient_append M.accepts w [a])
 
-def rightLang (M : AccessableDFA α σ) (s : σ) : Language α :=
-  {w | M.evalFrom s w ∈ M.accept}
 
-lemma rightLang_eq_leftQuotient (M : AccessableDFA α σ) {s : σ} {y : List α}
-    (hy : M.eval y = s) :
-    rightLang M s = M.accepts.leftQuotient y := by
-  -- membership: w ∈ rightLang s  ↔  M.evalFrom s w ∈ accept
-  -- left quotient: w ∈ L / y     ↔  w ++ y ∈ L
-  ext w; simp_all [rightLang]
-  rw [← hy]
-  simp [mem_accepts, eval, evalFrom_of_append]
-  rfl
-
-def minimize_DFAHom (M : AccessableDFA α σ) : M.toDFA →ₗ (Minimize M).toDFA where
-  toFun s := ⟨rightLang M s, by
-    obtain ⟨y, hy⟩ := M.isAccessable s
-    use y
-    apply rightLang_eq_leftQuotient
-    exact hy⟩
-  map_start := by rfl
-  map_accept := by
-    intros s
-    simp_all [Minimize, rightLang]
-    rfl
-  map_step := by
-    intros s w
-    simp_all [rightLang, Minimize]
-    apply Subtype.eq
-    ext y
-    constructor
-    · intros h
-      have h₂ : M.evalFrom (M.evalFrom s w) y ∈ M.accept := h
-      clear h
-
-
-
-
-
-/- ERROR Tactic `cases` failed with a nested error:
-Tactic `induction` failed: recursor `Exists.casesOn` can only eliminate into `Prop`-/
-
-
-/--/
 theorem minimize_le (M : AccessableDFA α σ) : Minimize M ≤ M := by
   apply Nonempty.intro
   exact AccessableDFAHomSurj.mk
-    (toDFAHom := by apply DFAHom.mk (fun s ↦ getState s)
-
-
-
-
-    )
-
-    (surjective := by sorry )
-
-    /--/
+    (toDFAHom := by apply DFAHom.mk
+      (toFun := by sorry)
       (map_start := sorry)
       (map_accept := sorry)
       (map_step := sorry))
