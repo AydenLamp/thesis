@@ -1,9 +1,21 @@
 import Mathlib
 
-/- # Accessable DFAs
+/-
+# Accessable DFAs
 An Accessable state of a DFA is a state that can be reached from the start state by some word.
 An Accessable DFA is a DFA where all states are accessable.
 The first step of minimization is to convert a DFA to an accessable DFA.
+
+## Computability
+There is a `prop` based definition of an Accessable DFA, where for all states we have the propositon
+`∃ w : List α, M.eval w = s`. However, we cannot computably obtain such a `w` for an arbitrary state `s`.
+Thus, we define a alternate, more computable structure for Accessable DFAs, which requires a function
+`toWord : σ → List α` that computably gives such a `w` for each state `s`. This will either be a
+seperate structure or a `toWord` function that is defined on `AccessableDFA` with a `Fintype`.
+
+Question: Are these definitions equivalent for `Fintype` DFAs? Given a `prop` based accessable DFA
+over a `Fintype` of states, can we computably obtain such a `toWord` function?
+Idea: Use a tree search?
 -/
 
 section Accessable
@@ -14,11 +26,13 @@ universe v u
 
 variable {α : Type u} {σ : Type v}
 
-def isAccessableState (M : DFA α σ) (s : σ) : Prop := ∃ a : List α, M.eval a = s
+def isAccessableState {M : DFA α σ} (s : σ) : Prop := ∃ a : List α, M.eval a = s
 
 structure AccessableDFA (α : Type u) (σ : Type v) extends toDFA : DFA α σ where
   isAccessable : ∀ s : σ, toDFA.isAccessableState s
 
+/-- We define a function to convert a DFA to an Accessable DFA
+TODO: Should I prove that this is a (partial) bijection? -/
 def toAccessable (M : DFA α σ) : AccessableDFA α {s // M.isAccessableState s} where
   step := fun s a => ⟨M.step s.val a, by
     simp_all [isAccessableState]
@@ -42,13 +56,14 @@ def toAccessable (M : DFA α σ) : AccessableDFA α {s // M.isAccessableState s}
       simp at hx
       simp_all
 
+
 lemma toAccessable.eval (M : DFA α σ) (w : List α) : (M.toAccessable.eval w).val = M.eval w := by
   induction w using List.reverseRecOn with
   | nil => simp_all [toAccessable]
   | append_singleton w a ih =>
     simp_all [toAccessable]
 
-
+/-- Our `toAccessable` function preserves the language recognized -/
 theorem toAccessable.pres_lang (M : DFA α σ) (w : List α) : w ∈ M.accepts ↔ w ∈ (M.toAccessable).accepts := by
   simp_all [mem_accepts]
   constructor
@@ -59,9 +74,56 @@ theorem toAccessable.pres_lang (M : DFA α σ) (w : List α) : w ∈ M.accepts �
     have h₂ := toAccessable.eval M w
     simp_all [toAccessable]
 
+
 end DFA
 
 end Accessable
+
+section AccessableFin
+
+namespace DFA
+
+universe u v
+
+variable {α : Type u} {σ : Type v} [Fintype σ] [Fintype α]
+
+/-- TODO: Use a BFS algorithm?
+Brute force + pumping lemma ? -/
+def isAccessableStateBool {M : DFA α σ} (s : σ) : Bool := sorry
+
+/-- Proof that the above function is correct -/
+lemma isAccessableStateBool_correct {M : DFA α σ} (s : σ) :
+    M.isAccessableState s ↔ M.isAccessableStateBool s := by sorry
+
+instance accessableDecidable (M : DFA α σ) : DecidablePred (M.isAccessableState) := by
+  intros s
+  rcases h : (M.isAccessableStateBool s)
+  · apply isFalse
+    rw [isAccessableStateBool_correct]
+    exact ne_true_of_eq_false h
+  · apply isTrue
+    rw [isAccessableStateBool_correct]
+    exact h
+
+/-- Now that we have a `DecidablePred` instance, we can
+use it to construct the `Finset` of accessable states -/
+def accessableFinset (M : DFA α σ) : Finset σ :=
+  Finset.univ.filter (fun s => M.isAccessableState s)
+
+/-- We can now prove that the `toAccessable` function preserves `Fintype` states -/
+instance FintypeAccessable (M : DFA α σ) : Fintype {s // M.isAccessableState s} := by infer_instance
+
+/-- Given that a state is accessable, return the word that accesses it.
+Should be simmilar to `isAccessableStateBool` -/
+def toWord (M : AccessableDFA α σ) (s : σ) : List α := by sorry
+
+/-- Proof the above function is correct -/
+lemma toWord_correct (M : AccessableDFA α σ) (s : σ) :
+    M.eval (toWord M s) = s := by sorry
+
+end DFA
+
+end AccessableFin
 
 /-!
 # DFA Morphisms
@@ -218,9 +280,9 @@ lemma le_antisymm (M : AccessableDFA α σ₁) (N : AccessableDFA α σ₂) (h�
           rw [← hs]
           rw [f.map_step, g.map_step, f.map_start, g.map_start]
           ))
-
-
-def isMinimal (M : AccessableDFA α σ₁) : Prop := ∀ {σ : Type*} (N : AccessableDFA α σ), (M.accepts = N.accepts) → M ≤ N
+/-- The proposition saying that `M` is minimal for this preorder-/
+def isMinimal (M : AccessableDFA α σ₁) : Prop :=
+    ∀ {σ : Type*} (N : AccessableDFA α σ), (M.accepts = N.accepts) → M ≤ N
 
 end DFA
 
@@ -229,8 +291,73 @@ end PartialOrder
 /-!
 # Minimization
 We implement a minimization algorithm to take any Accessable DFA to it's
-nerode automaton (which is minimal by the partial order)
+nerode automaton (which is minimal by the partial order).
+
+The states of the nerode automaton is the set of Left quotients of the language.
+Question: How do we computably represent this set of languages?
+Idea : Represent a language by a DFA that recognizes it.
+IDea : Use other Mathlib PRs to represent it with a REGEX
+Idea : Use the EQ classes of the states of the original DFA under myhil congruence
 -/
+
+/-!
+## Nerode Equivalence
+Question: Should this be defined on Accessable DFA?
+-/
+
+section NerodeEquivalence
+
+namespace DFA
+
+universe v u
+
+variable {α : Type u} {σ : Type v}
+
+/-- The Nerode equivalence relation on the states of a DFA.
+For states `s₁, s₂`, we say `NerodeEquiv s₁ s₂` when the set of accepting words
+from that state are equal. -/
+def NerodeEquiv (M : DFA α σ) (s₁ s₂ : σ) : Prop :=
+  ∀ w : List α, M.evalFrom s₁ w ∈ M.accept ↔ M.evalFrom s₂ w ∈ M.accept
+
+theorem NerodeEquiv.refl (M : DFA α σ) (s : σ) : NerodeEquiv M s s := by
+  intro w; rfl
+
+theorem NerodeEquiv.symm (M : DFA α σ) {s₁ s₂ : σ} (h : NerodeEquiv M s₁ s₂) : NerodeEquiv M s₂ s₁ := by
+  intro w; rw [h w]
+
+theorem NerodeEquiv.trans (M : DFA α σ) {s₁ s₂ s₃ : σ}
+    (h₁ : NerodeEquiv M s₁ s₂) (h₂ : NerodeEquiv M s₂ s₃) : NerodeEquiv M s₁ s₃ := by
+  intro w; rw [h₁ w, h₂ w]
+
+instance SetoidNerode (M : DFA α σ) : Setoid σ where
+  r := NerodeEquiv M
+  iseqv := ⟨NerodeEquiv.refl M, NerodeEquiv.symm M, NerodeEquiv.trans M⟩
+
+/-- Question: How do i define this? -/
+def NerodeEquivBool [Fintype α] [Fintype σ] (M : DFA α σ) (s₁ s₂ : σ) : Bool := sorry
+
+lemma NerodeEquivBool_correct [Fintype α] [Fintype σ] (M : DFA α σ) (s₁ s₂ : σ) :
+    NerodeEquiv M s₁ s₂ ↔ NerodeEquivBool M s₁ s₂ := by sorry
+
+instance NerodeEquivDecidable (M : DFA α σ) [Fintype σ] [Fintype α] : DecidableRel (NerodeEquiv M) := by
+  intros s₁ s₂
+  rcases h : (NerodeEquivBool M s₁ s₂)
+  · apply isFalse
+    rw [NerodeEquivBool_correct]
+    exact ne_true_of_eq_false h
+  · apply isTrue
+    rw [NerodeEquivBool_correct]
+    exact h
+
+def NerodeStates (M : DFA α σ) := Quotient (SetoidNerode M)
+
+instance FintypeNerodeStates (M : DFA α σ) [Fintype α] [inst : Fintype σ] : Fintype (NerodeStates M) := by
+  apply @Quotient.fintype σ inst (SetoidNerode M) (NerodeEquivDecidable M)
+
+
+end DFA
+
+end NerodeEquivalence
 
 section Minimization
 
@@ -240,6 +367,7 @@ variable {α σ : Type*}
 
 #check Language.leftQuotient
 #check Nonempty
+
 
 /-- The states of the nerode automaton is the set of Left quotients of the language -/
 def MinimizeStates (M : AccessableDFA α σ) := {L : Language α // ∃ w : List α, L = M.accepts.leftQuotient w}
