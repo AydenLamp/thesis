@@ -333,6 +333,8 @@ instance SetoidNerode (M : DFA α σ) : Setoid σ where
   r := NerodeEquiv M
   iseqv := ⟨NerodeEquiv.refl M, NerodeEquiv.symm M, NerodeEquiv.trans M⟩
 
+#check Subtype.eq
+#check Set.subtype
 /-- Question: How do i define this? -/
 def NerodeEquivBool [Fintype α] [Fintype σ] (M : DFA α σ) (s₁ s₂ : σ) : Bool := sorry
 

@@ -17,7 +17,8 @@ variable {α : Type u} {σ : Type v}
 def isAccessableState (M : DFA α σ) (s : σ) : Prop := ∃ a : List α, M.eval a = s
 
 structure AccessableDFA (α : Type u) (σ : Type v) extends toDFA : DFA α σ where
-  isAccessable : ∀ s : σ, toDFA.isAccessableState s
+  toWord : σ → List α
+  toWord_correct (s : σ) : toDFA.eval (toWord s) = s
 
 def toAccessable (M : DFA α σ) : AccessableDFA α {s // M.isAccessableState s} where
   step := fun s a => ⟨M.step s.val a, by
@@ -30,17 +31,8 @@ def toAccessable (M : DFA α σ) : AccessableDFA α {s // M.isAccessableState s}
     · simp_all [eval]⟩
   start := ⟨M.start, by simp_all only [isAccessableState]; use []; simp⟩
   accept := { s | s.val ∈ M.accept}
-  isAccessable := by
-    intros s
-    simp_all [isAccessableState]
-    obtain ⟨s, ⟨w, hx⟩⟩ := s
-    use w
-    apply Subtype.eq
-    induction w using List.reverseRecOn generalizing s with
-    | nil => simp_all; simp at hx; exact hx
-    | append_singleton w a ih =>
-      simp at hx
-      simp_all
+  toWord := by sorry
+  toWord_correct := by sorry
 
 lemma toAccessable.eval (M : DFA α σ) (w : List α) : (M.toAccessable.eval w).val = M.eval w := by
   induction w using List.reverseRecOn with
@@ -244,6 +236,15 @@ variable {α σ : Type*} [Fintype σ]
 /-- The states of the nerode automaton is the set of Left quotients of the language -/
 def MinimizeStates (M : AccessableDFA α σ) := {L : Language α // ∃ w : List α, L = M.accepts.leftQuotient w}
 
+noncomputable def getWord {M : AccessableDFA α σ} (s : MinimizeStates M) : List α := by
+  have h := s.prop
+  exact Classical.choose h
+
+lemma getWord_correct {M : AccessableDFA α σ} (s : MinimizeStates M) : s.val = M.accepts.leftQuotient (getWord s) := by
+  sorry
+
+def getState {M : AccessableDFA α σ} (s : MinimizeStates M) : σ := M.eval (M.toWord s)
+
 def Minimize (M : AccessableDFA α σ) : AccessableDFA α (MinimizeStates M) where
   step s a := by -- inputs language s, outputs the left quotient of S with [a]
     refine ⟨s.val.leftQuotient [a], ?_⟩
@@ -253,27 +254,33 @@ def Minimize (M : AccessableDFA α σ) : AccessableDFA α (MinimizeStates M) whe
     rw [Language.leftQuotient_append]
   start := ⟨M.accepts, by use []; simp⟩
   accept := {s | [] ∈ s.val}
-  isAccessable s := by
-    simp [isAccessableState]
-    obtain ⟨y, hy⟩ := s.prop
-    use y
-    apply Subtype.eq
-    rw [hy]
-    simp_all [eval]
-    induction y using List.reverseRecOn generalizing s with
-    | nil => simp
-    | append_singleton w a ih =>
-      have h₁ : M.accepts.leftQuotient w = M.accepts.leftQuotient w := by rfl
-      have h := ih ⟨(M.accepts.leftQuotient w), by exists w⟩ (by rfl)
-      simp_all
-      exact Eq.symm (Language.leftQuotient_append M.accepts w [a])
+  toWord := sorry
+  toWord_correct := sorry
+
+def minimize_DFAHom (M : AccessableDFA α σ) : M.toDFA →ₗ (Minimize M).toDFA where
+  toFun s := M.accepts.leftQuotient (M.toWord s)
+  map_start := by sorry
 
 
+
+
+
+
+
+/--/
 theorem minimize_le (M : AccessableDFA α σ) : Minimize M ≤ M := by
   apply Nonempty.intro
   exact AccessableDFAHomSurj.mk
-    (toDFAHom := by apply DFAHom.mk
-      (toFun := by sorry)
+    (toDFAHom := by apply DFAHom.mk (fun s ↦ getState s)
+
+
+
+
+    )
+
+    (surjective := by sorry )
+
+    /--/
       (map_start := sorry)
       (map_accept := sorry)
       (map_step := sorry))
