@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2025.9.2)  8 SEP 2025 17:56
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2025.9.2)  3 OCT 2025 01:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,96 +709,18 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ] (./content.tex
-(/workspaces/thesis/blueprint/print/../../LaTeX/Chapters.tex
-Chapter 1.
-(/workspaces/thesis/blueprint/print/../../LaTeX/SpecialElements.tex
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00107pt on input line 6.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00075pt on input line 6.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00053pt on input line 6.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 6.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 6.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 6.
- [1
-
-]
-[2]) [3]
-Chapter 2.
-(/workspaces/thesis/blueprint/print/../../LaTeX/Ordered.tex) [4
-
-]
-Chapter 3.
-(/workspaces/thesis/blueprint/print/../../LaTeX/Morphisms.tex [5
-
-]) [6]
-Chapter 4.
-(/workspaces/thesis/blueprint/print/../../LaTeX/Structures.tex [7
-
-] [8]
-
-LaTeX Warning: Reference `rem:S1' on page 9 undefined on input line 172.
-
-
-Overfull \hbox (19.41307pt too wide) in paragraph at lines 189--191
-[][]\TU/lmr/bx/n/10 Lemma 41 \TU/lmr/m/n/10 (Intersections)\TU/lmr/bx/n/10 . []
-\TU/lmr/m/it/10 Arbitrary intersections of (right/left/two-sided) ideals are (r
-ight/left/two-
- []
-
-
-LaTeX Warning: Reference `rem:S1' on page 9 undefined on input line 199.
-
-[9]
-
-LaTeX Warning: Reference `rem:S1' on page 10 undefined on input line 223.
-
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 14.40152pt on input line 264.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 14.39845pt on input line 264.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 264.
-
-Missing character: There is no ⧵ (U+29F5) in font [latinmodern-math.otf]/OT:scr
-ipt=math;language=dflt;!
-) [10]
-Chapter 5.
-(/workspaces/thesis/blueprint/print/../../LaTeX/Congruences.tex
-
-LaTeX Warning: Reference `rem:S1' on page 11 undefined on input line 5.
-
-Missing character: There is no ⧵ (U+29F5) in font [latinmodern-math.otf]/OT:scr
-ipt=math;language=dflt;!
-Missing character: There is no ⧵ (U+29F5) in font [latinmodern-math.otf]/OT:scr
-ipt=math;language=dflt;!
-
-LaTeX Warning: Reference `rem:S1' on page 11 undefined on input line 36.
-
-
-LaTeX Warning: Reference `rem:S1' on page 11 undefined on input line 51.
-
-[11
-
-]))) [12] (/workspaces/thesis/blueprint/print/print.aux)
-
-LaTeX Warning: There were undefined references.
-
+(/workspaces/thesis/blueprint/print/../../LaTeX/Chapters.tex))
+(/workspaces/thesis/blueprint/print/print.aux)
 Package rerunfilecheck Info: File `print.out' has not changed.
-(rerunfilecheck)             Checksum: EC32EF8DF8ACE4FE098E1D3EA9CA72F9;2141.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16665 strings out of 478190
- 311075 string characters out of 5854828
- 818831 words of memory out of 5000000
- 37036 multiletter control sequences out of 15000+600000
- 475607 words of font info for 85 fonts, out of 8000000 for 9000
+ 16509 strings out of 478190
+ 306490 string characters out of 5854828
+ 791831 words of memory out of 5000000
+ 36924 multiletter control sequences out of 15000+600000
+ 472801 words of font info for 55 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 86i,9n,115p,652b,485s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,6n,115p,332b,349s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on /workspaces/thesis/blueprint/print/print.pdf (13 pages).
+Output written on /workspaces/thesis/blueprint/print/print.pdf (1 page).

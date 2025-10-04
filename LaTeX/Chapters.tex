@@ -1,21 +1,26 @@
-% Chapter 1: Special elements in Semigroups
-\chapter {Special Elements in Semigroups}
-\input{../../LaTeX/SpecialElements.tex}
+%\chapter {Substructures}
+%\input{../../LaTeX/Substructures.tex}
 
-% Chapter 2: Ordered Semigroups and Monoids
-\chapter {Ordered Semigroups and Monoids}
-\input{../../LaTeX/Ordered.tex}
+\chapter {Test}
 
-% Chapter 3: Morphisms
-\chapter {Morphisms}
-\input{../../LaTeX/Morphisms.tex}
+\section{section}
 
-% Chapter 4: Structures (substructures, products, quotients)
-\chapter {Algebraic Structures}
-\input{../../LaTeX/Structures.tex}
+Throughout, let \(S\) be a semigroup with associative multiplication, written multiplicatively.
 
-% Chapter 5: Congruences
-\chapter {Semigroup Congruences}
-\input{../../LaTeX/Congruences.tex}
 
-% Chapter 6: (TODO) Transition monoids
+\begin{lemma}[Test Lemma]
+\lean{test_lemma}
+\leanok
+\label{lem:test-lem}
+Let \(e\in S\).
+\begin{itemize}
+  \item If \(e\) is a left identity, then \(e e = e\).
+  \item If \(e\) is a right identity, then \(e e = e\).
+\end{itemize}
+\uses{}
+\lean {}
+\end{lemma}
+\begin{proof}
+For a left identity, apply the defining property to \(s:=e\) to get \(e e = e\).
+For a right identity, apply the defining property to \(s:=e\) to get \(e e = e\).
+\end{proof}
