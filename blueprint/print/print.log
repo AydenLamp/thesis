@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2025.9.2)  5 OCT 2025 19:54
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian) (preloaded format=xelatex 2025.9.2)  5 OCT 2025 19:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -710,14 +710,14 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] (./content.tex
 (/workspaces/thesis/blueprint/print/../../LaTeX/Chapters.tex
-(/workspaces/thesis/blueprint/print/../../LaTeX/FinDFA.tex))) [1]
+(/workspaces/thesis/blueprint/print/../../LaTeX/language/FinDFA.tex))) [1]
 (/workspaces/thesis/blueprint/print/print.aux)
 Package rerunfilecheck Info: File `print.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 16514 strings out of 478190
- 306666 string characters out of 5854828
+ 16516 strings out of 478190
+ 306779 string characters out of 5854828
  791831 words of memory out of 5000000
  36926 multiletter control sequences out of 15000+600000
  472801 words of font info for 55 fonts, out of 8000000 for 9000

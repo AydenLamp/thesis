@@ -754,10 +754,10 @@ INPUT /workspaces/thesis/blueprint/print/../../LaTeX/Chapters.tex
 INPUT /workspaces/thesis/blueprint/print/../../LaTeX/Chapters.tex
 INPUT /workspaces/thesis/blueprint/print/../../LaTeX/Chapters.tex
 INPUT /workspaces/thesis/blueprint/print/../../LaTeX/Chapters.tex
-INPUT /workspaces/thesis/blueprint/print/../../LaTeX/FinDFA.tex
-INPUT /workspaces/thesis/blueprint/print/../../LaTeX/FinDFA.tex
-INPUT /workspaces/thesis/blueprint/print/../../LaTeX/FinDFA.tex
-INPUT /workspaces/thesis/blueprint/print/../../LaTeX/FinDFA.tex
+INPUT /workspaces/thesis/blueprint/print/../../LaTeX/language/FinDFA.tex
+INPUT /workspaces/thesis/blueprint/print/../../LaTeX/language/FinDFA.tex
+INPUT /workspaces/thesis/blueprint/print/../../LaTeX/language/FinDFA.tex
+INPUT /workspaces/thesis/blueprint/print/../../LaTeX/language/FinDFA.tex
 INPUT /workspaces/thesis/blueprint/print/print.aux
 INPUT /workspaces/thesis/blueprint/print/print.out
 INPUT /workspaces/thesis/blueprint/print/print.out
