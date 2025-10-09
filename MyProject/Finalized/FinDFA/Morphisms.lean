@@ -1,4 +1,4 @@
-import MyProject.Finalized.FinDFA
+import MyProject.Finalized.FinDFA.Defs
 
 /-!
 # Morphisms between DFAs
@@ -214,5 +214,9 @@ set_option linter.unusedVariables false in
 /-- The proposition saying that `M` is minimal for this preorder-/
 def isMinimal (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂) (hle : N ≤ M) : Prop :=
   Nonempty ((M : DFA α σ₁) ≃ₗ (N : DFA α σ₂))
+
+def isMinimal' (M : AccessibleFinDFA α σ₁) :=
+  ∀ {σ₂ : Type*} [Fintype σ₂] [DecidableEq σ₂] (N : AccessibleFinDFA α σ₂),
+  N ≤ M → Nonempty ((M : DFA α σ₁) ≃ₗ (N : DFA α σ₂))
 
 end AccessibleFinDFA

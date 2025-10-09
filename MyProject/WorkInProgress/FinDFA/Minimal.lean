@@ -1,4 +1,4 @@
-import MyProject.FinDFA.NerodeEquiv
+import MyProject.WordInProgress.Nerode
 
 /-!
 # The (minimal) Nerode Automaton as an AccessableFinDFA
@@ -23,4 +23,30 @@ a surjective morphism from `O` to `M.NerodeAutomaton`.
 ## TODO
 
 * Also prove that the nerode automaton has the minimal amount of states?
+* Correct minimality Definition?
 -/
+
+namespace AccessibleFinDFA
+
+universe u v
+
+variable {α : Type u} [Fintype α] [DecidableEq α]
+variable {σ : Type v} [Fintype σ] [DecidableEq σ]
+
+/-- The Nerode automaton of the `AccessibleFinDFA` `M`. -/
+def NerodeAutomaton (M : AccessibleFinDFA α σ) : AccessibleFinDFA α (Quotient (NerodeEquiv.setoid M)) where
+  step := sorry
+  start := Quotient.mk (NerodeEquiv.setoid M) M.start
+  accept := {Quotient.mk (NerodeEquiv.setoid M) q | q ∈ M.accept }
+
+theorem NerodeAutomaton_isMinimal (M : AccessibleFinDFA α σ) :
+    isMinimal (M.NerodeAutomaton) := by
+  intro N h
+  haveI : Nonempty (N →ₗ M.NerodeAutomaton) := h
+  sorry
+
+end AccessibleFinDFA
+#check isMinimal
+
+def isMinimal' (M : AccessibleFinDFA α σ) : Prop :=
+  ∀ (N : AccessibleFinDFA α σ) (h : N ≤ M),  Nonempty ((N : DFA α σ≃ₗ M)
