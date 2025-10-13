@@ -1,44 +1,60 @@
-import Mathlib
+import Mathlib.Computability.DFA
+import Mathlib.Data.Nat.SuccPred
 
 /-!
 # FinDFA : Finite and computable DFAs
 
-This file defines a structure `FinDFA` that is equivalent to `Mathlib.Computability.DFA`,
-except that the accept states are given as a `Finset` instead of a `Set`, and
-we require `Fintype` and `DecidableEq` instances on the alphabet and state space.
-
-We define another structure `AccessibleFinDFA` that extends `FinDFA`
-with a proof that every state is accessible.
-
-We provide a coercion from `FinDFA` and `AccessibleFinDFA` to `DFA`, so that all
-theorems and definitions about `DFA` can be used on `FinDFA` and `AccessibleFinDFA` transparently.
+This file defines structures `FinDFA` and `AccessibleFinDFA`, and a function
+`FinDFA.toAccessible` that converts a `FinDFA` to an `AccessibleFinDFA`. This function is
+proven to preserve the language accepted by `FinDFA.toAccessible_pres_lang`.
 
 ## Main Definitions
 
-* `FinDFA α σ` : A DFA with alphabet `α` and state space `σ`
-* `FinDFA.toDFA` : Converts a `FinDFA` to a `DFA`
-* `FinDFA.getWordsLeqLength (n : ℕ) ` :  Returns a `Finset` of all words of length less than or
-equal to `n` over the alphabet of the `FinDFA`.
-* `FinDFA.isAccessibleState` : A *Decidable* predicate on states, true if the state is reachable
-from the start state by some word.
-* `AccessibleFinDFA` : A structure extending `FinDFA` with a proof that every state is
-accessible.
-* `FinDFA.toAccessible` : A function that converts a `FinDFA` to an `AccessibleFinDFA`
+* `FinDFA α σ` - A DFA with alphabet `α` and state space `σ`. This is like `DFA α σ`, but with
+  the additional assumptions that `α` and `σ` have `Fintype` and `DecidableEq` instances. We also
+  require that the accepting states are given as a `Finset σ` rather than a `Set σ`.
+
+* `FinDFA.getWordsLeqLength (n : ℕ)` - Returns a `Finset` of all words of length less than or
+  equal to `n` over the alphabet of the `FinDFA`.
+
+* `FinDFA.isAccessibleState` - A predicate on states, true if the state is reachable from the
+  start state by some word.
+
+* `FinDFA.isAccessibleStateDecidable` - A decidability instance for
+  `FinDFA.isAccessibleState`. This is a computable procedure for determining if a state of a
+  `FinDFA` is accessible.
+
+* `AccessibleFinDFA` - A structure extending `FinDFA` with a proof that every state is
+  accessible.
+
+* `FinDFA.toAccessible` - A function that converts a `FinDFA` to an `AccessibleFinDFA`.
 
 ## Main Theorems
 
-* `FinDFA.getWordsLeqLength_correct` : The `Finset` returned by `FinDFA.getWordsLeqLength n` contains
-exactly the words of length less than or equal to `n`.
-* `exists_short_access_word` : If a state is accessible, then it is accessed by a word of length
-at most the number of states in the `FinDFA`. This theorem is used to obtain the decidability of
-the `isAccessibleState` predicate.
-* `FinDFA.toAccessible_pres_lang` : The `AccessibleFinDFA` obtained from a `FinDFA` accepts the same
-language as the original `FinDFA`.
+* `FinDFA.getWordsLeqLength_correct` - The `Finset` returned by `FinDFA.getWordsLeqLength n`
+  contains exactly the words of length less than or equal to `n`.
+
+* `FinDFA.exists_short_access_word` - In order to construct `AccessibleFinDFA`s from `FinDFA`s,
+  we need to define a decidability instance on `FinDFA.isAccessibleState`. As written, this
+  involves searching the infinite space of all words. However, we prove in
+  `FinDFA.exists_short_access_word` that, if a state is accessible by any word, then it is
+  accessible by some word of length at most the number of states in the `FinDFA`. This allows
+  us to search through a finite space of words using our `FinDFA.getWordsLeqLength` function.
+
+* `FinDFA.toAccessible_pres_lang` - The language of a `FinDFA` is the same as the language of
+  the `AccessibleFinDFA` obtained by applying `FinDFA.toAccessible`.
+
+## Implementation Notes
+
+We provide coercions from `FinDFA` and `AccessibleFinDFA` to `DFA`. This means that when you have
+`M : FinDFA α σ`, you can use functions defined on `DFA α σ` such as `M.eval` and `M.accepts`.
+You can make the coercion explicit by writing `(M : DFA α σ)`, and this is preferred over writing
+`M.toDFA`.
 -/
 
 universe u v
 
-/-- A *finite and computable* DFA -/
+/-- A finite and computable DFA. -/
 structure FinDFA (α : Type u) (σ : Type v)
   [Fintype α] [DecidableEq α] [Fintype σ] [DecidableEq σ] where
   /-- Transition function. -/
@@ -58,25 +74,26 @@ def toDFA (M : FinDFA α σ) : DFA α σ where
   start  := M.start
   accept := (M.accept : Set σ)
 
-/-- Coersion from `FinDFA` to `DFA`. -/
+/-- Coercion from `FinDFA` to `DFA`. -/
 instance : Coe (FinDFA α σ) (DFA α σ) := ⟨toDFA⟩
 
 @[simp] lemma coe_start (M : FinDFA α σ) : M.toDFA.start = M.start := rfl
 
 @[simp] lemma coe_step (M : FinDFA α σ) : M.toDFA.step = M.step := rfl
 
-@[simp] lemma coe_accept (M : FinDFA α σ) (s : σ) : s ∈ M.toDFA.accept ↔ s ∈ M.accept := by rfl
+@[simp] lemma coe_accept (M : FinDFA α σ) (s : σ) :
+    s ∈ M.toDFA.accept ↔ s ∈ M.accept := by rfl
 
-/-- Inputs a word `w` and returns an injection from letters `a` to `a :: w` -/
+/-- Given a word `w`, the injection sending `a` to `a :: w`. -/
 @[simp] def prependLetter (w : List α) : α ↪ List α where
   toFun (a : α) := a :: w
   inj' := by simp_all [Function.Injective]
 
-/- Inputs a word `w` and returns the finset of `a :: w` for all `a : α` -/
+/-- Given a word `w`, return the finset of `a :: w` for all `a : α`. -/
 @[simp] def getNextWords (w : List α) : Finset (List α) :=
   Finset.map (prependLetter w) (Finset.univ : Finset α)
 
-/- Returns all the words of length `n` in the alphabet of `M` -/
+/-- Return all the words of length `n` in the alphabet of `M`. -/
 @[simp] def getWordsOfLength (M : FinDFA α σ) (n : ℕ) : Finset (List α) :=
   match n with
   | 0 => {[]}
@@ -105,7 +122,7 @@ instance : Coe (FinDFA α σ) (DFA α σ) := ⟨toDFA⟩
       subst n
       simp_all
 
-/-- Returns a `Finset` of all words of length ≤ `n` -/
+/-- Return a `Finset` of all words of length ≤ `n`. -/
 def getWordsLeqLength (M : FinDFA α σ) (n : ℕ) : Finset (List α) :=
   match n with
   | 0 => M.getWordsOfLength 0
@@ -128,7 +145,8 @@ def getWordsLeqLength (M : FinDFA α σ) (n : ℕ) : Finset (List α) :=
     | zero => simp_all [getWordsLeqLength]
     | succ n ih =>
       simp_all [getWordsLeqLength]
-      have hn : w.length = n + 1 ∨ w.length ≤ n := by exact Nat.le_succ_iff_eq_or_le.mp hlen
+      have hn : w.length = n + 1 ∨ w.length ≤ n := by
+        exact Nat.le_succ_iff_eq_or_le.mp hlen
       rcases hn with (hn | hn)
       · left
         have hw : w ≠ [] := by
@@ -142,17 +160,9 @@ def getWordsLeqLength (M : FinDFA α σ) (n : ℕ) : Finset (List α) :=
         apply ih
         exact hn
 
-/-!
-### Accessible States
+/-! ### Accessible States -/
 
-We define the predicate `isAccessibleState` on states, which is true if there is some word
-that leads to that state from the start state. We show that if a state is accessible, then it is
-accessible by some word of length at most the number of states in the `FinDFA`. This is used to
-show that the `isAccessibleState` predicate is decidable, becuase we only must search through
-finitely many words to determine if a state is accessible.
--/
-
-/-- A State is accessible if there is some word that leads to it-/
+/-- A state is accessible if there is some word that leads to it. -/
 abbrev isAccessibleState (M : FinDFA α σ) (s : σ) : Prop :=
   ∃ w, (M : DFA α σ).evalFrom M.start w = s
 
@@ -174,8 +184,7 @@ theorem exists_short_access_word (M : FinDFA α σ) (s : σ) {w : List α}
     use w
     simp [hw', hshort]
   · have hle : Fintype.card σ ≤ n := by exact Nat.le_of_not_ge hshort
-    -- Use Mathlib's `DFA.evalFrom_split` lemma to split `w` into `a ++ b ++ c`
-    -- with a loop on `b`
+    -- Use Mathlib's `DFA.evalFrom_split` lemma to split `w` into `a ++ b ++ c` with a loop on `b`.
     subst hlen
     have h := ((M : DFA α σ).evalFrom_split hle hw')
     rcases h with ⟨q, a, b, c, hsplit, hlen, hbne, hqa, hqb, hqc⟩
@@ -189,13 +198,13 @@ theorem exists_short_access_word (M : FinDFA α σ) (s : σ) {w : List α}
     obtain ⟨v, hv⟩ := h h'
     use v
 
-/-- The set of all accessible states -/
+/-- The set of all accessible states. -/
 def getAccessibleStates (M : FinDFA α σ) : Finset σ :=
   Finset.biUnion
     (M.getWordsLeqLength (Fintype.card σ))
     (fun s ↦ {(M : DFA α σ).evalFrom M.start s})
 
-/-- Characterization of the `getAccessibleStates`. -/
+/-- Characterization of `getAccessibleStates`. -/
 lemma getAccessibleStates_correct (M : FinDFA α σ) (s : σ) :
    M.isAccessibleState s ↔ s ∈ M.getAccessibleStates := by
   simp [isAccessibleState, getAccessibleStates]
@@ -206,7 +215,7 @@ lemma getAccessibleStates_correct (M : FinDFA α σ) (s : σ) :
     use w
     exact hw₂.symm
 
-/-- Decidability of whether a state is accessible -/
+/-- Decidability of whether a state is accessible. -/
 instance isAccessibleStateDecidable (M : FinDFA α σ) (s : σ) :
     Decidable (M.isAccessibleState s) := by
   have h := M.getAccessibleStates_correct s
@@ -215,15 +224,7 @@ instance isAccessibleStateDecidable (M : FinDFA α σ) (s : σ) :
 
 end FinDFA
 
-/-!
-### Accessible DFAs
-
-An accessible DFA is one where every state is accessible.
-We define a structure `AccessibleFinDFA` that extends `FinDFA`
-with a proof that every state is accessible.
-
-We also define coersions to both `FinDFA` and `DFA`.
--/
+/-! ### Accessible DFAs -/
 
 /-- An accessible DFA is one where every state is accessible. -/
 structure AccessibleFinDFA (α : Type u) (σ : Type v)
@@ -235,16 +236,16 @@ namespace AccessibleFinDFA
 variable {α : Type u} [instα : Fintype α] [DecidableEq α]
 variable {σ : Type v} [instσ : Fintype σ] [DecidableEq σ]
 
-/-- A function that converts an `AccessibleFinDFA` to a `FinDFA`. -/
+/-- Convert an `AccessibleFinDFA` to a `FinDFA`. -/
 @[simp] def toFinDFA (M : AccessibleFinDFA α σ) : FinDFA α σ where
   step   := M.step
   start  := M.start
   accept := M.accept
 
-/-- A function that converts an `AccessibleFinDFA` to a `DFA`. -/
+/-- Convert an `AccessibleFinDFA` to a `DFA`. -/
 @[simp] def toDFA (M : AccessibleFinDFA α σ) : DFA α σ := M.toFinDFA.toDFA
 
-/-- Registering the coersion `AccessibleFinDFA` to `FinDFA`. -/
+/-- Register the coercion `AccessibleFinDFA` → `FinDFA`. -/
 instance : Coe (AccessibleFinDFA α σ) (FinDFA α σ) := ⟨toFinDFA⟩
 
 @[simp] lemma coe_start' (M : AccessibleFinDFA α σ) : M.toFinDFA.start = M.start := by rfl
@@ -254,7 +255,7 @@ instance : Coe (AccessibleFinDFA α σ) (FinDFA α σ) := ⟨toFinDFA⟩
 @[simp] lemma coe_accept' (M : AccessibleFinDFA α σ) (s : σ) :
     s ∈ M.toFinDFA.accept ↔ s ∈ M.accept := by rfl
 
-/-- Registering the coersion `AccessibleFinDFA` to `DFA`. -/
+/-- Register the coercion `AccessibleFinDFA` → `DFA`. -/
 instance : Coe (AccessibleFinDFA α σ) (DFA α σ) := ⟨toDFA⟩
 
 @[simp] lemma coe_start (M : AccessibleFinDFA α σ) : M.toDFA.start = M.start := by rfl
@@ -310,22 +311,22 @@ lemma toAccessible_evalFrom_val (M : FinDFA α σ)
     simp_all [DFA.evalFrom_append_singleton]
 
 /-- The underlying state reached by evaluating `toAccessible` on `w` equals the state reached
-    by evaluating the original DFA on `w`. -/
+by evaluating the original DFA on `w`. -/
 lemma toAccessible_eval_val (M : FinDFA α σ) (w : List α) :
     ((M.toAccessible : DFA α {s : σ // M.isAccessibleState s}).eval w).val
       = ((M : DFA α σ).eval w) := by
   have h := M.toAccessible_evalFrom_val ((M.toAccessible : AccessibleFinDFA α _).start) w
   simp_all [DFA.eval, toAccessible]
 
-/-- The language of `M.toAccessible : AccessibleFinDFA α _` is
-the same as the language of `M : FinDFA α σ`. -/
+/-- The language of `M.toAccessible : AccessibleFinDFA α σ` is the same as the language of
+`M : FinDFA α σ`. -/
 theorem toAccessible_pres_lang (M : FinDFA α σ) :
-    ((M.toAccessible) : DFA α {s : σ // M.isAccessibleState s}).accepts = (M : DFA α σ).accepts := by
+    ((M.toAccessible) : DFA α {s : σ // M.isAccessibleState s}).accepts =
+      (M : DFA α σ).accepts := by
   ext w
   have h := M.toAccessible_eval_val w
   simp_all [DFA.mem_accepts]
   rw [← h]; clear h
   simp_all [toAccessible]
-
 
 end FinDFA

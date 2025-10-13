@@ -1,4 +1,4 @@
-import MyProject.WordInProgress.Nerode
+import MyProject.WorkInProjgress.FinDFA.Nerode
 
 /-!
 # The (minimal) Nerode Automaton as an AccessableFinDFA

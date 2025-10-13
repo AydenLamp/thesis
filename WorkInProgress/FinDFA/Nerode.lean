@@ -1,4 +1,5 @@
-import MyProject.Finalized.FinDFA.Morphisms
+import MyProject.FinDFA.Morphisms
+import Mathlib
 
 /-!
 # Nerode Equivalence on AccessableFinDFAs
@@ -26,10 +27,18 @@ namespace AccessibleFinDFA
 
 universe u v
 
-variable {α : Type u} [Fintype α] [DecidableEq α]
+variable {α : Type u} [Fintype α] [DecidableEq α ]
 variable {σ : Type v} [σFin : Fintype σ] [DecidableEq σ]
 
-/-- **Nerode Equivalence**: states accept exactly the same set of words. -/
+variable (M : AccessibleFinDFA α σ)
+
+/-- We say `Distinguishes w s₁ s₂` if evaluating the word `w` from state `s₁` is
+accepting, but evaluating `w` from `s₂` is rejecting, or vice versa. -/
+def Distinguishes (w : List α) (s₁ s₂ : σ) : Prop :=
+  ((M : DFA α σ).evalFrom s₁ w ∈ M.accept) ≠ ((M : DFA α σ).evalFrom s₂ w ∈ M.accept)
+
+/-- **Nerode Equivalence**: states accept exactly the same set of words.
+i.e. the states are not distinguishable by words of any length -/
 def NerodeEquiv (M : AccessibleFinDFA α σ) (s₁ s₂ : σ) : Prop :=
   ∀ w : List α, ((M : DFA α σ).evalFrom s₁ w ∈ M.accept ↔ (M : DFA α σ).evalFrom s₂ w ∈ M.accept)
 
@@ -78,6 +87,14 @@ def BoundedNerode.setoid (M : AccessibleFinDFA α σ) (n : ℕ) : Setoid σ wher
   iseqv :=
     ⟨BoundedNerode.refl M n, BoundedNerode.symm M n, BoundedNerode.trans M n⟩
 
+@[simp] lemma BoundedNerode.setoid_def (M : AccessibleFinDFA α σ) (n : ℕ) :
+    (BoundedNerode.setoid M n).r = M.BoundedNerode n := by rfl
+
+@[simp] lemma BoundedNerode.setoid_def' (M : AccessibleFinDFA α σ) (n : ℕ) (s₁ s₂ : σ) :
+    (BoundedNerode.setoid M n) s₁ s₂ ↔  M.BoundedNerode n s₁ s₂:= by rfl
+
+/-- If `BoundedNerode n` does not relate `s₁ s₂`, then there exists a word of length `≤n` that distinguishes s₁ and s₂-/
+lemma
 /-!
 ### Decidability of BoundedNerode
 
@@ -118,6 +135,13 @@ instance BoundedNerode.decidable (M : AccessibleFinDFA α σ) (n : ℕ) :
   rw [BoundedNerodeComputable.correct M n]
   infer_instance
 
+/- We can now translate the decidablity instance -/
+instance BoundedNerode.decidableRel (M : AccessibleFinDFA α σ) (n : ℕ) :
+    DecidableRel (BoundedNerode.setoid M n) := by
+  simp [BoundedNerode.setoid]
+  rw [BoundedNerodeComputable.correct M n]
+  infer_instance
+
 /-- We can enumerate the elements of the quotient type of the equivalence
 classes of the `BoundedNerode` relation -/
 instance BoundedNerode.QuotientFintype (M : AccessibleFinDFA α σ) (n : ℕ) :
@@ -133,6 +157,8 @@ instance BoundedNerode.DecidableEq (M : AccessibleFinDFA α σ) (n : ℕ) :
   apply @Quotient.decidableEq σ
           (BoundedNerode.setoid M n)
           (BoundedNerode.decidable M n)
+
+end AccessibleFinDFA
 
 /-!
 ### Bounded Nerode Monotonicity and Stabilization
@@ -151,24 +177,8 @@ the quotient type by at least `1`, or it stabilizes.
 * Thus, the relation must stabilize at or before `n = |σ| - 2`
 -/
 
-/-- `BoundedNerode n+1` refines `BoundedNerode n` -/
-lemma BoundedNerode_mono (M : AccessibleFinDFA α σ) (n : ℕ) :
-    BoundedNerode.setoid M (n + 1) ≤ BoundedNerode.setoid M n := by
-  simp [Setoid.le_def]
-  intros s₁ s₂ h
-  sorry
 
-/-
-TODO : Generalize this.
--/
-lemma BoundedNerode_mono' (M : AccessibleFinDFA α σ) (n : ℕ) :
-    Fintype.card (Quotient (BoundedNerode.setoid M n)) ≤
-    Fintype.card (Quotient (BoundedNerode.setoid M (n + 1))) := by
-  refine Function.Embedding.nonempty_iff_card_le.mp ?_
-  apply Nonempty.intro
-  sorry
-
-/--
+/-!
 Assume `BoundedNerode n = BoundedNerode (n + 1)` and let `m ≥ n`.
 We prove by contradiction that `BoundedNerode n = BoundedNerode m`
 
@@ -197,15 +207,28 @@ If `t'` distinguishes (M.step s₁ a) and (M.step s₂ a), then `a :: t'` distin
 But `|a :: t'| ≤ n + 1`, contradicting the assumption that `s₁` and `s₂` indistinguishable by
 words of length `≤ n + 1`.
 -/
-lemma BoundedNerode_mono'' (M : AccessibleFinDFA α σ) (n : ℕ) (s₁ s₂ : σ) :
-    M.BoundedNerode (n + 1) s₁ s₂ ↔ ∀ (a : α), M.BoundedNerode n (M.step s₁ a) (M.step s₂ a) := by
-  sorry
 
+namespace AccessibleFinDFA
+
+
+universe u v
+
+variable {α : Type u} [Fintype α] [DecidableEq α]
+variable {σ : Type v} [σFin : Fintype σ] [σDec : DecidableEq σ]
+
+
+/-- `BoundedNerode (n + 1)` (not-strictly) refines `BoundedNerode n` -/
+lemma BoundedNerode_mono (M : AccessibleFinDFA α σ) (n : ℕ) :
+    BoundedNerode.setoid M (n + 1) ≤ BoundedNerode.setoid M n:= by
+  simp_all [Setoid.le_def, BoundedNerode]
+  intros s₁ s₂ h w hw
+  refine h w ?_
+  linarith
 
 lemma BoundedNerode_neq_implies_exists (M : AccessibleFinDFA α σ) {n : ℕ}
   (heq : M.BoundedNerode n ≠ M.BoundedNerode (n + 1)) :
-    ∃ (s₁ s₂ : σ) (w : List α), w.length = n + 1 ∧
-    M.BoundedNerode (n) s₁ s₂ ∧ ¬M.BoundedNerode (n + 1) s₁ s₂ := by
+    ∃ (s₁ s₂ : σ) (w : List α) (a : α), w.length = n ∧
+    (M : DFA α σ).evalFrom s₁ w ∈ M.accept ∧ (M : DFA α σ).evalFrom s₂  := by
   simp_all
   sorry
 
@@ -217,7 +240,11 @@ lemma BoundedNerode_stable_succ (M : AccessibleFinDFA α σ) (n : ℕ)
   have hnil : w ≠ [] := by aesop
   have hw := List.cons_head_tail hnil
   rw [← hw] at *
-  have h_succ := M.BoundedNerode_mono'' (n + 1) s₁ s₂
+  have h_succ := M.BoundedNerode_mono (n + 1)
+
+  simp [Setoid.le_def] at h_succ
+  have h_succ := @h_succ s₁ s₂
+
   rw [h_succ] at hd
   simp at hd
   rw [← heq] at hd
@@ -237,6 +264,65 @@ lemma BoundedNerode_stable (M : AccessibleFinDFA α σ) (n : ℕ) :
     simp_all
   | succ o ih =>
      sorry
+/-! ### Finpartition -/
+
+
+
+
+
+#check Finpartition.card_mono -- for `P Q : Finpartition s`, `P ≤ Q` implies `|Q| ≤ |P|`
+#check Finpartition.bind
+#check Finpartition.sum_card_parts
+#check Finpartition.card_parts_le_card -- The number of partitions is less than the number of elements
+
+#check Finpartition.ofSetoid
+#check Finpartition.mem_part_ofSetoid_iff_rel
+
+
+/-- The `Finpartition` of `σ` invoded by `BoundedNerode n` -/
+def BoundedNerode.finpartition (M : AccessibleFinDFA α σ) (n : ℕ) :
+    Finpartition (@Finset.univ σ σFin) :=
+  Finpartition.ofSetoid (BoundedNerode.setoid M n)
+
+/-- `s₂` is in the partition of `s₁` iff they are Bounded-Nerode-Related -/
+lemma BoundedNerode.mem_part_finpartition_iff (M : AccessibleFinDFA α σ) (n : ℕ) (s₁ s₂ : σ) :
+    s₂ ∈ (BoundedNerode.finpartition M n).part s₁ ↔ M.BoundedNerode n s₁ s₂ := by
+  simp [BoundedNerode.finpartition, Finpartition.mem_part_ofSetoid_iff_rel]
+
+/-! The finpartition induced by `BoundedNerode (n + 1)` refines `BoundedNerode n`-/
+lemma BoundedNerode.finpartition_mono (M : AccessibleFinDFA α σ) (n : ℕ) :
+    BoundedNerode.finpartition M (n + 1) ≤ BoundedNerode.finpartition M n := by
+  intros t ht
+  have hnonempty := @Finpartition.nonempty_of_mem_parts σ σDec
+    (@Finset.univ σ σFin) (BoundedNerode.finpartition M (n + 1)) t ht
+  rcases hnonempty with ⟨s, hs⟩
+  have ht' : t = ((BoundedNerode.finpartition M (n + 1)).part s) := by
+    symm
+    apply Finpartition.part_eq_of_mem
+    exact ht
+    exact hs
+  use (BoundedNerode.finpartition M n).part s
+  simp_all
+  intros s₂ hs₂
+  rw [BoundedNerode.mem_part_finpartition_iff] at hs₂ ⊢
+  apply BoundedNerode.mono M n hs₂
+
+lemma BoundedNerode.finpartition_card_mono (M : AccessibleFinDFA α σ) (n : ℕ) :
+    (BoundedNerode.finpartition M n).parts.card ≤
+    (BoundedNerode.finpartition M (n + 1)).parts.card := by
+  apply Finpartition.card_mono
+  apply BoundedNerode.finpartition_mono M n
+
+lemma BoundedNerode.finpartition_card_le (M : AccessibleFinDFA α σ) (n : ℕ) :
+    (BoundedNerode.finpartition M n).parts.card ≤ Fintype.card σ := by
+  apply Finpartition.card_parts_le_card
+
+lemma BoundedNerode.finpartition_card_pos (M : AccessibleFinDFA α σ) (n : ℕ):
+    0 ≤ (BoundedNerode.finpartition M n).parts.card := by
+  simp
+
+
+
 
 lemma BoundedNerode_start (M : AccessibleFinDFA α σ) :
     Fintype.card (Quotient (BoundedNerode.setoid M 0)) = 2 := by
@@ -254,17 +340,25 @@ theorem BoundedNerode_eq_nerode (M : AccessibleFinDFA α σ) :
     M.BoundedNerode (Fintype.card σ) = M.NerodeEquiv := by
   sorry
 
+/-! ### Decidability of NerodeEquiv -/
+
+/-- We have a decidable procedure for testing if two
+states of an `AccessibleFinDFA` are Nerode Equivalent.-/
 instance NerodeEquiv_decidable (M : AccessibleFinDFA α σ) :
     DecidableRel (M.NerodeEquiv) := by
   rw [← BoundedNerode_eq_nerode M]
   apply BoundedNerode.decidable
 
+/-- A `Fintype` instance on the quotient of the state type of a `AccessibleFinDFA`
+by the Nerode equivalence relation -/
 instance NerodeEquiv_quotient_fintype (M : AccessibleFinDFA α σ) :
         Fintype (Quotient (NerodeEquiv.setoid M)) := by
       apply @Quotient.fintype σ σFin
               (NerodeEquiv.setoid M)
               (NerodeEquiv_decidable M)
 
+/-- A `DecidableEq` instance on the quotient of the state type of a `AccessibleFinDFA`
+by the Nerode equivalence relation -/
 instance NerodeEquiv_quotient_decidableEq (M : AccessibleFinDFA α σ) :
         DecidableEq (Quotient (NerodeEquiv.setoid M)) := by
       apply @Quotient.decidableEq σ

@@ -1,4 +1,4 @@
-import MyProject.Finalized.FinDFA.Defs
+import MyProject.FinDFA.Defs
 
 /-!
 # Morphisms between DFAs
@@ -6,34 +6,39 @@ import MyProject.Finalized.FinDFA.Defs
 This file defines morphisms between DFAs, which are bundled functions between the state spaces
 which respect the transition function, start state, and accept states of the DFAs.
 
-We then define a partial order on `AccessibleFinDFA`s where `M ≤ N` iff there exists a
-surjective morphism from `N.toDFA` to `M.toDFA`.
+We then define a partial order on `AccessibleFinDFA`s where `M ≤ N` iff there exists a surjective
+morphism from `N.toDFA` to `M.toDFA`.
 
 ## Main Definitions
 
-* `DFA.Hom` : A morphism from the `DFA` `M` to the `DFA` `N`, notated `M →ₗ N`.
-* `DFA.Equiv` : An equivalence of `DFA`s, which is a bijective morphism, notated `M ≃ₗ N`.
-* `AccessibleFinDFA.HomSurj` : A morphism on the underlying `DFA`s of the `AccessibleFinDFA`s
-which is surjective on states. Notated `M ↠ N`.
-* `AccessibleFinDFA.le` : The partial order on `AccessibleFinDFA`s.
-* `AccessibleFinDFA.isMinimal` : A predicate that `M` is minimal by the partial order, up to
-equivalence of the underlying `DFA`s.
+* `DFA.Hom` - A morphism from the `DFA` `M` to the `DFA` `N`, notated `M →ₗ N`.
+
+* `DFA.Equiv` - An equivalence of `DFA`s, which is a bijective morphism, notated `M ≃ₗ N`.
+
+* `AccessibleFinDFA.HomSurj` - A morphism on the underlying `DFA`s of the `AccessibleFinDFA`s
+  which is surjective on states. Notated `M ↠ N`.
+
+* `AccessibleFinDFA.le` - Notated `≤`, the partial order on `AccessibleFinDFA`s.
+
+* `AccessibleFinDFA.isMinimal` - A predicate that `M` is minimal by the partial order, up to
+  equivalence of the underlying `DFA`s.
 
 ## Main Theorems
 
-* `DFA.Hom_pres_language` : The existence of `f : M →ₗ N` implies that the language of `N`
-equals the language of `M`.
-* `AccessibleFinDFA.le_refl` : The relation `le` is reflexive.
-* `AccessibleFinDFA.le_trans` : The relation `le` is transitive.
-* `AccessibleFinDFA.le_antisymm` : The relation `le` is antisymmetric up
-to equivalence of the underlying DFAs.
+* `DFA.hom_pres_lang` - The existence of `f : M →ₗ N` implies that the language of `M` equals
+  the language of `N`.
+
+We prove that the relation `≤` is a partial order (up to equivalence of underlying DFAs):
+* `AccessibleFinDFA.le_refl` - Reflexivity.
+* `AccessibleFinDFA.le_trans` - Transitivity.
+* `AccessibleFinDFA.le_antisymm` - Antisymmetry up to equivalence of the underlying DFAs.
 
 ## Notation
 
-* `M →ₗ N` : Notation for `DFA.Hom M N`.
-* `M ≃ₗ N` : Notation for `DFA.Equiv M N`.
-* `M ↠ N` : Notation for `AccessibleFinDFA.HomSurj M N`.
-* `M ≤ N` : Notation for the partial order on `AccessibleFinDFA`s.
+* `M →ₗ N` - Notation for `DFA.Hom M N`.
+* `M ≃ₗ N` - Notation for `DFA.Equiv M N`.
+* `M ↠ N` - Notation for `AccessibleFinDFA.HomSurj M N`.
+* `M ≤ N` - Notation for the partial order on `AccessibleFinDFA`s.
 -/
 
 namespace DFA
@@ -46,22 +51,23 @@ variable {α : Type u} [Fintype α] [DecidableEq α]
 variable {σ₁ : Type v} [Fintype σ₁] [DecidableEq σ₁]
 variable {σ₂ : Type w} [Fintype σ₂] [DecidableEq σ₂]
 
+/-- A morphism of DFAs from `M` to `N`. -/
 structure Hom (M : DFA α σ₁) (N : DFA α σ₂) where
-  /-- The underlying function map from States of `M` to States of `N` -/
+  /-- Underlying function map from states of `M` to states of `N`. -/
   toFun : σ₁ → σ₂
-  /-- The proposition that the function preserves the start state-/
+  /-- The function preserves the start state. -/
   map_start : toFun M.start = N.start
-  /-- The proposition that the function preserves the set of accepting states -/
+  /-- The function preserves the set of accepting states. -/
   map_accept (q : σ₁) : q ∈ M.accept ↔ toFun q ∈ N.accept
-  /-- The proposition that the function preserves state transitions -/
+  /-- The function preserves state transitions. -/
   map_step (q : σ₁) (w : List α) : toFun (M.evalFrom q w) = N.evalFrom (toFun q) w
 
-/-- `M →ₗ N` denotes the type of `DFAHom M N` -/
+/-- `M →ₗ N` denotes the type of `DFA.Hom M N`. -/
 infixr:25 " →ₗ " => Hom
 
 variable {M : DFA α σ₁} {N : DFA α σ₂}
 
-/-- The existance of `f : M →ₗ N` implies that the language of `M` equal to the language of `N`-/
+/-- A morphism preserves the accepted language. -/
 theorem hom_pres_lang (f : M →ₗ N) : M.accepts = N.accepts := by
   ext w
   simp_all [mem_accepts, eval]
@@ -77,23 +83,24 @@ theorem hom_pres_lang (f : M →ₗ N) : M.accepts = N.accepts := by
     rw [f.map_start]
     exact h
 
-/-- The morphism from a DFA to itself -/
+/-- The identity morphism on a DFA. -/
 def homRefl (M : DFA α σ₁) : M →ₗ M where
   toFun := id
   map_start := by rfl
-  map_accept := by intros q; simp
-  map_step := by intros q w; simp
+  map_accept := by intro q; simp
+  map_step := by intro q w; simp
 
-/-- An equivalence of DFAs is a bijective morphism -/
+/-- An equivalence of DFAs is a bijective morphism. -/
 structure Equiv (M : DFA α σ₁) (N : DFA α σ₂) where
   toDFAHom : M →ₗ N
   toInvDFAHom : N →ₗ M
   left_inv : Function.LeftInverse toInvDFAHom.toFun toDFAHom.toFun
   right_inv : Function.RightInverse toInvDFAHom.toFun toDFAHom.toFun
 
-/-- `M ≃ₗ N` denotes the type of `DFA.equiv M N` -/
+/-- `M ≃ₗ N` denotes the type of `DFA.Equiv M N`. -/
 infixr:25 " ≃ₗ " => Equiv
 
+/-- The identity equivalence on a DFA. -/
 def equivRefl (M : DFA α σ₁) : M ≃ₗ M where
   toDFAHom := homRefl M
   toInvDFAHom := homRefl M
@@ -102,7 +109,7 @@ def equivRefl (M : DFA α σ₁) : M ≃ₗ M where
 
 end DFA
 
-/-! ### Surjective Morphisms of AccessibleFinDFAs-/
+/-! ### Surjective Morphisms of AccessibleFinDFAs -/
 
 namespace AccessibleFinDFA
 
@@ -113,46 +120,49 @@ variable {σ₁ : Type v} [Fintype σ₁] [DecidableEq σ₁]
 variable {σ₂ : Type w} [Fintype σ₂] [DecidableEq σ₂]
 variable {σ₃ : Type x} [Fintype σ₃] [DecidableEq σ₃]
 
+/-- A surjective morphism between the underlying DFAs of `AccessibleFinDFA`s. -/
 structure HomSurj (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂)
     extends f : (M : DFA α σ₁) →ₗ (N : DFA α σ₂) where
-  /-- The proposition that the function is surjective -/
+  /-- The function is surjective. -/
   surjective : Function.Surjective f.toFun
 
+/-- `M ↠ N` denotes the type of `AccessibleFinDFA.HomSurj M N`. -/
 infixr:25 " ↠ " => HomSurj
 
-@[simp] def HomSurj.toDFAHom {M : AccessibleFinDFA α σ₁} {N : AccessibleFinDFA α σ₂} (f : M ↠ N) :
-    (M : DFA α σ₁) →ₗ (N : DFA α σ₂) where
+/-- Forget the surjectivity proof and view `HomSurj` as a DFA morphism. -/
+@[simp] def HomSurj.toDFAHom {M : AccessibleFinDFA α σ₁} {N : AccessibleFinDFA α σ₂}
+  (f : M ↠ N) : (M : DFA α σ₁) →ₗ (N : DFA α σ₂) where
   toFun := f.toFun
   map_start := f.map_start
   map_accept := f.map_accept
   map_step := f.map_step
 
-/-! ### Partial Order on AccessibleFinDFAs-/
+/-! ### Partial Order on AccessibleFinDFAs -/
 
-/-- The partial order on `AccessibleFinDFA`s -/
-def le (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂) : Prop := Nonempty (N ↠ M)
+/-- The preorder on `AccessibleFinDFA`s: `M ≤ N` iff there is a surjective morphism `N ↠ M`. -/
+def le (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂) : Prop :=
+  Nonempty (N ↠ M)
 
-/-- `M ≤ N` denotes the proposition `le M N` -/
+/-- `M ≤ N` denotes the proposition `le M N`. -/
 infix:25 " ≤ " => le
 
-/-- The relation `le` is reflexive -/
+/-- Reflexivity of `≤`. -/
 lemma le_refl (M : AccessibleFinDFA α σ₁) : M ≤ M := by
   simp [le]
-  apply Nonempty.intro
-  apply AccessibleFinDFA.HomSurj.mk (DFA.homRefl M.toDFA)
-  simp_all [Function.Surjective]
-  intros s
-  use s
-  rfl
+  refine ⟨?f⟩
+  refine AccessibleFinDFA.HomSurj.mk (DFA.homRefl M.toDFA) ?_
+  intro s
+  exact ⟨s, rfl⟩
 
-/-- The relation `le` is transitive-/
-lemma le_trans {M : AccessibleFinDFA α σ₁} {N : AccessibleFinDFA α σ₂} {O : AccessibleFinDFA α σ₃}
-    (h₁ : M ≤ N) (h₂ : N ≤ O) : M ≤ O := by
+/-- Transitivity of `≤`. -/
+lemma le_trans {M : AccessibleFinDFA α σ₁} {N : AccessibleFinDFA α σ₂}
+  {O : AccessibleFinDFA α σ₃} (h₁ : M ≤ N) (h₂ : N ≤ O) : M ≤ O := by
   obtain f := h₁.some
   obtain g := h₂.some
-  apply Nonempty.intro
+  refine ⟨?_⟩
+  -- Compose the underlying DFA morphisms and show surjectivity.
   let I : O.toDFA →ₗ M.toDFA := by
-    apply DFA.Hom.mk
+    refine DFA.Hom.mk
       (toFun := f.toFun ∘ g.toFun)
       (map_start := by
         simp
@@ -160,34 +170,34 @@ lemma le_trans {M : AccessibleFinDFA α σ₁} {N : AccessibleFinDFA α σ₂} {
         have hf := f.map_start
         simp_all)
       (map_accept := by
-        intros q
+        intro q
         simp_all
         have hg := g.map_accept q
         have hf := f.map_accept (g.toFun q)
         simp_all)
       (map_step := by
-        intros q w
+        intro q w
         simp_all
         have hg := g.map_step q w
         have hf := f.map_step (g.toFun q) w
         simp_all)
-  apply AccessibleFinDFA.HomSurj.mk I
+  refine AccessibleFinDFA.HomSurj.mk I ?_
+  -- Surjectivity of the composition.
   have hI : I.toFun = f.toFun ∘ g.toFun := rfl
-  rw [hI]
-  apply Function.Surjective.comp
-  · exact f.surjective
-  · exact g.surjective
+  simpa [hI] using Function.Surjective.comp f.surjective g.surjective
 
-/-- The `le` relation is Antisymmetric up to Equivalence of the underlying DFAs -/
-lemma le_antisymm (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂) (h₁ : M ≤ N) (h₂ : N ≤ M) :
+/-- Antisymmetry of `≤` up to equivalence of the underlying DFAs. -/
+lemma le_antisymm (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂)
+    (h₁ : M ≤ N) (h₂ : N ≤ M) :
     Nonempty ((M : DFA α σ₁) ≃ₗ (N : DFA α σ₂)) := by
   obtain f := h₁.some
   obtain g := h₂.some
-  apply Nonempty.intro
-  apply DFA.Equiv.mk
+  refine ⟨?_⟩
+  refine DFA.Equiv.mk
     (toDFAHom := g.toDFAHom)
     (toInvDFAHom := f.toDFAHom)
     (left_inv := by
+      -- Use accessibility to move back to the start state, then cancel via maps.
       simp_all [Function.LeftInverse]
       intro s
       obtain ⟨w, hs⟩ := M.is_accessible s
@@ -200,7 +210,7 @@ lemma le_antisymm (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂
       simp_all)
     (right_inv := by
       simp_all [Function.RightInverse]
-      intros s
+      intro s
       obtain ⟨w, hs⟩ := N.is_accessible s
       rw [← hs]
       have hg₁ := g.map_step M.start w
@@ -211,12 +221,9 @@ lemma le_antisymm (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂
       simp_all)
 
 set_option linter.unusedVariables false in
-/-- The proposition saying that `M` is minimal for this preorder-/
+
+/-- `M` is minimal for this preorder if every `N ≤ M` is equivalent to `M` as a DFA. -/
 def isMinimal (M : AccessibleFinDFA α σ₁) (N : AccessibleFinDFA α σ₂) (hle : N ≤ M) : Prop :=
   Nonempty ((M : DFA α σ₁) ≃ₗ (N : DFA α σ₂))
-
-def isMinimal' (M : AccessibleFinDFA α σ₁) :=
-  ∀ {σ₂ : Type*} [Fintype σ₂] [DecidableEq σ₂] (N : AccessibleFinDFA α σ₂),
-  N ≤ M → Nonempty ((M : DFA α σ₁) ≃ₗ (N : DFA α σ₂))
 
 end AccessibleFinDFA

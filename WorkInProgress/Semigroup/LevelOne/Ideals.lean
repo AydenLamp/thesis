@@ -225,6 +225,7 @@ instance : SetLike (Ideal' α) α :=
 
 variable {S : Type*} [Semigroup S]
 
+-- TODO : Frame with `WithOne`
 def ofSet (p : Set S) : Ideal' S where
   carrier := Set.univ * p * Set.univ ∪ LeftIdeal.ofSet p ∪ RightIdeal.ofSet p
   mem_mul_mem := by
@@ -507,10 +508,14 @@ theorem minimal_ideal_unique (I J : Ideal' α) (hI : isMinimal I) (hJ : isMinima
   exact HI.trans HJ.symm
 
 
-/- TODO: Lemma; Every finite semigroup has a unique minimal ideal -/
+variable {S : Type*} [Semigroup S]
+/- TODO: Lemma; Every finite (nonempty) semigroup has a unique minimal ideal -/
+
+lemma exists_minimal_ideal 
+
+variable {S : Type*} [SemigroupWithZero S]
 
 /- Lemma: If `S` has a zero `0`, then `{0}` is a minimal ideal -/
-variable {S : Type*} [SemigroupWithZero S]
 
 lemma principal_zero_eq : (principal (0 : S) : Set S) = {0} := by
   ext x -- tactic that reduces to proving `A=B` (as sets) to `x ∈ A ↔ x ∈ B`
